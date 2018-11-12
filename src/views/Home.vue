@@ -5,17 +5,13 @@
     <LeftNav></LeftNav>
 
     <!-- 右侧 -->
-    <div class="bfc main">
-      <div class="bg-light-grey header">
-        <span class="pl-20 header-title">已选条件：</span>
-        <div class="main-header-conditions">
-          <span class="conditions-item">2018</span>
-          <span class="conditions-item">1月</span>
-          <span class="conditions-item">MATERIALS SCIENCE</span>
-        </div>
-      </div>
+    <!-- bdc流体布局 -->
+    <div class="hidden main">
+      <!-- 已选条件头 -->
+      <Condition></Condition>
+      <!-- 结果标题头 -->
       <div class="main-content">
-        <div class="pl-20 bg-white header">
+        <div class="pl-20 header">
           <span class="header-title">ESI顶级论文</span>
           <div class="d-ib conntent-search-total">
             <span>共计</span>
@@ -30,10 +26,21 @@
             </select>
           </div>
           <div class="d-ib content-tool-choice">
-            <input type="checkbox">
-            <span class="content-tool-choice-all">全选</span>
-            <span class="content-tool-choice-export">导出</span>
+            <input type="checkbox" id="all-choice-checkbox" class="content-tool-choice-checkbox">
+            <label for="all-choice-checkbox" class="content-tool-choice-all">全选</label>
+            <span class="pl-5 content-tool-choice-export">导出</span>
           </div>
+        </div>
+      </div>
+
+      <!-- 搜索结果 -->
+      <div class="pl-20 search-results">
+        <div class="search-item">
+          <div class="d-ib search-results-checkbox">
+            <input type="checkbox">
+          </div>
+          <div class="d-ib search-results-number">1.</div>
+          <div class="d-ib search-results-content">dadwwaa</div>
         </div>
       </div>
     </div>
@@ -43,43 +50,38 @@
 
 <script>
 // @ is an alias to /src
-import LeftNav from "@/components/LeftNav.vue";
+import LeftNav from "@/components/left-nav/LeftNav.vue";
+import Condition from "@/components/condition/Condition.vue"
 
 export default {
   name: "home",
   components: {
-    LeftNav
+    LeftNav,
+    Condition
   }
 };
 </script>
 
 <style lang="less">
 //=================== 右侧 ====================
+.main {
+  // 等高布局
+  margin-bottom: -9999px;
+  padding-bottom: 9999px;
+  min-height: 800px;
+  background-color: @content-color;
+}
+
 .header-title {
   line-height: 50px;
+  font-weight: 600;
 }
 
 .header {
   height: 50px;
   font-size: 14px;
-  border-bottom: 1px solid @border-color;
+  // border-bottom: 1px solid @border-deep;
   box-sizing: border-box;
-}
-
-.main-header-conditions {
-  display: inline-block;
-
-  .conditions-item {
-    margin-right: 10px;
-    padding: 8px;
-    background: #ffffff;
-    border-radius: 4px;
-    border: 1px solid @border-color;
-  }
-}
-
-.main-content {
-
 }
 
 .conntent-search-total {
@@ -95,6 +97,16 @@ export default {
 }
 
 .content-tool-choice {
-  // 暂未解决
+  float: right;
+  margin-right: 30px;
+  line-height: 50px;
+
+  .content-tool-choice-checkbox {
+    vertical-align: -1px;
+  }
+}
+
+.search-results {
+  padding-top: 20px;
 }
 </style>

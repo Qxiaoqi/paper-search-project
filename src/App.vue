@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="container">
+    <div class="hidden clearfix container">
       <Head></Head>
       <div id="nav">
         <ul class="menu">
@@ -37,39 +37,54 @@
 
 <script>
 // @ is an alias to /src
-import Head from "@/components/Head.vue";
+import Head from "@/components/head/Head.vue";
 
 export default {
   components: {
     Head
   }
 };
-
 </script>
 
 <style lang="less">
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-width: 1200px;
   box-sizing: border-box;
   color: #4b505a;
 }
 
-// .container {
-//   margin-right: auto;
-//   margin-left: auto;
-//   width: 1200px;
-// }
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1300px;
+  min-width: 1100px;
+  box-shadow: 0 -5px 10px -3px #3f3f3f;
+}
 
-//bdc流体布局
-.bfc {
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+}
+
+.hidden {
   overflow: hidden;
+}
+
+.d-ib {
+  display: inline-block;
 }
 
 .pl-20 {
   padding-left: 20px;
+}
+
+.pl-25 {
+  padding-left: 25px;
 }
 
 .pl-5 {
@@ -84,10 +99,6 @@ export default {
   margin-left: 20px;
 }
 
-.d-ib {
-  display: inline-block;
-}
-
 .bg-white {
   background-color: #ffffff;
 }
@@ -96,11 +107,23 @@ export default {
   background-color: @light-grey;
 }
 
+.clearfix:after {
+  content: "";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
 .menu {
   margin: 0;
   padding: 1em 0;
   text-align: center;
-  border-bottom: 1px solid @deep-grey;
+  border-bottom: 1px solid @border-deep;
 }
 
 .menu-item {

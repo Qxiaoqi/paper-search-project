@@ -1,7 +1,7 @@
 <template>
   <div class="bg-light-grey left">
-    <div class="left-title">
-      <span class="left-title-txt">关键词检索</span>
+    <div class="pl-25 left-title">
+      <h2 class="left-title-txt">关键词检索</h2>
     </div>
     <div class="left-search">
       <div class="search-content">
@@ -11,15 +11,29 @@
         <input type="text" class="search-input">
       </div>
     </div>
-    <div class="left-title">
-      <span class="left-title-txt">分类检索</span>
+    <div class="pl-25 left-title">
+      <h2 class="left-title-txt">分类检索</h2>
+    </div>
+    <div class="left-filter">
+      <!-- 月份组件是单独固定的 -->
+      <Month></Month>
+      <!-- 三个后面都可以合成一个，最后改动一下 -->
+      <FilterForm></FilterForm>
+
     </div>
   </div>
 </template>
 
 <script>
+import Month from "./Month.vue";
+import FilterForm from "./FilterForm.vue";
+
 export default {
   name: "LeftNav",
+  components: {
+    Month,
+    FilterForm
+  }
   // props: {
   //   msg: String
   // }
@@ -31,20 +45,26 @@ export default {
 // ================== 左侧 ====================
 .left {
   float: left;
+  // 等高布局
+  margin-bottom: -9999px;
+  padding-bottom: 9999px;
   width: 300px;
-  min-height: 1000px;
   box-sizing: border-box;
-  border-right: 1px solid @border-color;
+  border-right: 1px solid @border-deep;
 }
 
 .left-title {
-  padding-left: 20px;
-  height: 50px;
-  background-color: @deep-grey;
+  // padding-left: 25px;
+  height: 55px;
+  // background-color: @deep-grey;
+  border-top: 1px solid @border-light;
+  border-bottom: 1px solid @border-light;
+  border-left: 4px solid @header-blue;
+  box-sizing: border-box;
 
   .left-title-txt {
-    line-height: 50px;
-    font-size: 16px;
+    line-height: 55px;
+    font-size: 18px;
     font-weight: bold;
   }
 }
@@ -58,8 +78,8 @@ export default {
   margin: 20px 0 0 24px;
   height: 40px;
   width: 250px;
-  border: 1px solid @border-grey;
-  border-radius: 8px;
+  border: 1px solid @border-deep;
+  border-radius: 4px;
   background-color: #ffffff;
 }
 
@@ -68,7 +88,7 @@ export default {
   width: 40px;
   display: inline-block;
   text-align: center;
-  border-radius: 8px;
+  border-radius: 4px;
 
   .fa-search {
     font-size: 1.5em;
@@ -81,7 +101,7 @@ export default {
   width: 210px;
   box-sizing: border-box;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
 
   &:focus {
     outline: none;

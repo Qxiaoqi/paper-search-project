@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "Head",
+  name: "Head"
   // props: {
   //   msg: String
   // }
@@ -19,13 +19,13 @@ export default {
 .header {
   overflow: hidden; //格式化父元素防止logo设置margin发生合并
   height: 130px;
-  background-color: @header-color;
+  background-color: @header-blue;
 
   .header-logo {
     margin: 25px 0 0 220px;
     height: 80px;
     width: 490px;
-    background: url("../assets/logo.png") no-repeat;
+    background: url("../../assets/logo.png") no-repeat;
   }
 }
 </style>
