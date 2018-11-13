@@ -53,6 +53,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
   color: #4b505a;
+  line-height: 1.42858;
+  font-size: 14px;
 }
 
 .container {
@@ -136,6 +138,7 @@ h5 {
 // a即router-link渲染后class
 .menu-item-link {
   font-weight: bold;
+  font-size: 16px;
   text-decoration: none;
   color: @font-color;
   // &.router-link-exact-active {

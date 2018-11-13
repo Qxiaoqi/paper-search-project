@@ -19,7 +19,7 @@
             <span>条搜索结果</span>
           </div>
           <div class="d-ib content-sort-choice">
-            <span class="pr-6">排序</span>
+            <span class="content-sort-choice-title">排序</span>
             <select name="" id="">
               <option value="">按时间升序</option>
               <option value="">按时间降序</option>
@@ -34,15 +34,11 @@
       </div>
 
       <!-- 搜索结果 -->
-      <div class="pl-20 search-results">
-        <div class="search-item">
-          <div class="d-ib search-results-checkbox">
-            <input type="checkbox">
-          </div>
-          <div class="d-ib search-results-number">1.</div>
-          <div class="d-ib search-results-content">dadwwaa</div>
-        </div>
-      </div>
+      <Periodical></Periodical>
+      <Periodical></Periodical>
+      <Periodical></Periodical>
+      <Periodical></Periodical>
+      <Periodical></Periodical>
     </div>
 
   </div>
@@ -51,13 +47,15 @@
 <script>
 // @ is an alias to /src
 import LeftNav from "@/components/left-nav/LeftNav.vue";
-import Condition from "@/components/condition/Condition.vue"
+import Condition from "@/components/condition/Condition.vue";
+import Periodical from "@/components/main/Periodical.vue";
 
 export default {
   name: "home",
   components: {
     LeftNav,
-    Condition
+    Condition,
+    Periodical
   }
 };
 </script>
@@ -80,7 +78,7 @@ export default {
 .header {
   height: 50px;
   font-size: 14px;
-  // border-bottom: 1px solid @border-deep;
+  border-bottom: 1px solid @border-deep;
   box-sizing: border-box;
 }
 
@@ -94,6 +92,11 @@ export default {
 
 .content-sort-choice {
   margin-left: 50px;
+
+  .content-sort-choice-title {
+    padding-right: 8px;
+    font-weight: 600;
+  }
 }
 
 .content-tool-choice {
@@ -104,9 +107,5 @@ export default {
   .content-tool-choice-checkbox {
     vertical-align: -1px;
   }
-}
-
-.search-results {
-  padding-top: 20px;
 }
 </style>
