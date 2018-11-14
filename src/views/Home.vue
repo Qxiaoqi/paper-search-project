@@ -2,7 +2,7 @@
   <div class="home">
 
     <!-- 左侧过滤组件 -->
-    <LeftNav></LeftNav>
+    <!-- <LeftNav></LeftNav> -->
 
     <!-- 右侧 -->
     <!-- bdc流体布局 -->
@@ -39,6 +39,23 @@
       <Periodical></Periodical>
       <Periodical></Periodical>
       <Periodical></Periodical>
+      <Periodical></Periodical>
+      <Periodical></Periodical>
+      <Periodical></Periodical>
+      <Periodical></Periodical>
+      <Periodical></Periodical>
+
+      <!-- 分页部分 -->
+      <div class="pagination-bar">
+
+      </div>
+
+      <!-- 搜索结果部分 -->
+      <div class="search-number-bar">
+        <span>其中有 </span>
+        <span>6,457,380</span>
+        <span> 条记录与检索式相匹配。</span>
+      </div>
     </div>
 
   </div>
@@ -46,14 +63,14 @@
 
 <script>
 // @ is an alias to /src
-import LeftNav from "@/components/left-nav/LeftNav.vue";
+// import LeftNav from "@/components/left-nav/LeftNav.vue";
 import Condition from "@/components/condition/Condition.vue";
 import Periodical from "@/components/main/Periodical.vue";
 
 export default {
   name: "home",
   components: {
-    LeftNav,
+    // LeftNav,
     Condition,
     Periodical
   }
@@ -107,5 +124,21 @@ export default {
   .content-tool-choice-checkbox {
     vertical-align: -1px;
   }
+}
+
+// 分页部分
+.pagination-bar {
+  height: 80px;
+  border-top: 1px solid @border-light;
+  background-color: @light-grey;
+}
+
+// 搜索结果部分
+.search-number-bar {
+  height: 50px;
+  line-height: 50px;
+  padding-left: 25px;
+  font-style: italic;
+  border-top: 1px solid @border-light;
 }
 </style>

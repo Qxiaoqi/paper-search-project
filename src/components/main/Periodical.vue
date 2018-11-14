@@ -58,6 +58,7 @@ export default {
     border: 1px solid @border-light;
     border-radius: 4px;
     background-color: #ffffff;
+    cursor: pointer;
   }
 }
 
