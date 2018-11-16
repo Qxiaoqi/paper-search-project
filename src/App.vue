@@ -163,7 +163,7 @@ h5 {
   list-style: none;
   cursor: pointer;
 
-  &:hover .sub-menu{
+  &:hover .sub-menu {
     display: block;
   }
 }
@@ -182,11 +182,11 @@ h5 {
 .sub-menu {
   position: absolute;
   top: 49px;
-  min-width: 150px; 
+  min-width: 150px;
   padding-left: 0;
   display: none;
   background-color: #ffffff;
-  box-shadow: 0 0 4px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
   text-align: left;
 
@@ -207,7 +207,7 @@ h5 {
   position: relative;
   height: 100px;
   background-color: @header-blue;
-  
+
   .footer-logo {
     margin: 25px 0 0 220px;
     // height: 40px;

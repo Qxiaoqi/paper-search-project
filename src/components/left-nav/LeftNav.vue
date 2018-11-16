@@ -15,11 +15,21 @@
       <h2 class="left-title-txt">分类检索</h2>
     </div>
     <div class="left-filter">
-      <!-- 月份组件是单独固定的 -->
-      <Month></Month>
-      <!-- 三个后面都可以合成一个，最后改动一下 -->
-      <FilterForm></FilterForm>
-
+      <!-- 月份class略有不同 -->
+      <FilterForm 
+        filterType="timeMonth"
+        :filterItems="formData.filterMonth"
+      ></FilterForm>
+      <!-- 年份 -->
+      <FilterForm
+       filterType="timeYear"
+       :filterItems="formData.filterYear"
+      ></FilterForm>
+      <!-- 学科 -->
+      <FilterForm
+       filterType="categorySubject"
+       :filterItems="formData.fiterSubject"
+      ></FilterForm>
     </div>
   </div>
 </template>
@@ -33,10 +43,79 @@ export default {
   components: {
     Month,
     FilterForm
+  },
+  data() {
+    return {
+      formData: {
+        filterMonth: [
+          {
+            id: 1,
+            value: "一月"
+          },
+          {
+            id: 2,
+            value: "三月"
+          },
+          {
+            id: 3,
+            value: "五月"
+          },
+          {
+            id: 4,
+            value: "七月"
+          },
+          {
+            id: 5,
+            value: "九月"
+          },
+          {
+            id: 6,
+            value: "十一月"
+          }
+        ],
+        filterYear: [
+          {
+            id: 11,
+            value: "2018"
+          },
+          {
+            id: 12,
+            value: "2017"
+          },
+          {
+            id: 13,
+            value: "2016"
+          },
+          {
+            id: 14,
+            value: "2015"
+          }
+        ],
+        fiterSubject: [
+          {
+            id: 21,
+            value: "MATERIALS SCIENCE"
+          },
+          {
+            id: 22,
+            value: "BIOLOGY & BIOCHEMISTRY"
+          },
+          {
+            id: 23,
+            value: "ENGINEERING"
+          },
+          {
+            id: 24,
+            value: "GEOSCIENCES"
+          },
+          {
+            id: 25,
+            value: "PHARMACOLOGY & TOXICOLOG Yadwad"
+          }
+        ]
+      }
+    };
   }
-  // props: {
-  //   msg: String
-  // }
 };
 </script>
 

@@ -25,6 +25,14 @@
               <option value="">按时间降序</option>
             </select>
           </div>
+          <!-- 期刊时间选择（只有期刊页面才有该组件） -->
+          <div class="d-ib periodical-time-choice">
+            <button class="choice-item">当期</button>
+            <button class="choice-item">往期</button>
+            <button class="choice-item">当期新增</button>
+            <button class="choice-item">当期跌出</button>
+          </div>
+
           <div class="d-ib content-tool-choice">
             <input type="checkbox" id="all-choice-checkbox" class="content-tool-choice-checkbox">
             <label for="all-choice-checkbox" class="content-tool-choice-all">全选</label>
@@ -140,5 +148,18 @@ export default {
   padding-left: 25px;
   font-style: italic;
   border-top: 1px solid @border-light;
+}
+
+// 期刊时间选择
+.periodical-time-choice {
+  margin-left: 20px;
+
+  .choice-item {
+    margin-right: 10px;
+    padding: 8px;
+    background-color: #ffffff;
+    border: 1px solid @border-light;
+    border-radius: 4px;
+  }
 }
 </style>

@@ -2,9 +2,9 @@
   <div class="bg-light-grey header">
     <span class="pl-20 header-title">已选条件：</span>
     <div class="main-header-conditions">
-      <span class="conditions-item">2018</span>
-      <span class="conditions-item">1月</span>
-      <span class="conditions-item">MATERIALS SCIENCE</span>
+      <button class="conditions-item">2018</button>
+      <button class="conditions-item">1月</button>
+      <button class="conditions-item">MATERIALS SCIENCE</button>
     </div>
   </div>
 </template>
@@ -12,7 +12,7 @@
 <script>
 export default {
   name: "Condition"
-}
+};
 </script>
 
 
@@ -41,4 +41,3 @@ export default {
   }
 }
 </style>
-
