@@ -20,7 +20,7 @@
           </div>
           <div class="d-ib content-sort-choice">
             <span class="content-sort-choice-title">排序</span>
-            <select name="" id="">
+            <select name="" id="" class="sort-select">
               <option value="">按时间升序</option>
               <option value="">按时间降序</option>
             </select>
@@ -121,6 +121,10 @@ export default {
   .content-sort-choice-title {
     padding-right: 8px;
     font-weight: 600;
+  }
+
+  .sort-select {
+    vertical-align: -2px;
   }
 }
 

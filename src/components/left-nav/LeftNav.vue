@@ -35,13 +35,11 @@
 </template>
 
 <script>
-import Month from "./Month.vue";
 import FilterForm from "./FilterForm.vue";
 
 export default {
   name: "LeftNav",
   components: {
-    Month,
     FilterForm
   },
   data() {
