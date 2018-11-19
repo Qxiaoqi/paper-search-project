@@ -13,6 +13,7 @@
 export default {
   name: "Condition",
   computed: {
+    // 从state获取条件数组
     conditions() {
       return this.$store.state.conditions.conditionList;
     }

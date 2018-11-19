@@ -9,9 +9,11 @@ const getters = {};
 
 // actions
 const actions = {
-  getConditionTotal({ commit }, time) {
-    commit("setConditionTotal", time);
+  // 获取条件总数
+  getConditionTotal({ commit }, total) {
+    commit("setConditionTotal", total);
   },
+  // 获取条件数组
   getConditionList({ commit }, conditions) {
     commit("setConditionList", conditions);
   }
@@ -19,9 +21,11 @@ const actions = {
 
 // mutations
 const mutations = {
-  setConditionTotal(state, time) {
-    state.conditionTotal = time;
+  // 提交条件总数
+  setConditionTotal(state, total) {
+    state.conditionTotal = total;
   },
+  // 提交条件数组
   setConditionList(state, conditions) {
     state.conditionList = conditions;
   }

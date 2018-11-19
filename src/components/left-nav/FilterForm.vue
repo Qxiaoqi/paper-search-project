@@ -6,6 +6,7 @@
     </div>
     <div class="pl-25 filter-form-content">
       <div class="form-content">
+        <!-- 此处需要判断是否是月份组件，若是则使用display-width类定义的样式 -->
         <div class="form-item" 
           v-for="filterItem in filterItems"
           :class="{ 'display-width': isMonth}"
@@ -41,9 +42,11 @@ export default {
     };
   },
   computed: {
+    // 判断是否是月份组件
     isMonth() {
       return this.filterType === "timeMonth" ? true : false;
     },
+    // 通过组件名称获取对应中文标题
     filterTitle() {
       const filterTxt = {
         timeMonth: "版本号（月）",
@@ -54,6 +57,7 @@ export default {
     }
   },
   methods: {
+    // 触发$emit方法，向父级组件传递事件
     giveConditions() {
       this.$emit("give-conditions");
     }

@@ -122,6 +122,7 @@ export default {
     };
   },
   methods: {
+    // 获取条件数据，并提交到state
     getConditions() {
       // 获取条件数组(ES6数组扩展运算符)
       this.checkedConditions = [
