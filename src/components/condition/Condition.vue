@@ -14,7 +14,7 @@ export default {
   name: "Condition",
   computed: {
     conditions() {
-      return this.$store.state.conditionList;
+      return this.$store.state.conditions.conditionList;
     }
   }
 };

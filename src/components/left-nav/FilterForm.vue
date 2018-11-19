@@ -23,7 +23,6 @@
         <div class="form-button">
           <button class="form-button-item" @click="giveConditions">精炼</button>
         </div>
-        <div>{{ checkedList }}</div>
       </div>
     </div>
   </div>
@@ -39,7 +38,7 @@ export default {
   data() {
     return {
       checkedList: []
-    }
+    };
   },
   computed: {
     isMonth() {
@@ -56,7 +55,7 @@ export default {
   },
   methods: {
     giveConditions() {
-      this.$emit('give-conditions')
+      this.$emit("give-conditions");
     }
   }
 };

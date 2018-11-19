@@ -123,8 +123,16 @@ export default {
   },
   methods: {
     getConditions() {
-      this.checkedConditions = [...this.$refs.checkedMonth.checkedList, ...this.$refs.checkedYear.checkedList, ...this.$refs.checkedSubject.checkedList];
-      console.log(this.checkedConditions);
+      // 获取条件数组(ES6数组扩展运算符)
+      this.checkedConditions = [
+        ...this.$refs.checkedMonth.checkedList,
+        ...this.$refs.checkedYear.checkedList,
+        ...this.$refs.checkedSubject.checkedList
+      ];
+      // 分发条件总数
+      this.$store.dispatch("getConditionTotal", this.checkedConditions.length);
+      // 分发条件数组
+      this.$store.dispatch("getConditionList", this.checkedConditions);
     }
   }
 };
