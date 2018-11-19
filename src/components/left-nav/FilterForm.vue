@@ -11,12 +11,19 @@
           :class="{ 'display-width': isMonth}"
           :key="filterItem.id"
           :filterItem="filterItem">
-          <input type="checkbox" :id="filterItem.id">
-          <label class="form-item-label" :for="filterItem.id">{{ filterItem.value }}</label>
+          <input type="checkbox" 
+            :id="filterItem.id" 
+            :value="{id:filterItem.id, value:filterItem.value}" 
+            v-model="checkedList"
+          >
+          <label class="form-item-label" 
+            :for="filterItem.id"
+          >{{ filterItem.value }}</label>
         </div>
         <div class="form-button">
-          <button class="form-button-item">精炼</button>
+          <button class="form-button-item" @click="giveConditions">精炼</button>
         </div>
+        <div>{{ checkedList }}</div>
       </div>
     </div>
   </div>
@@ -29,6 +36,11 @@ export default {
     filterType: String,
     filterItems: Array
   },
+  data() {
+    return {
+      checkedList: []
+    }
+  },
   computed: {
     isMonth() {
       return this.filterType === "timeMonth" ? true : false;
@@ -40,6 +52,11 @@ export default {
         categorySubject: "学科类别"
       };
       return filterTxt[this.filterType];
+    }
+  },
+  methods: {
+    giveConditions() {
+      this.$emit('give-conditions')
     }
   }
 };

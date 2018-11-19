@@ -18,17 +18,23 @@
       <!-- 月份class略有不同 -->
       <FilterForm 
         filterType="timeMonth"
+        ref="checkedMonth"
         :filterItems="formData.filterMonth"
+        @give-conditions="getConditions"
       ></FilterForm>
       <!-- 年份 -->
       <FilterForm
        filterType="timeYear"
+       ref="checkedYear"
        :filterItems="formData.filterYear"
+       @give-conditions="getConditions"
       ></FilterForm>
       <!-- 学科 -->
       <FilterForm
        filterType="categorySubject"
+       ref="checkedSubject"
        :filterItems="formData.fiterSubject"
+       @give-conditions="getConditions"
       ></FilterForm>
     </div>
   </div>
@@ -111,8 +117,15 @@ export default {
             value: "PHARMACOLOGY & TOXICOLOG Yadwad"
           }
         ]
-      }
+      },
+      checkedConditions: []
     };
+  },
+  methods: {
+    getConditions() {
+      this.checkedConditions = [...this.$refs.checkedMonth.checkedList, ...this.$refs.checkedYear.checkedList, ...this.$refs.checkedSubject.checkedList];
+      console.log(this.checkedConditions);
+    }
   }
 };
 </script>
