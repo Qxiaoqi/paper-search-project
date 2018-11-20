@@ -3,8 +3,6 @@
     <span class="pl-20 header-title">已选条件：</span>
     <div class="main-header-conditions">
       <button class="conditions-item" v-for="(condition, index) in conditions" :key="index">{{ condition.value }}</button>
-      <!-- <button class="conditions-item">1月</button> -->
-      <!-- <button class="conditions-item">MATERIALS SCIENCE</button> -->
     </div>
   </div>
 </template>

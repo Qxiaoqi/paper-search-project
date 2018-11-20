@@ -1,18 +1,18 @@
 <template>
   <div class="pl-20 search-results">
-    <div class="search-item">
+    <div class="search-item" v-for="(article, index) in articles" :key="index">
       <div class="d-ib search-checkbox">
-        <input type="checkbox" id="test1">
-        <label for="test1" class="checkbox-custom"></label>
+        <input type="checkbox" :id="article.articleId" :value="article.articleId">
+        <label :for="article.articleId" class="checkbox-custom"></label>
       </div>
-      <div class="d-ib search-number">1.</div>
+      <div class="d-ib search-number">{{ article.serialNumber }}.</div>
       <div class="d-ib search-main">
-        <h4 class="search-title">IRANIAN JOURNAL OF CHEMISTRY & CHEMICAL ENGINEERING-INTERNATIONAL ENGLISH EDITION CHEMICAL ENGINEERING-INTERNATIONAL ENGLISH EDITION</h4>
+        <h4 class="search-title">{{ article.fullTitle }}</h4>
         <div class="search-content">
-          <span class="content-subtitle">Title29：2D MATER</span>
-          <span class="content-subtitle">Title20：2D MATER</span>
-          <span class="content-subtitle">ISSN：2053-1583</span>
-          <span class="content-subtitle">EISSN：2053-1583</span>
+          <span class="content-subtitle">Title29：{{ article.Title29 }}</span>
+          <span class="content-subtitle">Title20：{{ article.Title20 }}</span>
+          <span class="content-subtitle">ISSN：{{ article.ISSN }}</span>
+          <span class="content-subtitle">EISSN：{{ article.EISSN }}</span>
         </div>
       </div>
     </div>
@@ -21,19 +21,27 @@
 
 <script>
 export default {
-  name: "Periodical"
+  name: "Periodical",
+  computed: {
+    articles() {
+      return this.$store.state.periodical.articleList;
+    }
+  }
 };
 </script>
 
-
 <style lang="less" scoped>
 .search-results {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 20px;
 }
 
 .search-item {
   display: table;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-right: 20px;
 }
 
 .search-checkbox {
