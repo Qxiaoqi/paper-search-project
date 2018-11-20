@@ -18,7 +18,7 @@
     <PeriodicalTime v-if="isPeriodical"></PeriodicalTime>
 
     <div class="d-ib content-tool-choice">
-      <input type="checkbox" id="all-choice-checkbox" class="content-tool-choice-checkbox">
+      <input type="checkbox" id="all-choice-checkbox" class="content-tool-choice-checkbox" v-model="checkedAll" @change="changeAllChecked()">
       <label for="all-choice-checkbox" class="content-tool-choice-all">全选</label>
       <span class="pl-5 content-tool-choice-export">导出</span>
     </div>
@@ -53,6 +53,28 @@ export default {
     // 获取文章总数
     getArticleTotal() {
       return this.$store.state.periodical.articleTotal;
+    },
+    // 获取当前展示所有文章id数组
+    getCheckedArr() {
+      return this.$store.state.checkedArticle.checkedArr;
+    },
+    // 获取全选布尔值
+    checkedAll: {
+      get() {
+        return this.$store.state.checkedArticle.checked;
+      },
+      set(val) {
+        this.$store.dispatch("getChecked", val);
+      }
+    }
+  },
+  methods: {
+    changeAllChecked() {
+      if(this.checkedAll) {
+        this.$store.dispatch("getCheckedId", this.getCheckedArr);
+      } else {
+        this.$store.dispatch("getCheckedId", []);
+      }
     }
   }
 };

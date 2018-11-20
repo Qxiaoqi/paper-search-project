@@ -2,7 +2,7 @@
   <div class="pl-20 search-results">
     <div class="search-item" v-for="(article, index) in articles" :key="index">
       <div class="d-ib search-checkbox">
-        <input type="checkbox" :id="article.articleId" :value="article.articleId">
+        <input type="checkbox" :id="article.articleId" :value="article.articleId" v-model="checkedId">
         <label :for="article.articleId" class="checkbox-custom"></label>
       </div>
       <div class="d-ib search-number">{{ article.serialNumber }}.</div>
@@ -25,6 +25,28 @@ export default {
   computed: {
     articles() {
       return this.$store.state.periodical.articleList;
+    },
+    // 获取当前展示所有文章id数组
+    getCheckedArr() {
+      return this.$store.state.checkedArticle.checkedArr;
+    },
+    // 获取checkbox当前绑定的数组
+    checkedId: {
+      get() {
+        return this.$store.state.checkedArticle.checkedId;
+      },
+      set(val) {
+        this.$store.dispatch("getCheckedId", val);
+      }
+    }
+  },
+  watch: {
+    checkedId() {
+      if (this.checkedId.length == this.getCheckedArr.length) {
+				this.$store.dispatch("getChecked", true);
+			} else {
+				this.$store.dispatch("getChecked", false);
+			}
     }
   }
 };
