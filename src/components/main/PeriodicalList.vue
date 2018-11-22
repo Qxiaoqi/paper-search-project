@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: "Periodical",
+  name: "PeriodicalList",
   computed: {
     articles() {
       return this.$store.state.periodical.articleList;
@@ -41,12 +41,13 @@ export default {
     }
   },
   watch: {
+    // 监听文章列表的全选是否发生变化
     checkedId() {
       if (this.checkedId.length == this.getCheckedArr.length) {
-				this.$store.dispatch("getChecked", true);
-			} else {
-				this.$store.dispatch("getChecked", false);
-			}
+        this.$store.dispatch("getChecked", true);
+      } else {
+        this.$store.dispatch("getChecked", false);
+      }
     }
   }
 };

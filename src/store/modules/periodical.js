@@ -1,7 +1,7 @@
 // initial state
 const state = {
   // 搜索到的文章总结果
-  articleTotal: 0,
+  articleTotal: 9875622,
   // 分页后的当前文章结果列表
   articleList: [
     {
@@ -102,7 +102,12 @@ const state = {
 };
 
 // getters
-const getters = {};
+const getters = {
+  // 将搜索结果通过正则转换为逗号分隔
+  separated(state) {
+    return String(state.articleTotal).replace(/(\d)(?=(\d{3})+$)/g, "$1,");
+  }
+};
 
 // actions
 const actions = {

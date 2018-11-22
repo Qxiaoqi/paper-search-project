@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
+import Periodical from "./views/Periodical.vue";
 
 Vue.use(Router);
 
@@ -11,7 +11,12 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      component: Home
+      redirect: "/periodical/current"
+    },
+    {
+      path: "/periodical/:periodicalTime",
+      name: "Periodical",
+      component: Periodical
     }
     // {
     //   path: "/about",

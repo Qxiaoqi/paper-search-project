@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="periodical-esi">
 
     <!-- 左侧过滤组件 -->
     <!-- <LeftNav></LeftNav> -->
@@ -13,13 +13,10 @@
       <MainHeader title="periodicalESI"></MainHeader>
 
       <!-- 搜索结果 -->
-      <Periodical></Periodical>
-
+      <PeriodicalList></PeriodicalList>
 
       <!-- 分页部分 -->
-      <div class="pagination-bar">
-
-      </div>
+      <Pagination></Pagination>
 
       <!-- 搜索结果部分 -->
       <div class="search-number-bar">
@@ -36,16 +33,18 @@
 // @ is an alias to /src
 // import LeftNav from "@/components/left-nav/LeftNav.vue";
 import Condition from "@/components/condition/Condition.vue";
-import Periodical from "@/components/main/Periodical.vue";
+import PeriodicalList from "@/components/main/PeriodicalList.vue";
 import MainHeader from "@/components/main/MainHeader.vue";
+import Pagination from "@/components/main/Pagination.vue";
 
 export default {
-  name: "home",
+  name: "Periodical",
   components: {
     // LeftNav,
     Condition,
-    Periodical,
-    MainHeader
+    PeriodicalList,
+    MainHeader,
+    Pagination
   }
 };
 </script>
@@ -65,6 +64,29 @@ export default {
   height: 80px;
   border-top: 1px solid @border-light;
   background-color: @light-grey;
+  text-align: right;
+}
+
+.chose-page {
+  margin-right: 100px;
+  padding-top: 20px;
+
+  .page-up,
+  .page-down {
+    padding: 0 10px;
+    vertical-align: -2px;
+  }
+
+  .current-page,
+  .page-count {
+    padding: 0 15px;
+    margin: 0 5px;
+    font-size: 13px;
+  }
+
+  .current-page {
+    border-bottom: 2px solid @header-blue;
+  }
 }
 
 // 搜索结果部分

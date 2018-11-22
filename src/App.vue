@@ -5,8 +5,14 @@
       <div id="nav">
         <ul class="menu">
           <li class="menu-item">
-            <router-link to="/" class="menu-item-link">ESI学科期刊</router-link>
-            <!-- <i class="pl-5 fa fa-caret-down"></i> -->
+            <router-link to="/periodical" class="menu-item-link">ESI学科期刊</router-link>
+            <i class="pl-5 fa fa-caret-down"></i>
+            <ul class="sub-menu">
+              <router-link to="/periodical/current" class="none-decoration"><li class="sub-menu-item">当期</li></router-link>
+              <router-link to="/periodical/past" class="none-decoration"><li class="sub-menu-item">往期</li></router-link>
+              <router-link to="/periodical/new" class="none-decoration"><li class="sub-menu-item">当期新增</li></router-link>
+              <router-link to="/periodical/decrease" class="none-decoration"><li class="sub-menu-item">当期跌出</li></router-link>
+            </ul>
           </li>
           <li class="menu-item">
             <router-link to="/" class="menu-item-link">ESI顶级论文</router-link>
@@ -134,6 +140,10 @@ h5 {
   background-color: @light-grey;
 }
 
+.none-decoration {
+  text-decoration: none;
+}
+
 .clearfix:after {
   content: "";
   display: block;
@@ -195,9 +205,10 @@ h5 {
     height: 40px;
     line-height: 40px;
     list-style: none;
+    color: #4b505a;
 
     &:hover {
-      background-color: #e3edf7;
+      background-color: #ececec;
     }
   }
 }

@@ -15,7 +15,7 @@
       </select>
     </div>
     <!-- 期刊时间选择（只有期刊页面才有该组件） -->
-    <PeriodicalTime v-if="isPeriodical"></PeriodicalTime>
+    <!-- <PeriodicalTime v-if="isPeriodical"></PeriodicalTime> -->
 
     <div class="d-ib content-tool-choice">
       <input type="checkbox" id="all-choice-checkbox" class="content-tool-choice-checkbox" v-model="checkedAll" @change="changeAllChecked()">
@@ -52,7 +52,7 @@ export default {
     },
     // 获取文章总数
     getArticleTotal() {
-      return this.$store.state.periodical.articleTotal;
+      return this.$store.getters.separated;
     },
     // 获取当前展示所有文章id数组
     getCheckedArr() {
@@ -70,7 +70,7 @@ export default {
   },
   methods: {
     changeAllChecked() {
-      if(this.checkedAll) {
+      if (this.checkedAll) {
         this.$store.dispatch("getCheckedId", this.getCheckedArr);
       } else {
         this.$store.dispatch("getCheckedId", []);
