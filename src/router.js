@@ -15,7 +15,7 @@ export default new Router({
     },
     {
       path: "/periodical/:periodicalTime",
-      name: "Periodical",
+      name: "periodical",
       component: Periodical
     }
     // {

@@ -17,6 +17,7 @@
     <div class="left-filter">
       <!-- 月份class略有不同 -->
       <FilterForm 
+        v-if="isRenderTime"
         filterType="timeMonth"
         ref="checkedMonth"
         :filterItems="formData.filterMonth"
@@ -24,17 +25,18 @@
       ></FilterForm>
       <!-- 年份 -->
       <FilterForm
-       filterType="timeYear"
-       ref="checkedYear"
-       :filterItems="formData.filterYear"
-       @give-conditions="getConditions"
+        v-if="isRenderTime"
+        filterType="timeYear"
+        ref="checkedYear"
+        :filterItems="formData.filterYear"
+        @give-conditions="getConditions"
       ></FilterForm>
       <!-- 学科 -->
       <FilterForm
-       filterType="categorySubject"
-       ref="checkedSubject"
-       :filterItems="formData.fiterSubject"
-       @give-conditions="getConditions"
+        filterType="categorySubject"
+        ref="checkedSubject"
+        :filterItems="formData.fiterSubject"
+        @give-conditions="getConditions"
       ></FilterForm>
     </div>
   </div>
@@ -57,41 +59,41 @@ export default {
             value: "一月"
           },
           {
-            id: 2,
+            id: 3,
             value: "三月"
           },
           {
-            id: 3,
+            id: 5,
             value: "五月"
           },
           {
-            id: 4,
+            id: 7,
             value: "七月"
           },
           {
-            id: 5,
+            id: 9,
             value: "九月"
           },
           {
-            id: 6,
+            id: 11,
             value: "十一月"
           }
         ],
         filterYear: [
           {
-            id: 11,
+            id: 2018,
             value: "2018"
           },
           {
-            id: 12,
+            id: 2017,
             value: "2017"
           },
           {
-            id: 13,
+            id: 2016,
             value: "2016"
           },
           {
-            id: 14,
+            id: 2015,
             value: "2015"
           }
         ],
@@ -120,6 +122,23 @@ export default {
       },
       checkedConditions: []
     };
+  },
+  computed: {
+    isRenderTime() {
+      // 控制时间过滤是否渲染
+      let periodicalTime = this.$route.params.periodicalTime;
+      if (this.$route.name === "periodical") {
+        // 如果路由在periodical学科期刊下面
+        if (periodicalTime === "current" || periodicalTime === "new" || periodicalTime === "decrease") {
+          // 如果是当期、当期新增、当期跌出，则时间过滤不渲染
+          return false;
+        } else {
+          // 如果是往期，则时间过滤渲染
+          return true;
+        }
+      }
+      return true;
+    }
   },
   methods: {
     // 获取条件数据，并提交到state
