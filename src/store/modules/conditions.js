@@ -1,11 +1,29 @@
 // initial state
 const state = {
-  conditionTotal: 0,
-  conditionList: []
+  // conditionTotal: 0,
+  // conditionList: []
+  monthCondition: [],
+  yearCondition: [],
+  subjectCondition: []
 };
 
 // getters
-const getters = {};
+const getters = {
+  getConditionTotal() {
+    return (
+      state.monthCondition.length +
+      state.monthCondition.length +
+      state.monthCondition.length
+    );
+  },
+  getConditionList() {
+    return [
+      ...state.monthCondition,
+      ...state.yearCondition,
+      ...state.subjectCondition
+    ];
+  }
+};
 
 // actions
 const actions = {
@@ -13,9 +31,17 @@ const actions = {
   getConditionTotal({ commit }, total) {
     commit("setConditionTotal", total);
   },
-  // 获取条件数组
-  getConditionList({ commit }, conditions) {
-    commit("setConditionList", conditions);
+  // 获取月份数组
+  getMonthCondition({ commit }, conditions) {
+    commit("setMonthCondition", conditions);
+  },
+  // 获取年份数组
+  getYearCondition({ commit }, conditions) {
+    commit("setYearCondition", conditions);
+  },
+  // 获取学科分类数组
+  getSubjectCondition({ commit }, conditions) {
+    commit("setSubjectCondition", conditions);
   }
 };
 
@@ -25,9 +51,17 @@ const mutations = {
   setConditionTotal(state, total) {
     state.conditionTotal = total;
   },
-  // 提交条件数组
-  setConditionList(state, conditions) {
-    state.conditionList = conditions;
+  // 提交月份数组
+  setMonthCondition(state, conditions) {
+    state.monthCondition = conditions;
+  },
+  // 提交年份数组
+  setYearCondition(state, conditions) {
+    state.yearCondition = conditions;
+  },
+  // 提交学科数组
+  setSubjectCondition(state, conditions) {
+    state.subjectCondition = conditions;
   }
 
   // decrementProductInventory (state, { id }) {

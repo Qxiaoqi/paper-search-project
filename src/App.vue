@@ -5,7 +5,7 @@
       <div id="nav">
         <ul class="menu">
           <li class="menu-item">
-            <router-link to="/periodical" class="menu-item-link">ESI学科期刊</router-link>
+            <router-link to="/periodical/current" class="menu-item-link">ESI学科期刊</router-link>
             <i class="pl-5 fa fa-caret-down"></i>
             <ul class="sub-menu">
               <router-link to="/periodical/current" class="none-decoration"><li class="sub-menu-item">当期</li></router-link>

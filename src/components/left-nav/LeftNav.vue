@@ -129,7 +129,11 @@ export default {
       let periodicalTime = this.$route.params.periodicalTime;
       if (this.$route.name === "periodical") {
         // 如果路由在periodical学科期刊下面
-        if (periodicalTime === "current" || periodicalTime === "new" || periodicalTime === "decrease") {
+        if (
+          periodicalTime === "current" ||
+          periodicalTime === "new" ||
+          periodicalTime === "decrease"
+        ) {
           // 如果是当期、当期新增、当期跌出，则时间过滤不渲染
           return false;
         } else {
@@ -143,16 +147,32 @@ export default {
   methods: {
     // 获取条件数据，并提交到state
     getConditions() {
-      // 获取条件数组(ES6数组扩展运算符)
-      this.checkedConditions = [
-        ...this.$refs.checkedMonth.checkedList,
-        ...this.$refs.checkedYear.checkedList,
-        ...this.$refs.checkedSubject.checkedList
-      ];
-      // 分发条件总数
-      this.$store.dispatch("getConditionTotal", this.checkedConditions.length);
-      // 分发条件数组
-      this.$store.dispatch("getConditionList", this.checkedConditions);
+      if (this.isRenderTime) {
+        // 时间过滤渲染，多分发两个条件
+        this.$store.dispatch(
+          "getMonthCondition",
+          this.$refs.checkedMonth.checkedList
+        );
+        this.$store.dispatch(
+          "getYearCondition",
+          this.$refs.checkedYear.checkedList
+        );
+      } else {
+        // 时间过滤渲染，传参[]
+        this.$store.dispatch(
+          "getMonthCondition",
+          []
+        );
+        this.$store.dispatch(
+          "getYearCondition",
+          []
+        );
+      }
+      // 分发学科数组
+      this.$store.dispatch(
+        "getSubjectCondition",
+        this.$refs.checkedSubject.checkedList
+      );
     }
   }
 };
