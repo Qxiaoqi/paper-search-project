@@ -1,6 +1,9 @@
 <template>
   <div class="periodical-esi">
 
+    <!-- 上部导航 -->
+    <!-- <TopNav></TopNav> -->
+
     <!-- 左侧过滤组件 -->
     <!-- <LeftNav></LeftNav> -->
 
@@ -31,6 +34,7 @@
 
 <script>
 // @ is an alias to /src
+// import TopNav from "@/components/top-nav/TopNav.vue"
 // import LeftNav from "@/components/left-nav/LeftNav.vue";
 import Condition from "@/components/condition/Condition.vue";
 import PeriodicalList from "@/components/main/PeriodicalList.vue";
@@ -40,6 +44,7 @@ import Pagination from "@/components/main/Pagination.vue";
 export default {
   name: "Periodical",
   components: {
+    // TopNav,
     // LeftNav,
     Condition,
     PeriodicalList,

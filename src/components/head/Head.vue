@@ -1,6 +1,14 @@
 <template>
-  <div class="header">
-    <div class="header-logo"></div>
+  <div>
+    <div class="user">
+      <div class="user-information">
+        <span class="user-name">用户名</span>
+        <span class="backstage-entrance">后台入口</span>
+      </div>
+    </div>
+    <div class="header">
+      <div class="header-logo"></div>
+    </div>
   </div>
 </template>
 
@@ -16,6 +24,20 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
 // ================== 左侧 ====================
+.user {
+  height: 25px;
+  line-height: 25px;
+  padding-right: 30px;
+  text-align: right;
+  font-size: 13px;
+  background-color: #1d335f;
+  color: #e7e7e7;
+
+  .backstage-entrance {
+    margin-left: 10px;
+  }
+}
+
 .header {
   overflow: hidden; //格式化父元素防止logo设置margin发生合并
   height: 130px;
