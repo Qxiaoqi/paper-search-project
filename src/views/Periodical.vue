@@ -13,7 +13,7 @@
       <!-- 已选条件头 -->
       <Condition></Condition>
       <!-- 结果标题头 -->  
-      <MainHeader title="periodicalESI"></MainHeader>
+      <MainHeader></MainHeader>
 
       <!-- 搜索结果 -->
       <PeriodicalList></PeriodicalList>

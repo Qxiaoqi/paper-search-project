@@ -13,6 +13,7 @@
           <span class="content-subtitle">Title20：{{ article.Title20 }}</span>
           <span class="content-subtitle">ISSN：{{ article.ISSN }}</span>
           <span class="content-subtitle">EISSN：{{ article.EISSN }}</span>
+          <div class="content-subtitle">CategoryName：{{ article.CategoryName }}</div>
         </div>
       </div>
     </div>

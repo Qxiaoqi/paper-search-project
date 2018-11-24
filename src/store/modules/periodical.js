@@ -12,7 +12,8 @@ const state = {
       Title29: "2D MATER",
       Title20: "2D MATER",
       ISSN: "2053-1583",
-      EISSN: "2053-1583"
+      EISSN: "2053-1583",
+      CategoryName: "MATERIALS SCIENCE"
     },
     {
       articleId: 101,
@@ -22,7 +23,8 @@ const state = {
       Title29: "ACCID ANAL PREVENT",
       Title20: "ACCID ANAL PREVENT",
       ISSN: "2053-1583",
-      EISSN: "2053-1583"
+      EISSN: "2053-1583",
+      CategoryName: "MATERIALS SCIENCE"
     },
     {
       articleId: 102,

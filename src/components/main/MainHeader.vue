@@ -2,6 +2,7 @@
   <div class="main-content">
   <div class="pl-20 header">
     <span class="header-title">{{ mainTitle }}</span>
+    <span class="header-title"> >> {{subTitle}}</span>
     <div class="d-ib conntent-search-total">
       <span>共计</span>
       <span class="search-total-number">{{ getArticleTotal }}</span>
@@ -38,17 +39,30 @@ export default {
     title: String
   },
   computed: {
-    isPeriodical() {
-      return this.title === "periodicalESI" ? true : false;
-    },
+    // isPeriodical() {
+    //   return this.title === "periodicalESI" ? true : false;
+    // },
     // 通过组件名称获取对应中文标题
     mainTitle() {
+      let str = this.$route.name;
       const mainTxt = {
-        periodicalESI: "ESI学科期刊"
+        periodical: "ESI学科期刊"
         // timeYear: "版本号（年）",
         // categorySubject: "学科类别"
       };
-      return mainTxt[this.title];
+      return mainTxt[str];
+    },
+    subTitle() {
+      if (this.$route.name === "periodical") {
+        let str = this.$route.params.periodicalTime;
+        const subTxt = {
+          current: "当期",
+          past: "往期",
+          new: "当期新增",
+          decrease: "当期跌出"
+        };
+        return subTxt[str];
+      }
     },
     // 获取文章总数
     getArticleTotal() {
