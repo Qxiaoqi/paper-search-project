@@ -190,8 +190,17 @@ export default {
         }
       })
       .then(function (response) {
-        // console.log(response);
-        that.$store.dispatch("getArticleListList", response.data.articleList);
+        console.log(response);
+        // ES6变量解构
+        let { articleTotal, articleList } = response.data;
+        // map遍历文章数组，取出articleId属性重新组成数组
+        let checkedArr = articleList.map(obj => obj.articleId);
+
+        // 提交文章数量和文章列表
+        that.$store.dispatch("getArticleTotal", articleTotal);
+        that.$store.dispatch("getArticleListList", articleList);
+        // 提交文章id数组
+        that.$store.dispatch("getCheckedArr", checkedArr);
       })
       .catch(function (error) {
         console.log(error);

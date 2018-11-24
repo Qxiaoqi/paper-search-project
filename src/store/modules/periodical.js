@@ -1,7 +1,7 @@
 // initial state
 const state = {
   // 搜索到的文章总结果
-  articleTotal: 9875622,
+  articleTotal: 0,
   // 分页后的当前文章结果列表
   articleList: []
 };
@@ -16,10 +16,10 @@ const getters = {
 
 // actions
 const actions = {
-  // // 获取条件总数
-  // getConditionTotal({ commit }, total) {
-  //   commit("setConditionTotal", total);
-  // },
+  // 获取文章总数
+  getArticleTotal({ commit }, total) {
+    commit("setArticleTotal", total);
+  },
   // 获取文章列表数组
   getArticleListList({ commit }, article) {
     commit("setArticleListList", article);
@@ -28,10 +28,10 @@ const actions = {
 
 // mutations
 const mutations = {
-  // // 提交条件总数
-  // setConditionTotal(state, total) {
-  //   state.conditionTotal = total;
-  // },
+  // 提交条件总数
+  setArticleTotal(state, total) {
+    state.articleTotal = total;
+  },
   // 提交文章列表数组
   setArticleListList(state, article) {
     state.articleList = article;
