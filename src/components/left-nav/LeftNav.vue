@@ -8,7 +8,7 @@
         <span class="serach-icon">
           <i class="fa fa-search"></i>
         </span>
-        <input type="text" class="search-input">
+        <input type="text" class="search-input" v-model="keyword">
       </div>
     </div>
     <div class="pl-25 left-title">
@@ -21,7 +21,7 @@
         filterType="timeMonth"
         ref="checkedMonth"
         :filterItems="formData.filterMonth"
-        @give-conditions="getConditions"
+        @give-conditions="getArticaleData"
       ></FilterForm>
       <!-- 年份 -->
       <FilterForm
@@ -29,14 +29,14 @@
         filterType="timeYear"
         ref="checkedYear"
         :filterItems="formData.filterYear"
-        @give-conditions="getConditions"
+        @give-conditions="getArticaleData"
       ></FilterForm>
       <!-- 学科 -->
       <FilterForm
         filterType="categorySubject"
         ref="checkedSubject"
         :filterItems="formData.fiterSubject"
-        @give-conditions="getConditions"
+        @give-conditions="getArticaleData"
       ></FilterForm>
     </div>
   </div>
@@ -120,7 +120,8 @@ export default {
           }
         ]
       },
-      checkedConditions: []
+      checkedConditions: [],
+      keyword: ""
     };
   },
   computed: {
@@ -173,6 +174,28 @@ export default {
         "getSubjectCondition",
         this.$refs.checkedSubject.checkedList
       );
+    },
+    // axios获取数据
+    getArticaleData() {
+      let that = this;
+      this.getConditions();
+      // 获取数据
+      this.$axios.post('http://mock.eolinker.com/uhNYv5U215788ab75475306abb3164b8c20d25f46e7e136?uri=/periodical/current/search', {
+        page: 'Fred',
+        keyword: 'Flintstone',
+        conditionData: {
+          month: this.$store.state.conditions.monthCondition,
+          year: this.$store.state.conditions.yearCondition,
+          subject: this.$store.state.conditions.subjectCondition,
+        }
+      })
+      .then(function (response) {
+        // console.log(response);
+        that.$store.dispatch("getArticleListList", response.data.articleList);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     }
   }
 };

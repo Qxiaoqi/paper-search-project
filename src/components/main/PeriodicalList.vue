@@ -9,11 +9,11 @@
       <div class="d-ib search-main">
         <h4 class="search-title">{{ article.fullTitle }}</h4>
         <div class="search-content">
-          <span class="content-subtitle">Title29：{{ article.Title29 }}</span>
-          <span class="content-subtitle">Title20：{{ article.Title20 }}</span>
-          <span class="content-subtitle">ISSN：{{ article.ISSN }}</span>
-          <span class="content-subtitle">EISSN：{{ article.EISSN }}</span>
-          <div class="content-subtitle">CategoryName：{{ article.CategoryName }}</div>
+          <span class="content-subtitle">Title29：{{ article.title29 }}</span>
+          <span class="content-subtitle">Title20：{{ article.title20 }}</span>
+          <span class="content-subtitle">ISSN：{{ article.issn }}</span>
+          <span class="content-subtitle">EISSN：{{ article.eissn }}</span>
+          <div class="content-subtitle">CategoryName：{{ article.categoryName }}</div>
         </div>
       </div>
     </div>
