@@ -158,16 +158,15 @@ export default {
           "getYearCondition",
           this.$refs.checkedYear.checkedList
         );
-      } else {
-        // 时间过滤渲染，传参[]
-        this.$store.dispatch("getMonthCondition", []);
-        this.$store.dispatch("getYearCondition", []);
       }
       // 分发学科数组
       this.$store.dispatch(
         "getSubjectCondition",
         this.$refs.checkedSubject.checkedList
       );
+
+      // 分发关键词字符串
+      this.$store.dispatch("getKeyword", this.keyword);
     },
     // axios获取数据
     getArticaleData() {
@@ -179,7 +178,7 @@ export default {
           "http://mock.eolinker.com/uhNYv5U215788ab75475306abb3164b8c20d25f46e7e136?uri=/periodical/current/search",
           {
             page: 1,
-            keyword: this.keyword,
+            keyword: this.$store.state.conditions.keyword,
             conditionData: {
               month: this.$store.state.conditions.monthCondition,
               year: this.$store.state.conditions.yearCondition,

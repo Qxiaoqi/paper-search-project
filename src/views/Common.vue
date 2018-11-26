@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import TopNav from "@/components/top-nav/TopNav.vue"
+import TopNav from "@/components/top-nav/TopNav.vue";
 import LeftNav from "@/components/left-nav/LeftNav.vue";
 
 export default {
@@ -15,11 +15,20 @@ export default {
   components: {
     TopNav,
     LeftNav
+  },
+  watch: {
+    // 监听路由变化，初始化vuex数据
+    $route(to, from) {
+      // console.log("watch");
+      this.$store.dispatch("getKeyword", "");
+      this.$store.dispatch("getPage", 1);
+      this.$store.dispatch("getMonthCondition", []);
+      this.$store.dispatch("getYearCondition", []);
+      this.$store.dispatch("getSubjectCondition", []);
+    }
   }
 };
 </script>
 
 <style lang="less" scoped>
-
 </style>
-

@@ -22,11 +22,8 @@
       <Pagination></Pagination>
 
       <!-- 搜索结果部分 -->
-      <div class="search-number-bar">
-        <span>其中有 </span>
-        <span>6,457,380</span>
-        <span> 条记录与检索式相匹配。</span>
-      </div>
+      <SearchNumberBar></SearchNumberBar>
+
     </div>
 
   </div>
@@ -40,6 +37,7 @@ import Condition from "@/components/condition/Condition.vue";
 import PeriodicalList from "@/components/main/PeriodicalList.vue";
 import MainHeader from "@/components/main/MainHeader.vue";
 import Pagination from "@/components/main/Pagination.vue";
+import SearchNumberBar from "@/components/main/SearchNumberBar.vue";
 
 export default {
   name: "Periodical",
@@ -49,22 +47,10 @@ export default {
     Condition,
     PeriodicalList,
     MainHeader,
-    Pagination
+    Pagination,
+    SearchNumberBar
   },
-  created() {
-    this.$store.dispatch(
-      "getMonthCondition",
-      []
-    );
-    this.$store.dispatch(
-      "getYearCondition",
-      []
-    );
-    this.$store.dispatch(
-      "getSubjectCondition",
-      []
-    );
-  }
+  created() {}
 };
 </script>
 
@@ -76,44 +62,5 @@ export default {
   padding-bottom: 9999px;
   min-height: 800px;
   background-color: @content-color;
-}
-
-// 分页部分
-.pagination-bar {
-  height: 80px;
-  border-top: 1px solid @border-light;
-  background-color: @light-grey;
-  text-align: right;
-}
-
-.chose-page {
-  margin-right: 100px;
-  padding-top: 20px;
-
-  .page-up,
-  .page-down {
-    padding: 0 10px;
-    vertical-align: -2px;
-  }
-
-  .current-page,
-  .page-count {
-    padding: 0 15px;
-    margin: 0 5px;
-    font-size: 13px;
-  }
-
-  .current-page {
-    border-bottom: 2px solid @header-blue;
-  }
-}
-
-// 搜索结果部分
-.search-number-bar {
-  height: 50px;
-  line-height: 50px;
-  padding-left: 25px;
-  font-style: italic;
-  border-top: 1px solid @border-light;
 }
 </style>

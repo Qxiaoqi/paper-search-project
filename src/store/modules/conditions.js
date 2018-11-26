@@ -2,6 +2,9 @@
 const state = {
   // conditionTotal: 0,
   // conditionList: []
+  // 查询条件
+  keyword: "",
+  page: 1,
   monthCondition: [],
   yearCondition: [],
   subjectCondition: []
@@ -31,6 +34,14 @@ const actions = {
   getConditionTotal({ commit }, total) {
     commit("setConditionTotal", total);
   },
+  // 获取关键词字符串
+  getKeyword({ commit }, str) {
+    commit("setKeyword", str);
+  },
+  // 获取页码数字
+  getPage({ commit }, number) {
+    commit("setPage", number);
+  },
   // 获取月份数组
   getMonthCondition({ commit }, conditions) {
     commit("setMonthCondition", conditions);
@@ -50,6 +61,14 @@ const mutations = {
   // 提交条件总数
   setConditionTotal(state, total) {
     state.conditionTotal = total;
+  },
+  // 提交关键词字符串
+  setKeyword(state, str) {
+    state.keyword = str;
+  },
+  // 提交页码数字
+  setPage(state, number) {
+    state.page = number;
   },
   // 提交月份数组
   setMonthCondition(state, conditions) {
