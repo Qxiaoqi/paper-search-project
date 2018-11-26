@@ -50,6 +50,20 @@ export default {
     PeriodicalList,
     MainHeader,
     Pagination
+  },
+  created() {
+    this.$store.dispatch(
+      "getMonthCondition",
+      []
+    );
+    this.$store.dispatch(
+      "getYearCondition",
+      []
+    );
+    this.$store.dispatch(
+      "getSubjectCondition",
+      []
+    );
   }
 };
 </script>
