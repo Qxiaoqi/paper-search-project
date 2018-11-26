@@ -173,35 +173,29 @@ export default {
       let that = this;
       this.getConditions();
       // 获取数据
-      this.$axios
-        .post(
-          "http://mock.eolinker.com/uhNYv5U215788ab75475306abb3164b8c20d25f46e7e136?uri=/periodical/current/search",
-          {
-            page: 1,
-            keyword: this.$store.state.conditions.keyword,
-            conditionData: {
-              month: this.$store.state.conditions.monthCondition,
-              year: this.$store.state.conditions.yearCondition,
-              subject: this.$store.state.conditions.subjectCondition
-            }
-          }
-        )
-        .then(function(response) {
-          console.log(response);
-          // ES6变量解构
-          let { articleTotal, articleList } = response.data;
-          // map遍历文章数组，取出articleId属性重新组成数组
-          let checkedArr = articleList.map(obj => obj.articleId);
+      this.$api.search({
+        "page": 1,
+        "keyword": this.$store.state.conditions.keyword,
+        "conditionData": {
+          "month": this.$store.state.conditions.monthCondition,
+          "year": this.$store.state.conditions.yearCondition,
+          "subject": this.$store.state.conditions.subjectCondition
+        }
+      }).then(response => {
+        console.log(response);
+        // ES6变量解构
+        let { articleTotal, articleList } = response.data;
+        // map遍历文章数组，取出articleId属性重新组成数组
+        let checkedArr = articleList.map(obj => obj.articleId);
 
-          // 提交文章数量和文章列表
-          that.$store.dispatch("getArticleTotal", articleTotal);
-          that.$store.dispatch("getArticleListList", articleList);
-          // 提交文章id数组
-          that.$store.dispatch("getCheckedArr", checkedArr);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+        // 提交文章数量和文章列表
+        that.$store.dispatch("getArticleTotal", articleTotal);
+        that.$store.dispatch("getArticleListList", articleList);
+        // 提交文章id数组
+        that.$store.dispatch("getCheckedArr", checkedArr);
+      }).catch(error => {
+        console.log(error);
+      })
     }
   }
 };
