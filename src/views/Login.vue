@@ -91,7 +91,7 @@
   font-size: 16px;
   border-radius: 4px;
   border: none;
-  background-color: #e4e5ec;
+  background-color: @button-color;
 }
 
 </style>
