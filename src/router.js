@@ -1,7 +1,9 @@
 import Vue from "vue";
 import Router from "vue-router";
+import Login from "./views/Login.vue";
 import Common from "./views/Common.vue";
-import Periodical from "./views/Periodical.vue";
+import Periodical from "./views/content/Periodical.vue";
+import Management from "./views/Management.vue";
 
 Vue.use(Router);
 
@@ -18,6 +20,11 @@ export default new Router({
       redirect: "/library/periodical/current"
     },
     {
+      path: "/login",
+      name: "login",
+      component: Login
+    },
+    {
       path: "/library",
       name: "library",
       component: Common,
@@ -28,6 +35,11 @@ export default new Router({
           component: Periodical
         }
       ]
+    },
+    {
+      path: "/management",
+      name: "management",
+      component: Management
     }
     // {
     //   path: "/about",

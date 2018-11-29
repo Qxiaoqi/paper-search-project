@@ -8,8 +8,8 @@ import "normalize.css"; //css部分初始化
 import "font-awesome/css/font-awesome.css"; //icon
 
 Vue.config.productionTip = false;
-// Vue.prototype.$axios = axios;
 Vue.prototype.$api = api;
+// Vue.prototype.$axios = axios;
 
 new Vue({
   router,

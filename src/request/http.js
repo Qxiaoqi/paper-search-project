@@ -1,5 +1,5 @@
 import axios from "axios";
-// import qs from "qs"; // 序列化请求数据，视服务端的要求
+import qs from "qs"; // 序列化请求数据，视服务端的要求
 
 const Axios = axios.create({
   baseURL:
@@ -15,11 +15,11 @@ const Axios = axios.create({
 //POST传参序列化(添加请求拦截器)
 Axios.interceptors.request.use(
   config => {
-    // // 在发送请求之前做某件事
-    // if (config.method === "post") {
-    //   // 序列化
-    //   config.data = qs.stringify(config.data);
-    // }
+    // 在发送请求之前做某件事
+    if (config.method === "post") {
+      // 序列化
+      config.data = qs.stringify(config.data);
+    }
 
     // // 若是有做鉴权token , 就给头部带上token
     // // 若是需要跨站点,存放到 cookie 会好一点,限制也没那么多,有些浏览环境限制了 localstorage 的使用

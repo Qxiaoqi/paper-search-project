@@ -8,7 +8,7 @@
         <span class="serach-icon">
           <i class="fa fa-search"></i>
         </span>
-        <input type="text" class="search-input" v-model="keyword">
+        <input type="text" class="search-input" v-model="keyword" @keyup.enter="getArticaleData">
       </div>
     </div>
     <div class="pl-25 left-title">
@@ -173,29 +173,32 @@ export default {
       let that = this;
       this.getConditions();
       // 获取数据
-      this.$api.search({
-        "page": 1,
-        "keyword": this.$store.state.conditions.keyword,
-        "conditionData": {
-          "month": this.$store.state.conditions.monthCondition,
-          "year": this.$store.state.conditions.yearCondition,
-          "subject": this.$store.state.conditions.subjectCondition
-        }
-      }).then(response => {
-        console.log(response);
-        // ES6变量解构
-        let { articleTotal, articleList } = response.data;
-        // map遍历文章数组，取出articleId属性重新组成数组
-        let checkedArr = articleList.map(obj => obj.articleId);
+      this.$api
+        .search({
+          page: 1,
+          keyword: this.$store.state.conditions.keyword,
+          conditionData: {
+            month: this.$store.state.conditions.monthCondition,
+            year: this.$store.state.conditions.yearCondition,
+            subject: this.$store.state.conditions.subjectCondition
+          }
+        })
+        .then(response => {
+          console.log(response);
+          // ES6变量解构
+          let { articleTotal, articleList } = response.data;
+          // map遍历文章数组，取出articleId属性重新组成数组
+          let checkedArr = articleList.map(obj => obj.articleId);
 
-        // 提交文章数量和文章列表
-        that.$store.dispatch("getArticleTotal", articleTotal);
-        that.$store.dispatch("getArticleListList", articleList);
-        // 提交文章id数组
-        that.$store.dispatch("getCheckedArr", checkedArr);
-      }).catch(error => {
-        console.log(error);
-      })
+          // 提交文章数量和文章列表
+          that.$store.dispatch("getArticleTotal", articleTotal);
+          that.$store.dispatch("getArticleListList", articleList);
+          // 提交文章id数组
+          that.$store.dispatch("getCheckedArr", checkedArr);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 };

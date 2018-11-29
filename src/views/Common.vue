@@ -18,7 +18,7 @@ export default {
   },
   watch: {
     // 监听路由变化，初始化vuex数据
-    $route(to, from) {
+    $route() {
       // console.log("watch");
       this.$store.dispatch("getKeyword", "");
       this.$store.dispatch("getPage", 1);

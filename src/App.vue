@@ -33,6 +33,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
   color: #4b505a;
+  background-color: @content-color;
   line-height: 1.42858;
   font-size: 14px;
 }
@@ -50,7 +51,7 @@ h2,
 h3,
 h4,
 h5 {
-  margin: 0;
+  margin: 0 !important;
 }
 
 .hidden {
