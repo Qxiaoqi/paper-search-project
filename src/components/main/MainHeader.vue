@@ -137,5 +137,13 @@ export default {
   .content-tool-choice-checkbox {
     vertical-align: -1px;
   }
+
+  .content-tool-choice-all {
+    cursor: pointer;
+  }
+
+  .content-tool-choice-export {
+    cursor: pointer;
+  }
 }
 </style>

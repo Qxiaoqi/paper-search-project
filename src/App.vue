@@ -32,7 +32,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
-  color: #4b505a;
+  color: @font-color;
   background-color: @content-color;
   line-height: 1.42858;
   font-size: 14px;

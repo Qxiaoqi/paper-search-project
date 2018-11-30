@@ -92,6 +92,7 @@
   border-radius: 4px;
   border: none;
   background-color: @button-color;
+  cursor: pointer;
 }
 
 </style>
