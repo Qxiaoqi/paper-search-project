@@ -1,10 +1,13 @@
 <template>
   <div class="filter-form">
-    <div class="form-title">
+    <div class="form-title"
+      :class="{ 'bg-light-grey left': !isListShow }"
+      @click="isListShow = !isListShow"
+    >
       <h4 class="pl-25 title-txt">{{ filterTitle }}</h4>
       <i class="fa fa-caret-down title-icon"></i>
     </div>
-    <div class="pl-25 filter-form-content">
+    <div class="pl-25 filter-form-content" v-show="isListShow">
       <div class="form-content">
         <!-- 此处需要判断是否是月份组件，若是则使用display-width类定义的样式 -->
         <div class="form-item" 
@@ -38,6 +41,7 @@ export default {
   },
   data() {
     return {
+      isListShow: true,
       checkedList: []
     };
   },

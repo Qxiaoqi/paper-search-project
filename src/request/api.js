@@ -8,6 +8,15 @@ export const search = params => {
   });
 };
 
+export const login = params => {
+  return axios({
+    url: "/login",
+    method: "post",
+    params
+  });
+};
+
 export default {
-  search
+  search,
+  login
 };

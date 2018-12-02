@@ -6,7 +6,7 @@
       </div>
       <div class="time-bar">
         <span class="time-title">期刊时间</span>
-        <input class="time-input" type="text" placeholder="例：201809">
+        <input class="time-input" type="text" placeholder="例：201809" v-model="fileTime">
       </div>
       <div class="upload-bar">
         <input @change="handFileChange" ref="uploadFile" id="upload" class="upload" type="file">
@@ -16,7 +16,7 @@
           <progress max="100" :value="progressRate"></progress>
         </div>
         <div class="submit-bar">
-          <button class="upload-submit">确认</button>
+          <button class="upload-submit" @click="fileSubmit">确认</button>
         </div>
       </div>
     </div>
@@ -29,26 +29,42 @@ export default {
   name: "Management",
   data() {
     return {
-      fileName: ''
-    }
+      fileTime: "",
+      fileName: "",
+      file: ""
+    };
   },
   computed: {
     progressRate() {
-      for(let i = 0; i <= 100; i++) {
-        return i;
-      }
+      return 60;
     }
   },
   methods: {
     handFileChange(e) {
+      // 获取上传文件DOM
       let uploadDOM = this.$refs.uploadFile;
       this.file = uploadDOM.files[0];
+      // 文件大小
       let size = Math.floor(this.file.size / 1024);
+      // 文件名称
       this.fileName = this.file.name;
-      console.log(size);
+    },
+    fileSubmit() {
+      console.log("fileTime:", this.fileTime);
+      console.log("file:", this.file);
+      let formData = new FormData();
+      if (this.fileTime === "") {
+        alert("请填写期刊时间");
+      } else if(this.file === "") {
+        alert("请选择文件");
+      } else {
+        formData.append("fileTime", this.fileTime);
+        formData.append("file", this.file);
+        console.log("formData:", formData);
+      }
     }
   }
-}
+};
 </script>
 
 
@@ -111,14 +127,20 @@ export default {
     display: inline-block;
     width: 400px;
     height: 20px;
-    border: 1px solid @header-blue;  
-    background-color:#e6e6e6;
+    border: 1px solid @header-blue;
+    background-color: #e6e6e6;
     color: @header-blue; /*IE10*/
   }
 
-  progress::-moz-progress-bar { background: @header-blue; }
-  progress::-webkit-progress-bar { background: #e6e6e6; }
-  progress::-webkit-progress-value  { background: @header-blue; }
+  progress::-moz-progress-bar {
+    background: @header-blue;
+  }
+  progress::-webkit-progress-bar {
+    background: #e6e6e6;
+  }
+  progress::-webkit-progress-value {
+    background: @header-blue;
+  }
 }
 
 .submit-bar {
@@ -135,5 +157,4 @@ export default {
   background-color: @button-color;
   cursor: pointer;
 }
-
 </style>

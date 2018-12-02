@@ -176,14 +176,15 @@ export default {
       this.$api
         .search({
           page: 1,
-          keyword: this.$store.state.conditions.keyword,
+          keyword: that.$store.state.conditions.keyword,
           conditionData: {
-            month: this.$store.state.conditions.monthCondition,
-            year: this.$store.state.conditions.yearCondition,
-            subject: this.$store.state.conditions.subjectCondition
+            month: that.$store.state.conditions.monthCondition,
+            year: that.$store.state.conditions.yearCondition,
+            subject: that.$store.state.conditions.subjectCondition
           }
         })
         .then(response => {
+          // console.log(that.$store.state.conditions.subjectCondition);
           console.log(response);
           // ES6变量解构
           let { articleTotal, articleList } = response.data;

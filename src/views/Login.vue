@@ -11,16 +11,16 @@
         <div class="user-login">
           <div class="username">
             <span class="login-title username-title">账号</span>
-            <input type="text" class="login-input username-input">
+            <input type="text" class="login-input username-input" v-model="username">
           </div>
           <div class="password">
             <span class="login-title password-title">密码</span>
-            <input type="text" class="login-input password-input">
+            <input type="password" class="login-input password-input" v-model="password">
           </div>
         </div>
         <div class="submit-bar">
           <span class="login-title" style="visibility: hidden;">登录</span>
-          <button class="login-submit">登录</button>
+          <button class="login-submit" @click="loginSubmit">登录</button>
         </div>
       </div>
     </div>
@@ -29,6 +29,45 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: "Login",
+  data() {
+    return {
+      username: "",
+      password: ""
+    };
+  },
+  methods: {
+    loginSubmit() {
+      let that = this;
+      console.log("username:", this.username);
+      console.log("password:", this.password);
+      this.$api
+        .login({
+          username: that.username,
+          password: that.password
+        })
+        .then(response => {
+          console.log(response);
+          // token保存到localStorage
+          localStorage.setItem("token", response.data.token);
+          // 基本信息存到localStorage
+          // localStorage只能存字符串
+          localStorage.setItem(
+            "loginUserBaseInfo",
+            JSON.stringify(response.data.data)
+          );
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  }
+};
+</script>
+
 
 <style lang="less" scoped>
 // 注意改，获取滚动条宽度，不让页面晃动
@@ -94,5 +133,4 @@
   background-color: @button-color;
   cursor: pointer;
 }
-
 </style>
