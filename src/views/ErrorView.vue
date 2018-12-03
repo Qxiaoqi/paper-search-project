@@ -1,6 +1,6 @@
 <template>
   <div class="error-container">
-    <div class="error-information">error</div>
+    <router-view></router-view>
   </div>
 </template>
 

@@ -8,7 +8,7 @@ import ErrorView from "./views/ErrorView.vue";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   // 此处路由分为三块，登录，内容，后台三部分
@@ -18,7 +18,8 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      redirect: "/library/periodical/current"
+      redirect: "/library/periodical/current",
+      meta: { requiresAuth: true }
     },
     {
       path: "/login",
@@ -33,28 +34,68 @@ export default new Router({
         {
           path: "periodical/:periodicalTime",
           name: "periodical",
-          component: Periodical
+          component: Periodical,
+          meta: { requiresAuth: true }
         }
       ]
     },
     {
       path: "/management",
       name: "management",
-      component: Management
+      component: Management,
+      meta: { requiresAuth: true }
     },
     {
       path: "/error",
       name: "error",
-      component: ErrorView
+      component: ErrorView,
+      children: [
+        {
+          path: "401",
+          component: () => import("./views/error/401.vue")
+        },
+        {
+          path: "404",
+          component: () => import("./views/error/404.vue")
+        }
+      ]
     }
-    // {
-    //   path: "/about",
-    //   name: "about",
-    //   // route level code-splitting
-    //   // this generates a separate chunk (about.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () =>
-    //     import(/* webpackChunkName: "about" */ "./views/About.vue")
-    // }
   ]
 });
+
+// vue-router导航守卫，全局守卫
+// 并不是所有页面请求都需要加上token，所以需要做一个全局守卫
+// 在路由meta加一个字段requiresAuth,设置为true则必须加上鉴权
+// 登录页不需要鉴权
+router.beforeEach((to, from, next) => {
+  // 如果检测到meta含有字段
+  if (to.matched.some(res => res.meta.requiresAuth)) {
+    // 检测是否有鉴权信息
+    if (localStorage.loginUserBaseInfo) {
+      let lifeTime = JSON.parse(localStorage.loginUserBaseInfo).lifeTime;
+      let nowTime = new Date().getTime();
+      // 比较当前时间和过期时间
+      if (nowTime < lifeTime) {
+        // 有鉴权信息而且未过期
+        next();
+      } else {
+        // 鉴权已过期，跳转到登录页
+        alert("登录状态过期，请重新登录");
+        next({
+          path: "/login"
+        });
+      }
+    } else {
+      // 没有鉴权信息，跳转到登录页
+      alert("登录状态过期，请重新登录");
+      next({
+        path: "/login"
+      });
+    }
+  } else {
+    // 无需鉴权信息，继续
+    next();
+  }
+});
+
+export default router;

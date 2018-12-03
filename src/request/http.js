@@ -25,7 +25,12 @@ Axios.interceptors.request.use(
     // 若是需要跨站点,存放到 cookie 会好一点,限制也没那么多,有些浏览环境限制了 localstorage 的使用
     // 这里localStorage一般是请求成功后我们自行写入到本地的,因为你放在vuex刷新就没了
     // 一些必要的数据写入本地,优先从本地读取
+
+    // 这里在api.js里面加了一个参数，控制是否需要传递鉴权
+    // 当有requiresAuth且为true是加上鉴权
     if (
+      config.requiresAuth &&
+      config.requiresAuth === true &&
       localStorage.loginUserBaseInfo &&
       JSON.parse(localStorage.loginUserBaseInfo).jwtCode
     ) {

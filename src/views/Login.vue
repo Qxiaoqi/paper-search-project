@@ -50,12 +50,21 @@ export default {
           password: that.password
         })
         .then(response => {
-          console.log(response);
+          // console.log(response);
+          let { jwtCode, lifeTime } = response.data.data;
+          // 获取当前时间，将当前时间加上过期时间，得到实际过期时间戳
+          let nowTime = (new Date()).getTime();
+          // console.log(jwtCode, lifeTime, nowTime);
+          let loginUserBaseInfo = {
+            jwtCode: jwtCode,
+            lifeTime: lifeTime + nowTime
+          }
+          console.log(loginUserBaseInfo);
           // 基本信息存到localStorage,里面包含过期时间和token
           // localStorage只能存字符串
           localStorage.setItem(
             "loginUserBaseInfo",
-            JSON.stringify(response.data.data)
+            JSON.stringify(loginUserBaseInfo)
           );
           router.push({
             path: '/library/periodical/past'

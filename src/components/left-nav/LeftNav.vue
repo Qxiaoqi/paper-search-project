@@ -44,125 +44,39 @@
 
 <script>
 import FilterForm from "./FilterForm.vue";
-import filterData from "./filterData.js";
+import filterData from "./filterData";
 
 export default {
   name: "LeftNav",
   components: {
     FilterForm
   },
+  created() {
+    // 组件创建的时候axios请求获取年份数据
+    this.$api
+      .getAllYear()
+      .then(response => {
+        // 将返回的[2018]数据转换成[{id:2018, value: 2018}]数据格式
+        let allYear = [];
+        response.data.data.forEach(element => {
+          allYear.push({
+            id: element,
+            value: element
+          })
+        });
+        console.log("allYear:", allYear);
+        this.formData.filterYear = allYear;
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  },
   data() {
     return {
       formData: {
         filterMonth: filterData.filterMonth,
-        filterYear: [
-          {
-            id: 2018,
-            value: "2018"
-          },
-          {
-            id: 2017,
-            value: "2017"
-          },
-          {
-            id: 2016,
-            value: "2016"
-          },
-          {
-            id: 2015,
-            value: "2015"
-          }
-        ],
-        fiterSubject: [
-          {
-            id: 1020,
-            value: "AGRICULTURAL SCIENCES"
-          },
-          {
-            id: 1001,
-            value: "BIOLOGY & BIOCHEMISTRY"
-          },
-          {
-            id: 1015,
-            value: "CHEMISTRY"
-          },
-          {
-            id: 1002,
-            value: "CLINICAL MEDICINE"
-          },
-          {
-            id: 1011,
-            value: "COMPUTER SCIENCE"
-          },
-          {
-            id: 1007,
-            value: "ECONOMICS & BUSINESS"
-          },
-          {
-            id: 1022,
-            value: "ENGINEERING"
-          },
-          {
-            id: 1004,
-            value: "ENVIRONMENT/ECOLOGY"
-          },
-          {
-            id: 1019,
-            value: "GEOSCIENCES"
-          },
-          {
-            id: 1009,
-            value: "IMMUNOLOGY"
-          },
-          {
-            id: 1008,
-            value: "MATERIALS SCIENCE"
-          },
-          {
-            id: 1010,
-            value: "MATHEMATICS"
-          },
-          {
-            id: 1006,
-            value: "MICROBIOLOGY"
-          },
-          {
-            id: 1014,
-            value: "MOLECULAR BIOLOGY & GENETICS"
-          },
-          {
-            id: 1021,
-            value: "Multidisciplinary"
-          },
-          {
-            id: 1017,
-            value: "NEUROSCIENCE & BEHAVIOR"
-          },
-          {
-            id: 1013,
-            value: "PHARMACOLOGY & TOXICOLOGY"
-          },
-          {
-            id: 1018,
-            value: "PHYSICS"
-          },
-          {
-            id: 1003,
-            value: "PLANT & ANIMAL SCIENCE"
-          },
-          {
-            id: 1016,
-            value: "PSYCHIATRY/PSYCHOLOGY"
-          },
-          {
-            id: 1005,
-            value: "SOCIAL SCIENCES, GENERAL"
-          },
-          {
-            id: 1012,
-            value: "SPACE SCIENCE"
-          }
-        ]
+        filterYear: [],
+        fiterSubject: filterData.fiterSubject
       },
       checkedConditions: [],
       keyword: ""
