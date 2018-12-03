@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="clearfix">
     <TopNav></TopNav>
     <LeftNav></LeftNav>
     <router-view></router-view>

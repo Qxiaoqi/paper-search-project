@@ -4,15 +4,15 @@ export const search = params => {
   return axios({
     url: "/periodical/current/search",
     method: "post",
-    params
+    data: params
   });
 };
 
 export const login = params => {
   return axios({
-    url: "/login",
+    url: "/user/login",
     method: "post",
-    params
+    data: params
   });
 };
 

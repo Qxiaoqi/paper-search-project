@@ -4,6 +4,7 @@ import Login from "./views/Login.vue";
 import Common from "./views/Common.vue";
 import Periodical from "./views/content/Periodical.vue";
 import Management from "./views/Management.vue";
+import ErrorView from "./views/ErrorView.vue";
 
 Vue.use(Router);
 
@@ -40,6 +41,11 @@ export default new Router({
       path: "/management",
       name: "management",
       component: Management
+    },
+    {
+      path: "/error",
+      name: "error",
+      component: ErrorView
     }
     // {
     //   path: "/about",

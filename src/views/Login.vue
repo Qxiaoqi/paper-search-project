@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import router from "../router";
+
 export default {
   name: "Login",
   data() {
@@ -42,23 +44,22 @@ export default {
   methods: {
     loginSubmit() {
       let that = this;
-      console.log("username:", this.username);
-      console.log("password:", this.password);
       this.$api
         .login({
-          username: that.username,
+          userName: that.username,
           password: that.password
         })
         .then(response => {
           console.log(response);
-          // token保存到localStorage
-          localStorage.setItem("token", response.data.token);
-          // 基本信息存到localStorage
+          // 基本信息存到localStorage,里面包含过期时间和token
           // localStorage只能存字符串
           localStorage.setItem(
             "loginUserBaseInfo",
             JSON.stringify(response.data.data)
           );
+          router.push({
+            path: '/library/periodical/past'
+          })
         })
         .catch(error => {
           console.log(error);
