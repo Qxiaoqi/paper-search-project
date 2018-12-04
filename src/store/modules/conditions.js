@@ -4,7 +4,7 @@ const state = {
   // conditionList: []
   // 查询条件
   keyword: "",
-  page: 1,
+  page: 0,
   monthCondition: [],
   yearCondition: [],
   subjectCondition: []
@@ -15,8 +15,8 @@ const getters = {
   getConditionTotal() {
     return (
       state.monthCondition.length +
-      state.monthCondition.length +
-      state.monthCondition.length
+      state.yearCondition.length +
+      state.subjectCondition.length
     );
   },
   getConditionList() {
@@ -25,6 +25,17 @@ const getters = {
       ...state.yearCondition,
       ...state.subjectCondition
     ];
+  },
+  getConditionId() {
+    // 此处vuex存储的是[{id: 1, value: ""}]型，传递条件数组需要转成[1]
+    let monthCondition = state.monthCondition.map(obj => obj.id);
+    let yearCondition = state.yearCondition.map(obj => obj.id);
+    let subjectCondition = state.subjectCondition.map(obj => obj.id);
+    return {
+      monthCondition: monthCondition,
+      yearCondition: yearCondition,
+      subjectCondition: subjectCondition
+    }
   }
 };
 

@@ -1,6 +1,6 @@
 import axios from "axios";
-import qs from "qs"; // 序列化请求数据，视服务端的要求
-import router from "../router";
+// import qs from "qs"; // 序列化请求数据，视服务端的要求
+// import router from "../router";
 
 const Axios = axios.create({
   baseURL: "http://106.14.153.164:6374",
@@ -8,7 +8,7 @@ const Axios = axios.create({
   responseType: "json",
   withCredentials: false, // 是否允许带cookie这些
   headers: {
-    "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+    "Content-Type": "application/json;charset=utf-8"
   }
 });
 
@@ -16,10 +16,10 @@ const Axios = axios.create({
 Axios.interceptors.request.use(
   config => {
     // 在发送请求之前做某件事
-    if (config.method === "post") {
-      // 序列化
-      config.data = qs.stringify(config.data);
-    }
+    // if (config.method === "post") {
+    //   // 序列化
+    //   config.data = qs.stringify(config.data);
+    // }
 
     // 若是有做鉴权token , 就给头部带上token
     // 若是需要跨站点,存放到 cookie 会好一点,限制也没那么多,有些浏览环境限制了 localstorage 的使用
@@ -53,7 +53,8 @@ Axios.interceptors.response.use(
     //对响应数据做些事
     if (res.data && !(res.data.code === 200)) {
       console.log("返回状态判断");
-      return Promise.reject(res.data.message);
+      // console.log("res:", res);
+      return Promise.reject(res.data.msg);
     }
     console.log("res:", res);
     return res;

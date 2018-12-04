@@ -1,43 +1,47 @@
 <template>
   <div class="bg-light-grey left">
-    <div class="pl-25 left-title">
-      <h2 class="left-title-txt">关键词检索</h2>
-    </div>
-    <div class="left-search">
-      <div class="search-content">
-        <span class="serach-icon">
-          <i class="fa fa-search"></i>
-        </span>
-        <input type="text" class="search-input" v-model="keyword" @keyup.enter="getArticaleData">
+    <div class="keyword-clock">
+      <div class="pl-25 left-title">
+        <h2 class="left-title-txt">关键词检索</h2>
+      </div>
+      <div class="left-search">
+        <div class="search-content">
+          <span class="serach-icon">
+            <i class="fa fa-search"></i>
+          </span>
+          <input type="text" class="search-input" v-model="keyword" @keyup.enter="getArticaleData">
+        </div>
       </div>
     </div>
-    <div class="pl-25 left-title">
-      <h2 class="left-title-txt">分类检索</h2>
-    </div>
-    <div class="left-filter">
-      <!-- 月份class略有不同 -->
-      <FilterForm 
-        v-if="isRenderTime"
-        filterType="timeMonth"
-        ref="checkedMonth"
-        :filterItems="formData.filterMonth"
-        @give-conditions="getArticaleData"
-      ></FilterForm>
-      <!-- 年份 -->
-      <FilterForm
-        v-if="isRenderTime"
-        filterType="timeYear"
-        ref="checkedYear"
-        :filterItems="formData.filterYear"
-        @give-conditions="getArticaleData"
-      ></FilterForm>
-      <!-- 学科 -->
-      <FilterForm
-        filterType="categorySubject"
-        ref="checkedSubject"
-        :filterItems="formData.fiterSubject"
-        @give-conditions="getArticaleData"
-      ></FilterForm>
+    <div class="filter-clock">
+      <div class="pl-25 left-title">
+        <h2 class="left-title-txt">分类检索</h2>
+      </div>
+      <div class="left-filter">
+        <!-- 月份class略有不同 -->
+        <FilterForm 
+          v-if="isRenderTime"
+          filterType="timeMonth"
+          ref="checkedMonth"
+          :filterItems="formData.filterMonth"
+          @give-conditions="getArticaleData"
+        ></FilterForm>
+        <!-- 年份 -->
+        <FilterForm
+          v-if="isRenderTime"
+          filterType="timeYear"
+          ref="checkedYear"
+          :filterItems="formData.filterYear"
+          @give-conditions="getArticaleData"
+        ></FilterForm>
+        <!-- 学科 -->
+        <FilterForm
+          filterType="categorySubject"
+          ref="checkedSubject"
+          :filterItems="formData.fiterSubject"
+          @give-conditions="getArticaleData"
+        ></FilterForm>
+      </div>
     </div>
   </div>
 </template>
@@ -64,7 +68,7 @@ export default {
             value: element
           })
         });
-        console.log("allYear:", allYear);
+        // console.log("allYear:", allYear);
         this.formData.filterYear = allYear;
       })
       .catch(error => {
@@ -125,29 +129,36 @@ export default {
 
       // 分发关键词字符串
       this.$store.dispatch("getKeyword", this.keyword);
+
+      // 分发页码
+      this.$store.dispatch("getPage", 0);
     },
     // axios获取数据
     getArticaleData() {
       let that = this;
+      // 调用该函数，获取条件数组放入Vuex中
       this.getConditions();
       // 获取数据
       this.$api
         .search({
-          page: 1,
+          page: 0,
           keyword: that.$store.state.conditions.keyword,
           conditionData: {
-            month: that.$store.state.conditions.monthCondition,
-            year: that.$store.state.conditions.yearCondition,
-            subject: that.$store.state.conditions.subjectCondition
+            month: that.$store.getters.getConditionId.monthCondition,
+            year: that.$store.getters.getConditionId.yearCondition,
+            subject: that.$store.getters.getConditionId.subjectCondition
           }
         })
         .then(response => {
           // console.log(that.$store.state.conditions.subjectCondition);
           console.log(response);
+          console.log(response.data.data);
           // ES6变量解构
-          let { articleTotal, articleList } = response.data;
-          // map遍历文章数组，取出articleId属性重新组成数组
-          let checkedArr = articleList.map(obj => obj.articleId);
+          let { totalElemNums, data } = response.data.data;
+          let articleTotal = totalElemNums;
+          let articleList = data;
+          // map遍历文章数组，取出esiId属性重新组成数组
+          let checkedArr = articleList.map(obj => obj.esiId);
 
           // 提交文章数量和文章列表
           that.$store.dispatch("getArticleTotal", articleTotal);

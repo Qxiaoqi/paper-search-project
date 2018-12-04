@@ -53,7 +53,7 @@ export default {
           // console.log(response);
           let { jwtCode, lifeTime } = response.data.data;
           // 获取当前时间，将当前时间加上过期时间，得到实际过期时间戳
-          let nowTime = (new Date()).getTime();
+          let nowTime = new Date().getTime();
           // console.log(jwtCode, lifeTime, nowTime);
           let loginUserBaseInfo = {
             jwtCode: jwtCode,

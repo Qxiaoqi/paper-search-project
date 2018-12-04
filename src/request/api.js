@@ -4,12 +4,12 @@ export const search = params => {
   return axios({
     url: "/esi/search",
     method: "post",
-    // headers: {
-    //   "Content-Type": "application/json;charset=utf-8"
-    // },
+    headers: {
+      "Content-Type": "application/json;charset=utf-8"
+    },
     data: params,
     requiresAuth: true
-  });
+  })
 };
 
 export const login = params => {

@@ -2,7 +2,6 @@
 const state = {
   checked: false,
   checkedId: [],
-  // 此处需要在获取数据后提交更新，这里暂时造几个假数据
   checkedArr: []
 };
 

@@ -2,7 +2,7 @@
   <div>
     <div class="user">
       <div class="user-information">
-        <span class="user-name">[用户名]</span>
+        <!-- <span class="user-name">[用户名]</span> -->
         <span class="backstage-entrance">后台入口</span>
       </div>
     </div>
