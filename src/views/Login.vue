@@ -58,7 +58,7 @@ export default {
           let loginUserBaseInfo = {
             jwtCode: jwtCode,
             lifeTime: lifeTime + nowTime
-          }
+          };
           console.log(loginUserBaseInfo);
           // 基本信息存到localStorage,里面包含过期时间和token
           // localStorage只能存字符串
@@ -67,8 +67,8 @@ export default {
             JSON.stringify(loginUserBaseInfo)
           );
           router.push({
-            path: '/library/periodical/past'
-          })
+            path: "/library/periodical/past"
+          });
         })
         .catch(error => {
           console.log(error);

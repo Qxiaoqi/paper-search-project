@@ -20,10 +20,13 @@ const getters = {
     );
   },
   getConditionList() {
+    let keyword = [{ value: "关键词:" + state.keyword }];
+    // console.log(keyword);
     return [
       ...state.monthCondition,
       ...state.yearCondition,
-      ...state.subjectCondition
+      ...state.subjectCondition,
+      ...keyword
     ];
   },
   getConditionId() {
@@ -35,7 +38,7 @@ const getters = {
       monthCondition: monthCondition,
       yearCondition: yearCondition,
       subjectCondition: subjectCondition
-    }
+    };
   }
 };
 

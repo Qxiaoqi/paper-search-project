@@ -9,7 +9,7 @@ export const search = params => {
     },
     data: params,
     requiresAuth: true
-  })
+  });
 };
 
 export const login = params => {

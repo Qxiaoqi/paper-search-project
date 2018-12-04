@@ -54,6 +54,7 @@ Axios.interceptors.response.use(
     if (res.data && !(res.data.code === 200)) {
       console.log("返回状态判断");
       // console.log("res:", res);
+      alert(res.data.msg);
       return Promise.reject(res.data.msg);
     }
     console.log("res:", res);

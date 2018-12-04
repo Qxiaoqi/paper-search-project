@@ -66,14 +66,14 @@ export default {
           allYear.push({
             id: element,
             value: element
-          })
+          });
         });
         // console.log("allYear:", allYear);
         this.formData.filterYear = allYear;
       })
       .catch(error => {
         console.log(error);
-      })
+      });
   },
   data() {
     return {
@@ -141,7 +141,7 @@ export default {
       // 获取数据
       this.$api
         .search({
-          page: 0,
+          page: that.$store.state.conditions.page,
           keyword: that.$store.state.conditions.keyword,
           conditionData: {
             month: that.$store.getters.getConditionId.monthCondition,

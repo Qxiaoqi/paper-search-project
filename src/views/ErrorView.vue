@@ -7,7 +7,7 @@
 <script>
 export default {
   name: "ErrorView"
-}
+};
 </script>
 
 <style lang="less" scoped>
@@ -19,4 +19,3 @@ export default {
   margin-bottom: 300px;
 }
 </style>
-

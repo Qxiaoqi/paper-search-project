@@ -3,7 +3,7 @@
     <div class="user">
       <div class="user-information">
         <!-- <span class="user-name">[用户名]</span> -->
-        <span class="backstage-entrance">后台入口</span>
+        <div class="backstage-entrance"><router-link class="entrance-link" to="/management">后台入口</router-link></div>
       </div>
     </div>
     <div class="header">
@@ -32,9 +32,14 @@ export default {
   font-size: 13px;
   background-color: #1d335f;
   color: #e7e7e7;
+}
 
-  .backstage-entrance {
-    margin-left: 10px;
+.backstage-entrance {
+  margin-left: 10px;
+
+  .entrance-link {
+    color: #ffffff;
+    text-decoration: none;
   }
 }
 
