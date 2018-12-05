@@ -43,7 +43,18 @@ const router = new Router({
       path: "/management",
       name: "management",
       component: Management,
-      meta: { requiresAuth: true }
+      children: [
+        {
+          path: "upload",
+          meta: { requiresAuth: true },
+          component: () => import("./views/management-page/Upload.vue")
+        },
+        {
+          path: "register",
+          meta: { requiresAuth: true },
+          component: () => import("./views/management-page/Register.vue")
+        }
+      ]
     },
     {
       path: "/error",

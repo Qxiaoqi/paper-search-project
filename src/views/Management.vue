@@ -1,160 +1,75 @@
 <template>
   <div class="management-container">
-    <div class="management">
-      <div class="title">
-        <h1>文件上传</h1>
-      </div>
-      <div class="time-bar">
-        <span class="time-title">期刊时间</span>
-        <input class="time-input" type="text" placeholder="例：201809" v-model="fileTime">
-      </div>
-      <div class="upload-bar">
-        <input @change="handFileChange" ref="uploadFile" id="upload" class="upload" type="file">
-        <label for="upload" class="upload-label"><i class="fa fa-cloud-upload" aria-hidden="true"></i>选择文件</label>
-        <span class="upload-name">{{ fileName }}</span>
-        <div class="upload-progress">
-          <progress max="100" :value="progressRate"></progress>
-        </div>
-        <div class="submit-bar">
-          <button class="upload-submit" @click="fileSubmit">确认</button>
-        </div>
+    <!-- 左侧边栏选项 -->
+    <div class="left">
+      <div>
+        <ul class="list-nav">
+          <li class="list-item"><router-link class="link-item" to="/management/upload">文件上传</router-link></li>
+          <li class="list-item"><router-link class="link-item" to="/management/register">用户注册</router-link></li>
+        </ul>
       </div>
     </div>
-
+    <!-- 右侧边栏选项 -->
+    <div class="hidden main">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Management",
-  data() {
-    return {
-      fileTime: "",
-      fileName: "",
-      file: ""
-    };
-  },
-  computed: {
-    progressRate() {
-      return 60;
-    }
-  },
-  methods: {
-    handFileChange(e) {
-      // 获取上传文件DOM
-      let uploadDOM = this.$refs.uploadFile;
-      this.file = uploadDOM.files[0];
-      // 文件大小
-      let size = Math.floor(this.file.size / 1024);
-      // 文件名称
-      this.fileName = this.file.name;
-    },
-    fileSubmit() {
-      console.log("fileTime:", this.fileTime);
-      console.log("file:", this.file);
-      let formData = new FormData();
-      if (this.fileTime === "") {
-        alert("请填写期刊时间");
-      } else if(this.file === "") {
-        alert("请选择文件");
-      } else {
-        formData.append("fileTime", this.fileTime);
-        formData.append("file", this.file);
-        console.log("formData:", formData);
-      }
-    }
-  }
+  name: "Management"
 };
 </script>
 
 
 <style lang="less" scoped>
+.left {
+  float: left;
+  // 等高布局
+  margin-bottom: -9999px;
+  padding-bottom: 9999px;
+  width: 300px;
+  box-sizing: border-box;
+  border-right: 1px solid @border-deep;
+  background-color: @light-grey;
+}
+
+.list-nav {
+  margin-top: 0;
+  padding-left: 0;
+}
+
+.list-item {
+  padding-left: 30px;
+  height: 55px;
+  line-height: 55px;
+  list-style: none;
+  font-size: 18px;
+  font-weight: 600;
+  box-sizing: border-box;
+  border-bottom: 1px solid @border-light;
+
+  .link-item {
+    color: #b8b8b8;
+    text-decoration: none;
+  }
+
+  .router-link-active {
+    color: @font-color;
+  }
+}
+
+.main {
+  // 等高布局
+  min-height: 500px;
+  // background-color: @content-color;
+}
+
 .management-container {
   min-height: 400px;
   width: 100%;
   background-color: #ffffff;
   display: table;
-  border-top: 20px solid @content-color;
-}
-
-.management {
-  padding: 45px;
-}
-
-.time-bar {
-  padding-top: 20px;
-  padding-bottom: 20px;
-
-  .time-title {
-    padding-right: 10px;
-  }
-
-  .time-input {
-    padding: 5px;
-    width: 250px;
-    border-radius: 4px;
-    border: 1px solid #b2b2b8;
-  }
-}
-
-.upload {
-  display: none;
-}
-
-.upload-label {
-  padding: 4px 16px;
-  display: inline-block;
-  height: 22px;
-  line-height: 22px;
-  background-color: @button-color;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-
-  .fa-cloud-upload {
-    padding-right: 5px;
-  }
-}
-
-.upload-name {
-  padding-left: 20px;
-}
-
-.upload-progress {
-  margin-top: 10px;
-
-  progress {
-    display: inline-block;
-    width: 400px;
-    height: 20px;
-    border: 1px solid @header-blue;
-    background-color: #e6e6e6;
-    color: @header-blue; /*IE10*/
-  }
-
-  progress::-moz-progress-bar {
-    background: @header-blue;
-  }
-  progress::-webkit-progress-bar {
-    background: #e6e6e6;
-  }
-  progress::-webkit-progress-value {
-    background: @header-blue;
-  }
-}
-
-.submit-bar {
-  margin-top: 20px;
-}
-
-.upload-submit {
-  padding: 4px 22px;
-  height: 30px;
-  font-size: 16px;
-  border-radius: 4px;
-  border: none;
-  color: @font-color;
-  background-color: @button-color;
-  cursor: pointer;
 }
 </style>

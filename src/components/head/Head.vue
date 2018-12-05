@@ -1,9 +1,11 @@
 <template>
   <div>
     <div class="user">
-      <div class="user-information">
+      <div class="user-information" v-if="isLinkRender">
         <!-- <span class="user-name">[用户名]</span> -->
-        <div class="backstage-entrance"><router-link class="entrance-link" to="/management">后台入口</router-link></div>
+        <div class="d-ib link-entrance"><router-link class="link-font" to="/login">切换用户</router-link></div>
+        <div class="d-ib link-entrance" v-if="isIndexRender"><router-link class="link-font" to="/">返回主页</router-link></div>
+        <div class="d-ib link-entrance"><router-link class="link-font" to="/management/upload">后台入口</router-link></div>
       </div>
     </div>
     <div class="header">
@@ -14,10 +16,23 @@
 
 <script>
 export default {
-  name: "Head"
-  // props: {
-  //   msg: String
-  // }
+  name: "Head",
+  computed: {
+    isLinkRender() {
+      // 登陆页面不显示用户切换和后台入口
+      // console.log(this.$route.name)
+      let isRender = true;
+      this.$route.name === "login" ? (isRender = false) : (isRender = true);
+      return isRender;
+    },
+    isIndexRender() {
+      let isRender = true;
+      let url = this.$route.path.split("/")[1];
+      // console.log(url);
+      url === "management" ? (isRender = true) : (isRender = false);
+      return isRender;
+    }
+  }
 };
 </script>
 
@@ -34,10 +49,10 @@ export default {
   color: #e7e7e7;
 }
 
-.backstage-entrance {
+.link-entrance {
   margin-left: 10px;
 
-  .entrance-link {
+  .link-font {
     color: #ffffff;
     text-decoration: none;
   }

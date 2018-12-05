@@ -21,13 +21,22 @@ const getters = {
   },
   getConditionList() {
     let keyword = [{ value: "关键词:" + state.keyword }];
-    // console.log(keyword);
-    return [
-      ...state.monthCondition,
-      ...state.yearCondition,
-      ...state.subjectCondition,
-      ...keyword
-    ];
+    if (state.keyword !== "") {
+      // 如果关键词不为空
+      return [
+        ...state.monthCondition,
+        ...state.yearCondition,
+        ...state.subjectCondition,
+        ...keyword
+      ];
+    } else {
+      // 如果关键词为空
+      return [
+        ...state.monthCondition,
+        ...state.yearCondition,
+        ...state.subjectCondition
+      ];
+    }
   },
   getConditionId() {
     // 此处vuex存储的是[{id: 1, value: ""}]型，传递条件数组需要转成[1]
