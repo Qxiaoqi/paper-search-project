@@ -27,6 +27,25 @@ export default {
 </script>
 
 <style lang="less">
+// 自定义-webkit-前缀的浏览器滚动条样式
+::-webkit-scrollbar {
+  // 宽度
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  // 拖动条
+  background-color: rgba(0, 0, 0, .3);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+  // 背景槽
+  background-color: #dddddd;
+  border-radius: 6px;
+}
+
 #app {
   font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
