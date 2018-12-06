@@ -1,4 +1,7 @@
 import axios from "./http";
+import store from "@/store/index";
+
+console.log(store);
 
 export const login = params => {
   return axios({
@@ -18,14 +21,20 @@ export const register = params => {
   });
 };
 
-export const search = params => {
+export const search = () => {
   return axios({
     url: "/esi/search",
     method: "post",
-    headers: {
-      "Content-Type": "application/json;charset=utf-8"
+    data: {
+      page: store.state.conditions.page,
+      keyWord: store.state.conditions.keyword,
+      ifDesc: store.state.conditions.ifDesc,
+      conditionData: {
+        month: store.getters.getConditionId.monthCondition,
+        year: store.getters.getConditionId.yearCondition,
+        subject: store.getters.getConditionId.subjectCondition
+      }
     },
-    data: params,
     requiresAuth: true
   });
 };

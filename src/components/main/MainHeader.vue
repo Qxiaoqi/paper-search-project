@@ -10,9 +10,9 @@
     </div>
     <div class="d-ib content-sort-choice">
       <span class="content-sort-choice-title">排序</span>
-      <select name="" id="" class="sort-select">
-        <option value="">按时间升序</option>
-        <option value="">按时间降序</option>
+      <select name="" id="sort-select" class="sort-select" v-model="ifDesc" @change="getArticaleData">
+        <option value="true">按时间降序</option>
+        <option value="false">按时间升序</option>
       </select>
     </div>
     <!-- 期刊时间选择（只有期刊页面才有该组件） -->
@@ -64,6 +64,16 @@ export default {
         return subTxt[str];
       }
     },
+    // 升序还是降序
+    ifDesc: {
+      get() {
+        return this.$store.state.conditions.ifDesc;
+      },
+      set(val) {
+        val === "true" && this.$store.dispatch("getIfDesc", true);
+        val === "false" && this.$store.dispatch("getIfDesc", false);
+      }
+    },
     // 获取文章总数
     getArticleTotal() {
       return this.$store.getters.separated;
@@ -83,6 +93,38 @@ export default {
     }
   },
   methods: {
+        // axios获取数据
+    getArticaleData() {
+      let that = this;
+      // =====================与过滤不同之处=========================
+      // // 调用该函数，获取条件数组放入Vuex中
+      // this.getConditions();
+      // ===========================================================
+      // 获取数据
+      this.$api
+        .search()
+        .then(response => {
+          // console.log(that.$store.state.conditions.subjectCondition);
+          console.log(response);
+          console.log(response.data.data);
+          // ES6变量解构
+          let { totalElemNums, data } = response.data.data;
+          let articleTotal = totalElemNums;
+          let articleList = data;
+          // map遍历文章数组，取出esiId属性重新组成数组
+          let checkedArr = articleList.map(obj => obj.esiId);
+
+          // 提交文章数量和文章列表
+          that.$store.dispatch("getArticleTotal", articleTotal);
+          that.$store.dispatch("getArticleListList", articleList);
+          // 提交文章id数组
+          that.$store.dispatch("getCheckedArr", checkedArr);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    // 监听全选框
     changeAllChecked() {
       if (this.checkedAll) {
         this.$store.dispatch("getCheckedId", this.getCheckedArr);

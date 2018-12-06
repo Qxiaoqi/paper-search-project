@@ -82,11 +82,11 @@ export default {
 <style lang="less" scoped>
 // 注意改，获取滚动条宽度，不让页面晃动
 .login-container {
-  min-height: 400px;
+  min-height: 500px;
   width: 100%;
   background-color: #ffffff;
   display: table;
-  border-top: 20px solid @content-color;
+  // border-top: 20px solid @content-color;
 }
 
 .login {

@@ -31,15 +31,7 @@ export default {
       // ===========================================================
       // 获取数据
       this.$api
-        .search({
-          page: that.$store.state.conditions.page,
-          keyword: that.$store.state.conditions.keyword,
-          conditionData: {
-            month: that.$store.getters.getConditionId.monthCondition,
-            year: that.$store.getters.getConditionId.yearCondition,
-            subject: that.$store.getters.getConditionId.subjectCondition
-          }
-        })
+        .search()
         .then(response => {
           // console.log(that.$store.state.conditions.subjectCondition);
           console.log(response);
@@ -68,6 +60,7 @@ export default {
       console.log("watch");
       this.$store.dispatch("getKeyword", "");
       this.$store.dispatch("getPage", 0);
+      this.$store.dispatch("getIfDesc", true);
       this.$store.dispatch("getMonthCondition", []);
       this.$store.dispatch("getYearCondition", []);
       this.$store.dispatch("getSubjectCondition", []);

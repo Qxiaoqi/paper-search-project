@@ -140,18 +140,10 @@ export default {
       this.getConditions();
       // 获取数据
       this.$api
-        .search({
-          page: that.$store.state.conditions.page,
-          keyword: that.$store.state.conditions.keyword,
-          conditionData: {
-            month: that.$store.getters.getConditionId.monthCondition,
-            year: that.$store.getters.getConditionId.yearCondition,
-            subject: that.$store.getters.getConditionId.subjectCondition
-          }
-        })
+        .search()
         .then(response => {
           // console.log(that.$store.state.conditions.subjectCondition);
-          console.log(response);
+          console.log("22222:", response);
           console.log(response.data.data);
           // ES6变量解构
           let { totalElemNums, data } = response.data.data;

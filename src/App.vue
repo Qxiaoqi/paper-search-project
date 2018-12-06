@@ -6,7 +6,7 @@
       <!-- <LeftNav></LeftNav> -->
       <router-view/>
       <!-- 尾部 -->
-      <div class="footer">
+      <div class="hidden footer">
         <div class="footer-logo"></div>
       </div>
     </div>

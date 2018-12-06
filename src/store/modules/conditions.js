@@ -5,6 +5,7 @@ const state = {
   // 查询条件
   keyword: "",
   page: 0,
+  ifDesc: true,
   monthCondition: [],
   yearCondition: [],
   subjectCondition: []
@@ -65,6 +66,10 @@ const actions = {
   getPage({ commit }, number) {
     commit("setPage", number);
   },
+  // 获取降序还是升序
+  getIfDesc({ commit }, choice) {
+    commit("setIfDesc", choice);
+  },
   // 获取月份数组
   getMonthCondition({ commit }, conditions) {
     commit("setMonthCondition", conditions);
@@ -92,6 +97,10 @@ const mutations = {
   // 提交页码数字
   setPage(state, number) {
     state.page = number;
+  },
+  // 提交页码数字
+  setIfDesc(state, choice) {
+    state.ifDesc = choice;
   },
   // 提交月份数组
   setMonthCondition(state, conditions) {

@@ -53,15 +53,7 @@ export default {
       // ===========================================================
       // 获取数据
       this.$api
-        .search({
-          page: that.current,
-          keyword: that.$store.state.conditions.keyword,
-          conditionData: {
-            month: that.$store.getters.getConditionId.monthCondition,
-            year: that.$store.getters.getConditionId.yearCondition,
-            subject: that.$store.getters.getConditionId.subjectCondition
-          }
-        })
+        .search()
         .then(response => {
           // console.log(that.$store.state.conditions.subjectCondition);
           console.log(response);
