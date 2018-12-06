@@ -3,6 +3,8 @@ import Router from "vue-router";
 import Login from "./views/Login.vue";
 import Common from "./views/Common.vue";
 import Periodical from "./views/content/Periodical.vue";
+import Paper from "./views/content/Paper.vue";
+import Baseline from "./views/content/Baseline.vue";
 import Management from "./views/Management.vue";
 import ErrorView from "./views/ErrorView.vue";
 
@@ -15,30 +17,68 @@ const router = new Router({
   // 内容部分做了二次路由，来使导航栏和侧边过滤栏不用每次渲染
   // 内容部分的路由都写在children里面嵌套即可
   routes: [
+    // 根目录重定向
     {
       path: "/",
       name: "home",
-      redirect: "/library/periodical/current",
+      redirect: "/periodical/current",
       meta: { requiresAuth: true }
     },
+    // 登录页
     {
       path: "/login",
       name: "login",
       component: Login
     },
+    // 主体查询页
     {
-      path: "/library",
-      name: "library",
+      path: "/",
       component: Common,
       children: [
+        // esi期刊
         {
-          path: "periodical/:periodicalTime",
+          path: "/periodical/:periodicalTime",
           name: "periodical",
           component: Periodical,
+          meta: { requiresAuth: true }
+        },
+        // 顶级论文
+        {
+          path: "/globalPaper/:paperType",
+          name: "globalPaper",
+          component: Paper,
+          meta: { requiresAuth: true }
+        },
+        // 我校顶级论文
+        {
+          path: "/schoolPaper/:paperType",
+          name: "schoolPaper",
+          component: Paper,
+          meta: { requiresAuth: true }
+        },
+        // 基准线和被引阈值
+        {
+          path: "/baseline",
+          name: "baseline",
+          component: Baseline,
           meta: { requiresAuth: true }
         }
       ]
     },
+    // // 论文
+    // {
+    //   path: "/parper",
+    //   component: Common,
+    //   children: [
+    //     {
+    //       path: "global/:paperType",
+    //       name: "global",
+    //       component: Paper,
+    //       meta: { requiresAuth: true }
+    //     }
+    //   ]
+    // },
+    // 后台管理页面
     {
       path: "/management",
       name: "management",
@@ -56,6 +96,7 @@ const router = new Router({
         }
       ]
     },
+    // 错误页面
     {
       path: "/error",
       name: "error",

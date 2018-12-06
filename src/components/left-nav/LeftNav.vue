@@ -1,6 +1,6 @@
 <template>
   <div class="bg-light-grey left">
-    <div class="keyword-clock">
+    <div class="keyword-clock" v-if="isKeywordRender">
       <div class="pl-25 left-title">
         <h2 class="left-title-txt">关键词检索</h2>
       </div>
@@ -87,6 +87,15 @@ export default {
     };
   },
   computed: {
+    isKeywordRender() {
+      // 控制关键词是否渲染
+      // 如果是基准线百分位模块，则关键词查询没有
+      if (this.$route.name === "baseline") {
+        return false;
+      } else {
+        return true;
+      }
+    },
     isRenderTime() {
       // 控制时间过滤是否渲染
       let periodicalTime = this.$route.params.periodicalTime;
@@ -103,6 +112,9 @@ export default {
           // 如果是往期，则时间过滤渲染
           return true;
         }
+      } else if (this.$route.name === "baseline") {
+        // 如果是基准线百分位，则只渲染学科
+        return false;
       }
       return true;
     }

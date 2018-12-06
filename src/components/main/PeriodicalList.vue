@@ -13,7 +13,9 @@
           <span class="content-subtitle">Title20：{{ article.title20 }}</span>
           <span class="content-subtitle">ISSN：{{ article.issn }}</span>
           <span class="content-subtitle">EISSN：{{ article.eissn }}</span>
-          <div class="content-subtitle">CategoryName：{{ article.categoryName }}</div>
+          <div class="content-subtitle">
+            CategoryName：<span class="category-tag">{{ article.categoryName }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -117,6 +119,13 @@ export default {
   .content-subtitle {
     margin-right: 15px;
     font-size: 13px;
+  }
+
+  .category-tag {
+    background-color: @header-blue;
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 2px 5px;
   }
 }
 </style>

@@ -46,6 +46,14 @@ export default {
   box-shadow: 0 -5px 10px -3px #3f3f3f;
 }
 
+.main {
+  // 等高布局
+  margin-bottom: -9999px;
+  padding-bottom: 9999px;
+  min-height: 800px;
+  background-color: @content-color;
+}
+
 h1,
 h2,
 h3,

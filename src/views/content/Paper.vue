@@ -1,5 +1,5 @@
 <template>
-  <div class="periodical-esi">
+  <div class="paper">
 
     <!-- 上部导航 -->
     <!-- <TopNav></TopNav> -->
@@ -16,7 +16,7 @@
       <MainHeader></MainHeader>
 
       <!-- 搜索结果 -->
-      <PeriodicalList></PeriodicalList>
+      <!-- <PeriodicalList></PeriodicalList> -->
 
       <!-- 分页部分 -->
       <Pagination></Pagination>
@@ -34,18 +34,18 @@
 // import TopNav from "@/components/top-nav/TopNav.vue"
 // import LeftNav from "@/components/left-nav/LeftNav.vue";
 import Condition from "@/components/condition/Condition.vue";
-import PeriodicalList from "@/components/main/PeriodicalList.vue";
+// import PeriodicalList from "@/components/main/PeriodicalList.vue";
 import MainHeader from "@/components/main/MainHeader.vue";
 import Pagination from "@/components/main/Pagination.vue";
 import SearchNumberBar from "@/components/main/SearchNumberBar.vue";
 
 export default {
-  name: "Periodical",
+  name: "Paper",
   components: {
     // TopNav,
     // LeftNav,
     Condition,
-    PeriodicalList,
+    // PeriodicalList,
     MainHeader,
     Pagination,
     SearchNumberBar

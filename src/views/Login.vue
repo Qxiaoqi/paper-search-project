@@ -67,7 +67,7 @@ export default {
             JSON.stringify(loginUserBaseInfo)
           );
           router.push({
-            path: "/library/periodical/past"
+            path: "/"
           });
         })
         .catch(error => {

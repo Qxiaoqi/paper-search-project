@@ -5,27 +5,25 @@
         <router-link to="/periodical/current" class="menu-item-link">ESI学科期刊</router-link>
         <i class="pl-5 fa fa-caret-down"></i>
         <ul class="sub-menu">
-          <router-link to="/library/periodical/current" class="none-decoration"><li class="sub-menu-item">当期</li></router-link>
-          <router-link to="/library/periodical/past" class="none-decoration"><li class="sub-menu-item">往期</li></router-link>
-          <router-link to="/library/periodical/new" class="none-decoration"><li class="sub-menu-item">当期新增</li></router-link>
-          <router-link to="/library/periodical/decrease" class="none-decoration"><li class="sub-menu-item">当期跌出</li></router-link>
+          <router-link to="/periodical/current" class="none-decoration"><li class="sub-menu-item">当期</li></router-link>
+          <router-link to="/periodical/past" class="none-decoration"><li class="sub-menu-item">往期</li></router-link>
+          <router-link to="/periodical/new" class="none-decoration"><li class="sub-menu-item">当期新增</li></router-link>
+          <router-link to="/periodical/decrease" class="none-decoration"><li class="sub-menu-item">当期跌出</li></router-link>
         </ul>
       </li>
       <li class="menu-item">
-        <router-link to="/" class="menu-item-link">ESI顶级论文</router-link>
+        <router-link to="/globalPaper/highlyCited" class="menu-item-link">ESI顶级论文</router-link>
         <i class="pl-5 fa fa-caret-down"></i>
         <ul class="sub-menu">
-          <li class="sub-menu-item">高被引论文</li>
-          <li class="sub-menu-item">热点论文</li>
+          <router-link to="/globalPaper/highlyCited" class="none-decoration"><li class="sub-menu-item">高被引论文</li></router-link>
+          <router-link to="/globalPaper/hotPaper" class="none-decoration"><li class="sub-menu-item">热点论文</li></router-link>
         </ul>
       </li>
       <li class="menu-item">
-        <router-link to="/" class="menu-item-link">基准线及被引阈值</router-link>
+        <router-link to="/baseline" class="menu-item-link">基准线及被引阈值</router-link>
         <i class="pl-5 fa fa-caret-down"></i>
         <ul class="sub-menu">
-          <li class="sub-menu-item">百分位</li>
-          <!-- <li class="sub-menu-item">2</li> -->
-          <!-- <li class="sub-menu-item">3</li> -->
+          <router-link to="/baseline" class="none-decoration"><li class="sub-menu-item">百分位</li></router-link>
         </ul>
       </li>
       <li class="menu-item">
@@ -40,8 +38,8 @@
         <router-link to="/" class="menu-item-link">我校ESI顶级论文</router-link>
         <i class="pl-5 fa fa-caret-down"></i>
         <ul class="sub-menu">
-          <li class="sub-menu-item">高被引论文</li>
-          <li class="sub-menu-item">热点论文</li>
+          <router-link to="/schoolPaper/highlyCited" class="none-decoration"><li class="sub-menu-item">高被引论文</li></router-link>
+          <router-link to="/schoolPaper/hotPaper" class="none-decoration"><li class="sub-menu-item">热点论文</li></router-link>
         </ul>
       </li>
       <li class="menu-item">

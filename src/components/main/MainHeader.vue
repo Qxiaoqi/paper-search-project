@@ -46,9 +46,9 @@ export default {
     mainTitle() {
       let str = this.$route.name;
       const mainTxt = {
-        periodical: "ESI学科期刊"
-        // timeYear: "版本号（年）",
-        // categorySubject: "学科类别"
+        periodical: "ESI学科期刊",
+        globalPaper: "ESI顶级论文",
+        schoolPaper: "我校ESI顶级论文"
       };
       return mainTxt[str];
     },
@@ -60,6 +60,13 @@ export default {
           past: "往期",
           new: "当期新增",
           decrease: "当期跌出"
+        };
+        return subTxt[str];
+      } else if (this.$route.name === "globalPaper" || this.$route.name === "schoolPaper") {
+        let str = this.$route.params.paperType;
+        const subTxt = {
+          highlyCited: "高被引论文",
+          hotPaper: "热点论文"
         };
         return subTxt[str];
       }
@@ -93,7 +100,7 @@ export default {
     }
   },
   methods: {
-        // axios获取数据
+    // axios获取数据
     getArticaleData() {
       let that = this;
       // =====================与过滤不同之处=========================
