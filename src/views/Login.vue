@@ -17,6 +17,12 @@
             <span class="login-title password-title">密码</span>
             <input type="password" class="login-input password-input" v-model="password">
           </div>
+          <div class="verification-code">
+            <span class="login-title code-title">验证</span>
+            <input type="text" class="login-input code-input" v-model="code">
+            <span class="get-code-title" @click="getCode">获取验证码</span>
+            <img :src="codeUrl" alt="验证码" class="code-img" v-if="isCodeRender">
+          </div>
         </div>
         <div class="submit-bar">
           <span class="login-title" style="visibility: hidden;">登录</span>
@@ -38,16 +44,39 @@ export default {
   data() {
     return {
       username: "",
-      password: ""
+      password: "",
+      code: "",
+      uuid: "",
+      codeUrl: ""
     };
   },
+  computed: {
+    isCodeRender() {
+      return this.codeUrl === "" ? false : true;
+    }
+  },
   methods: {
+    getCode() {
+      let that = this;
+      this.$api.get
+        .getLoginCode()
+        .then(response => {
+          console.log(response);
+          that.codeUrl = "data:image/png;base64," + response.data.data.image;
+          that.uuid = response.data.data.uuid;
+        })
+        .catch(error => {
+          console.log(error);
+        })
+    },
     loginSubmit() {
       let that = this;
-      this.$api
+      this.$api.user
         .login({
           userName: that.username,
-          password: that.password
+          password: that.password,
+          code: that.code,
+          uuid: that.uuid
         })
         .then(response => {
           // console.log(response);
@@ -127,6 +156,22 @@ export default {
   border-radius: 4px;
   border: 1px solid #b2b2b8;
   // height: 30px;
+}
+
+.code-input {
+  width: 80px;
+}
+
+.code-img {
+  // 绝对定位让其不影响其他布局
+  position: absolute;
+  height: 28px;
+}
+
+.get-code-title {
+  padding-left: 10px;
+  color: @header-blue;
+  cursor: pointer;
 }
 
 .submit-bar {

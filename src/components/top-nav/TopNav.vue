@@ -6,7 +6,7 @@
         <i class="pl-5 fa fa-caret-down"></i>
         <ul class="sub-menu">
           <router-link to="/periodical/current" class="none-decoration"><li class="sub-menu-item">当期</li></router-link>
-          <router-link to="/periodical/past" class="none-decoration"><li class="sub-menu-item">往期</li></router-link>
+          <router-link to="/periodical/all" class="none-decoration"><li class="sub-menu-item">往期</li></router-link>
           <router-link to="/periodical/new" class="none-decoration"><li class="sub-menu-item">当期新增</li></router-link>
           <router-link to="/periodical/decrease" class="none-decoration"><li class="sub-menu-item">当期跌出</li></router-link>
         </ul>

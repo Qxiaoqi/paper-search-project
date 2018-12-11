@@ -57,7 +57,7 @@ export default {
   },
   created() {
     // 组件创建的时候axios请求获取年份数据
-    this.$api
+    this.$api.get
       .getAllYear()
       .then(response => {
         // 将返回的[2018]数据转换成[{id:2018, value: 2018}]数据格式
@@ -150,29 +150,70 @@ export default {
       let that = this;
       // 调用该函数，获取条件数组放入Vuex中
       this.getConditions();
-      // 获取数据
-      this.$api
-        .search()
-        .then(response => {
-          // console.log(that.$store.state.conditions.subjectCondition);
-          console.log("22222:", response);
-          console.log(response.data.data);
-          // ES6变量解构
-          let { totalElemNums, data } = response.data.data;
-          let articleTotal = totalElemNums;
-          let articleList = data;
-          // map遍历文章数组，取出esiId属性重新组成数组
-          let checkedArr = articleList.map(obj => obj.esiId);
 
-          // 提交文章数量和文章列表
-          that.$store.dispatch("getArticleTotal", articleTotal);
-          that.$store.dispatch("getArticleListList", articleList);
-          // 提交文章id数组
-          that.$store.dispatch("getCheckedArr", checkedArr);
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      if (this.$route.name === "periodical") {
+        // 如果当前在esi期刊目录下
+        let periodicalTime = this.$route.params.periodicalTime;
+        // console.log(periodicalTime);
+        if (periodicalTime === "all") {
+          // 如果在全期
+          // 获取数据
+          this.$api.search
+            .searchAll()
+            .then(response => {
+              // console.log(that.$store.state.conditions.subjectCondition);
+              console.log(response.data.data);
+              // ES6变量解构
+              let { totalElemNums, data } = response.data.data;
+              let articleTotal = totalElemNums;
+              let articleList = data;
+              // map遍历文章数组，取出esiId属性重新组成数组
+              let checkedArr = articleList.map(obj => obj.esiId);
+
+              // 提交文章数量和文章列表
+              that.$store.dispatch("getArticleTotal", articleTotal);
+              that.$store.dispatch("getArticleListList", articleList);
+              // 提交文章id数组
+              that.$store.dispatch("getCheckedArr", checkedArr);
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        } else {
+          // console.log("在当期下");
+          // 在esi模块的其它栏目下
+          const periodicalTimeTxt = {
+            current: "current",
+            new: "newAddition",
+            decrease: "fellOut"
+          };
+          console.log(periodicalTimeTxt[periodicalTime]);
+          // 获取数据
+          this.$api.search
+            .searchCurrent(periodicalTimeTxt[periodicalTime])
+            .then(response => {
+              // console.log(that.$store.state.conditions.subjectCondition);
+              console.log(response.data.data);
+              // ES6变量解构
+              let { totalElemNums, data } = response.data.data;
+              let articleTotal = totalElemNums;
+              let articleList = data;
+              // map遍历文章数组，取出esiId属性重新组成数组
+              let checkedArr = articleList.map(obj => obj.esiId);
+
+              // 提交文章数量和文章列表
+              that.$store.dispatch("getArticleTotal", articleTotal);
+              that.$store.dispatch("getArticleListList", articleList);
+              // 提交文章id数组
+              that.$store.dispatch("getCheckedArr", checkedArr);
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        }
+
+      }
+
     }
   }
 };

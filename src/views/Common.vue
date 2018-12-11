@@ -30,8 +30,8 @@ export default {
       // this.getConditions();
       // ===========================================================
       // 获取数据
-      this.$api
-        .search()
+      this.$api.search
+        .searchAll()
         .then(response => {
           // console.log(that.$store.state.conditions.subjectCondition);
           console.log(response);

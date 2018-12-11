@@ -21,7 +21,7 @@
     <div class="d-ib content-tool-choice">
       <input type="checkbox" id="all-choice-checkbox" class="content-tool-choice-checkbox" v-model="checkedAll" @change="changeAllChecked()">
       <label for="all-choice-checkbox" class="content-tool-choice-all">全选</label>
-      <span class="pl-5 content-tool-choice-export">导出</span>
+      <span class="pl-5 content-tool-choice-export" @click="exportChoice">导出</span>
     </div>
   </div>
 </div>
@@ -57,7 +57,7 @@ export default {
         let str = this.$route.params.periodicalTime;
         const subTxt = {
           current: "当期",
-          past: "往期",
+          all: "往期",
           new: "当期新增",
           decrease: "当期跌出"
         };
@@ -108,8 +108,8 @@ export default {
       // this.getConditions();
       // ===========================================================
       // 获取数据
-      this.$api
-        .search()
+      this.$api.search
+        .searchAll()
         .then(response => {
           // console.log(that.$store.state.conditions.subjectCondition);
           console.log(response);
@@ -138,6 +138,38 @@ export default {
       } else {
         this.$store.dispatch("getCheckedId", []);
       }
+    },
+    // 导出文件
+    exportChoice() {
+      let checkedId = this.$store.state.checkedArticle.checkedId;
+      console.log(checkedId);
+      this.$api.file
+        .download({
+          data: checkedId
+        })
+        .then(response => {
+          console.log(response.headers);
+          let content = response.data;
+          let blob = new Blob([content]);
+          let fileName = response.headers["content-disposition"].split("=")[1];
+          if ("download" in document.createElement("a")) {
+            
+            // 非IE下载
+            let elink = document.createElement("a");
+            elink.download = fileName;
+            elink.style.display = "none";
+            elink.href = URL.createObjectURL(blob);
+            document.body.appendChild(elink);
+            elink.click();
+            URL.revokeObjectURL(elink.href);
+          } else {
+            // IE 10+ 下载
+            navigator.msSaveBlob(blob, fileName)
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        })
     }
   }
 };
