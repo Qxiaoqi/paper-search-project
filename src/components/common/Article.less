@@ -1,0 +1,72 @@
+.search-results {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+}
+
+.search-item {
+  width: 100%;
+  display: table;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-right: 20px;
+}
+
+.search-checkbox {
+  width: 30px;
+  vertical-align: top;
+  display: table-cell;
+
+  input {
+    display: none;
+  }
+
+  input[type="checkbox"]:checked + .checkbox-custom {
+    background: url("../../assets/check.png") no-repeat;
+    background-size: 100%;
+  }
+
+  .checkbox-custom {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid @border-light;
+    border-radius: 4px;
+    background-color: #ffffff;
+    cursor: pointer;
+  }
+}
+
+.search-number {
+  width: 45px;
+  vertical-align: top;
+  display: table-cell;
+}
+
+.search-main {
+  display: table-cell;
+}
+
+.search-main {
+  .search-title {
+    color: @header-blue;
+    font-size: 15px;
+  }
+}
+
+.search-content {
+  margin-top: 15px;
+
+  .content-subtitle {
+    margin-right: 15px;
+    font-size: 13px;
+  }
+
+  .category-tag {
+    background-color: @header-blue;
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 2px 5px;
+  }
+}

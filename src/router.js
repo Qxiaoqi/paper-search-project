@@ -5,6 +5,7 @@ import Common from "./views/Common.vue";
 import Periodical from "./views/content/Periodical.vue";
 import Paper from "./views/content/Paper.vue";
 import Baseline from "./views/content/Baseline.vue";
+import Potential from "./views/content/Potential.vue";
 import Management from "./views/Management.vue";
 import ErrorView from "./views/ErrorView.vue";
 
@@ -61,6 +62,13 @@ const router = new Router({
           path: "/baseline",
           name: "baseline",
           component: Baseline,
+          meta: { requiresAuth: true }
+        },
+        // 我校高被引论文潜力值查询
+        {
+          path: "/potential",
+          name: "potential",
+          component: Potential,
           meta: { requiresAuth: true }
         }
       ]

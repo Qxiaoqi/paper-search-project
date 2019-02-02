@@ -35,7 +35,7 @@
         </ul>
       </li>
       <li class="menu-item">
-        <router-link to="/" class="menu-item-link">我校ESI顶级论文</router-link>
+        <router-link to="/schoolPaper/highlyCited" class="menu-item-link">我校ESI顶级论文</router-link>
         <i class="pl-5 fa fa-caret-down"></i>
         <ul class="sub-menu">
           <router-link to="/schoolPaper/highlyCited" class="none-decoration"><li class="sub-menu-item">高被引论文</li></router-link>
@@ -43,8 +43,11 @@
         </ul>
       </li>
       <li class="menu-item">
-        <router-link to="/" class="menu-item-link">我校高被引论文潜力值查询</router-link>
+        <router-link to="/potential" class="menu-item-link">我校高被引论文潜力值查询</router-link>
         <i class="pl-5 fa fa-caret-down"></i>
+        <ul class="sub-menu">
+          <router-link to="/potential" class="none-decoration"><li class="sub-menu-item">被引频次</li></router-link>
+        </ul>
       </li>
     </ul>
   </div>
@@ -92,6 +95,7 @@ export default {
 
 .sub-menu {
   position: absolute;
+  z-index: 10;
   top: 49px;
   min-width: 150px;
   padding-left: 0;

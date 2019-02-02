@@ -9,6 +9,7 @@
 <script>
 import TopNav from "@/components/top-nav/TopNav.vue";
 import LeftNav from "@/components/left-nav/LeftNav.vue";
+import getArticle from "@/components/common/getArticle";
 
 export default {
   name: "Common",
@@ -30,28 +31,37 @@ export default {
       // this.getConditions();
       // ===========================================================
       // 获取数据
-      this.$api.search
-        .searchAll()
-        .then(response => {
-          // console.log(that.$store.state.conditions.subjectCondition);
-          console.log(response);
-          console.log(response.data.data);
-          // ES6变量解构
-          let { totalElemNums, data } = response.data.data;
-          let articleTotal = totalElemNums;
-          let articleList = data;
-          // map遍历文章数组，取出esiId属性重新组成数组
-          let checkedArr = articleList.map(obj => obj.esiId);
 
-          // 提交文章数量和文章列表
-          that.$store.dispatch("getArticleTotal", articleTotal);
-          that.$store.dispatch("getArticleListList", articleList);
-          // 提交文章id数组
-          that.$store.dispatch("getCheckedArr", checkedArr);
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      // 开始进行axios获取数据
+      // 获取一级二级栏目数据，根据不同数据发送不同axiso
+      let firDirectory = this.$route.name;
+      let secDirectory = "";
+      if (firDirectory === "periodical") {
+        secDirectory = this.$route.params.periodicalTime;
+      }
+      // 如果是esi顶级论文
+      if (firDirectory === "globalPaper") {
+        secDirectory = this.$route.params.paperType;
+      }
+      // 如果是esi顶级论文
+      if (firDirectory === "schoolPaper") {
+        secDirectory = this.$route.params.paperType;
+      }
+
+      // 调用axios请求
+      // esi期刊模块
+      if (firDirectory === "periodical") {
+        getArticle.getEsi(firDirectory, secDirectory);
+      }
+      // esi顶级论文模块
+      if (firDirectory === "globalPaper") {
+        getArticle.getGlobalPaper(firDirectory, secDirectory);
+      }
+      // 我校esi顶级论文模块
+      if (firDirectory === "schoolPaper") {
+        getArticle.getOurPaper(firDirectory, secDirectory);
+      }
+
     }
   },
   watch: {
@@ -60,6 +70,7 @@ export default {
       console.log("watch");
       this.$store.dispatch("getKeyword", "");
       this.$store.dispatch("getPage", 0);
+      this.$store.dispatch("getArticleTotal", 0);
       this.$store.dispatch("getIfDesc", true);
       this.$store.dispatch("getMonthCondition", []);
       this.$store.dispatch("getYearCondition", []);

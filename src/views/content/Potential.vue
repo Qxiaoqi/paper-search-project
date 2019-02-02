@@ -1,5 +1,5 @@
 <template>
-  <div class="paper">
+  <div class="potential">
 
     <!-- 上部导航 -->
     <!-- <TopNav></TopNav> -->
@@ -16,7 +16,7 @@
       <MainHeader></MainHeader>
 
       <!-- 搜索结果 -->
-      <PaperList></PaperList>
+      <PotentialList></PotentialList>
 
       <!-- 分页部分 -->
       <Pagination></Pagination>
@@ -34,18 +34,18 @@
 // import TopNav from "@/components/top-nav/TopNav.vue"
 // import LeftNav from "@/components/left-nav/LeftNav.vue";
 import Condition from "@/components/condition/Condition.vue";
-import PaperList from "@/components/paper/PaperList.vue";
+import PotentialList from "@/components/potential/PotentialList.vue";
 import MainHeader from "@/components/main/MainHeader.vue";
 import Pagination from "@/components/main/Pagination.vue";
 import SearchNumberBar from "@/components/main/SearchNumberBar.vue";
 
 export default {
-  name: "Paper",
+  name: "Potential",
   components: {
     // TopNav,
     // LeftNav,
     Condition,
-    PaperList,
+    PotentialList,
     MainHeader,
     Pagination,
     SearchNumberBar

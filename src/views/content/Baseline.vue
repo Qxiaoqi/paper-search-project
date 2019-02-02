@@ -11,6 +11,8 @@
         <span class="header-title"> >> 百分位</span>
       </div>
 
+      <BaseLineList></BaseLineList>
+
       <!-- 搜索结果 -->
       <!-- <PeriodicalList></PeriodicalList> -->
 
@@ -28,6 +30,7 @@
 <script>
 // @ is an alias to /src
 import Condition from "@/components/condition/Condition.vue";
+import BaseLineList from "@/components/baseline/BaseLineList.vue";
 // import PeriodicalList from "@/components/main/PeriodicalList.vue";
 // import Pagination from "@/components/main/Pagination.vue";
 // import SearchNumberBar from "@/components/main/SearchNumberBar.vue";
@@ -36,6 +39,7 @@ export default {
   name: "Baseline",
   components: {
     Condition,
+    BaseLineList
     // PeriodicalList,
     // Pagination,
     // SearchNumberBar
@@ -52,7 +56,7 @@ export default {
 .header {
   height: 50px;
   font-size: 14px;
-  border-bottom: 1px solid @border-deep;
+  border-bottom: 1.5px solid @border-light;
   box-sizing: border-box;
 }
 </style>

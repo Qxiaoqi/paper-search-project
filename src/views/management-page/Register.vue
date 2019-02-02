@@ -55,7 +55,7 @@ export default {
         })
         .catch(error => {
           console.log(error);
-        })
+        });
     },
     registerSubmit() {
       let that = this;

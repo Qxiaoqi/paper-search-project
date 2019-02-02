@@ -50,8 +50,11 @@ Axios.interceptors.request.use(
 //返回状态判断(添加响应拦截器)
 Axios.interceptors.response.use(
   res => {
-    //对响应数据做些事
-    if (res.data && !(res.data.code === 200)) {
+    // if (res.data instanceof Blob) {
+    //   console.log("Blob");
+    // }
+    //对响应数据做些事,data存在且不为Blob，且返回code不为200
+    if (res.data && !(res.data instanceof Blob) && !(res.data.code === 200)) {
       console.log("返回状态判断");
       console.log("res:", res);
       alert(res.data.msg);
