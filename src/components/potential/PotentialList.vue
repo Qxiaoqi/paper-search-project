@@ -29,9 +29,16 @@
           </div>
         </div>
       </div>
-      <div class="d-ib search-cited-frequency">
-        <i class="fa fa-trophy" aria-hidden="true"></i>
-        <span> 被引频次：{{ article.citedFrequency }}</span>
+      <div class="d-ib search-foot">
+        <div class="search-cited-frequency">
+          <i class="fa fa-trophy" aria-hidden="true"></i>
+          <span> 被引频次：{{ article.citedFrequency }}</span>
+        </div>
+        <div class="search-tag">
+          <i class="fa fa-tag" aria-hidden="true"></i>
+          <span> 高被引论文</span>
+        </div>
+
       </div>
     </div>
   </div>
@@ -108,14 +115,24 @@ export default {
 <style lang="less" scoped>
 @import "../common/Article.less";
 
-.search-cited-frequency {
+.search-foot {
   width: 150px;
   display: table-cell;
   // vertical-align: middle;
   font-weight: 700;
+}
 
+.search-cited-frequency {
   .fa-trophy {
     color: rgb(255, 174, 0);
+  }
+}
+
+.search-tag {
+  padding-top: 5px;
+
+  .fa-tag {
+    color: @header-blue;
   }
 }
 </style>

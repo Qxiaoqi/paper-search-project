@@ -42,9 +42,14 @@ export const getEsi = (firDirectory, secDirectory) => {
 
           // 初始化Vuex中的checkedId
           store.dispatch("getCheckedId", []);
+
+          // 加载状态
+          store.dispatch("getLoadState", false);
         })
         .catch(error => {
           console.log(error);
+          // 加载状态
+          store.dispatch("getLoadState", false);
         });
     } else {
       // console.log("在当期下");
@@ -76,9 +81,14 @@ export const getEsi = (firDirectory, secDirectory) => {
 
           // 初始化Vuex中的checkedId
           store.dispatch("getCheckedId", []);
+
+          // 加载状态
+          store.dispatch("getLoadState", false);
         })
         .catch(error => {
           console.log(error);
+          // 加载状态
+          store.dispatch("getLoadState", false);
         });
     }
   }
@@ -109,9 +119,15 @@ export const getGlobalPaper = (firDirectory, secDirectory) => {
 
       // 初始化Vuex中的checkedId
       store.dispatch("getCheckedId", []);
+
+      // 加载状态
+      store.dispatch("getLoadState", false);
     })
     .catch(error => {
       console.log(error);
+
+      // 加载状态
+      store.dispatch("getLoadState", false);
     });
 };
 
@@ -140,9 +156,14 @@ export const getOurPaper = (firDirectory, secDirectory) => {
 
       // 初始化Vuex中的checkedId
       store.dispatch("getCheckedId", []);
+
+      // 加载状态
+      store.dispatch("getLoadState", false);
     })
     .catch(error => {
       console.log(error);
+      // 加载状态
+      store.dispatch("getLoadState", false);
     });
 };
 

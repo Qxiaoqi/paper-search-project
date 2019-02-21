@@ -25,7 +25,10 @@
           >{{ filterItem.value }}</label>
         </div>
         <div class="form-button">
-          <button class="form-button-item" @click="giveConditions">精炼</button>
+          <button class="form-button-item" @click="giveConditions">
+            <span v-if="!loadState">精炼</span>
+            <Loading v-if="loadState"></Loading>
+          </button>
         </div>
       </div>
     </div>
@@ -33,8 +36,13 @@
 </template>
 
 <script>
+import Loading from "../loading/Loading.vue";
+
 export default {
   name: "FilterForm",
+  components: {
+    Loading
+  },
   props: {
     filterType: String,
     filterItems: Array
@@ -58,6 +66,10 @@ export default {
         categorySubject: "学科类别"
       };
       return filterTxt[this.filterType];
+    },
+    // 获取查询loading状态
+    loadState() {
+      return this.$store.state.loading.loadState;
     }
   },
   methods: {

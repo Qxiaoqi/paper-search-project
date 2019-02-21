@@ -187,6 +187,8 @@ export default {
     },
     // axios获取数据
     getArticaleData() {
+      // 加载状态
+      this.$store.dispatch("getLoadState", true);
       // let that = this;
       // 调用该函数，获取条件数组放入Vuex中
       this.getConditions();
