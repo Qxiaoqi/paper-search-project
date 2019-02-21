@@ -57,9 +57,11 @@ Axios.interceptors.response.use(
     if (res.data && !(res.data instanceof Blob) && !(res.data.code === 200)) {
       console.log("返回状态判断");
       console.log("res:", res);
-      alert(res.data.msg);
+      // alert(res.data.msg);
+      window.$message.error(res.data.msg);
       // return Promise.reject(res.data.msg);
     }
+    // message.msg("info", "test");
     console.log("res:", res);
     return res;
   },
@@ -68,22 +70,22 @@ Axios.interceptors.response.use(
       let msg = error.response.data.msg;
       switch (error.response.status) {
         case 400:
-          alert("请求错误：" + msg);
+          window.$message.error("请求错误：" + msg);
           break;
         case 401:
-          alert("未经授权的" + msg);
+          window.$message.error("未经授权的" + msg);
           break;
         case 403:
-          alert("拒绝访问" + msg);
+          window.$message.error("拒绝访问" + msg);
           break;
         case 404:
-          alert("请求地址出错" + msg);
+          window.$message.error("请求地址出错" + msg);
           break;
         case 500:
-          alert("服务器内部错误");
+          window.$message.error("服务器内部错误" + msg);
           break;
         default:
-          alert("错误");
+          window.$message.error("错误：" + msg);
       }
     }
     // 用户登录的时候会拿到一个基础信息,比如用户名,token,过期时间戳

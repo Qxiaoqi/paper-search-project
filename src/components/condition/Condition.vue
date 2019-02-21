@@ -37,6 +37,8 @@ export default {
   font-size: 14px;
   border-bottom: 1px solid @border-deep;
   box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .header-title {

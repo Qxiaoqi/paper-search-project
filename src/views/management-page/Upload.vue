@@ -51,9 +51,9 @@ export default {
       console.log("file:", this.file);
       let formData = new FormData();
       if (this.fileTime === "") {
-        alert("请填写期刊时间");
+        window.$message.error("请填写期刊时间");
       } else if (this.file === "") {
-        alert("请选择文件");
+        window.$message.error("请选择文件");
       } else {
         formData.append("fileTime", this.fileTime);
         formData.append("file", this.file);

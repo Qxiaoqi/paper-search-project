@@ -69,7 +69,7 @@ export default {
         .then(response => {
           console.log(response);
           if (response.data.code === 200) {
-            alert("注册成功");
+            window.$message.error("注册成功");
           }
         })
         .catch(error => {

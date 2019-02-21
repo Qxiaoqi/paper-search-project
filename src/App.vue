@@ -27,6 +27,10 @@ export default {
 </script>
 
 <style lang="less">
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("./assets/font/SourceSansPro-Regular.ttf");
+}
 // 自定义-webkit-前缀的浏览器滚动条样式
 ::-webkit-scrollbar {
   // 宽度

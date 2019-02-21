@@ -5,11 +5,22 @@
         <h2 class="left-title-txt">关键词检索</h2>
       </div>
       <div class="left-search">
-        <div class="search-content">
+        <div class="search-content" v-if="!isConditionsRender">
           <span class="serach-icon">
             <i class="fa fa-search"></i>
           </span>
           <input type="text" class="search-input" v-model="keyword" @keyup.enter="getArticaleData">
+        </div>
+        <div class="search-content" v-if="isConditionsRender">
+          <span class="serach-icon">
+            <i class="fa fa-search"></i>
+          </span>
+          <input type="text" class="search-input search-input-width" v-model="keyword" @keyup.enter="getArticaleData">
+          <select name="" id="search-conditions" class="search-conditions">
+            <option value="">标题</option>
+            <option value="">索引</option>
+            <option value="">DOI</option>
+          </select>
         </div>
       </div>
     </div>
@@ -97,6 +108,13 @@ export default {
         return true;
       }
     },
+    isConditionsRender() {
+      if (this.$route.name === "periodical") {
+        return false;
+      } else {
+        return true;
+      }
+    },
     isRenderTime() {
       // 控制时间过滤是否渲染
       if (this.$route.name === "periodical") {
@@ -113,8 +131,11 @@ export default {
           // 如果是往期，则时间过滤渲染
           return true;
         }
-      } else if (this.$route.name === "baseline") {
-        // 如果是基准线百分位，则只渲染学科
+      } else if (
+          this.$route.name === "baseline" ||
+          this.$route.name === "potential"
+        ) {
+        // 如果是基准线百分位，潜力值查询，则只渲染学科
         return false;
       }
       return true;
@@ -122,13 +143,13 @@ export default {
     isRenderMonth() {
       let name = this.$route.name;
       let res = true;
-      if (
-        name === "globalPaper" ||
-        name === "schoolPaper" ||
-        name === "potential"
-      ) {
-        res = false;
-      }
+      // if (
+      //   name === "globalPaper" ||
+      //   name === "schoolPaper" ||
+      //   name === "potential"
+      // ) {
+      //   res = false;
+      // }
       return res;
     }
   },
@@ -169,6 +190,7 @@ export default {
       // let that = this;
       // 调用该函数，获取条件数组放入Vuex中
       this.getConditions();
+      // console.log(this.$message);
 
       // 开始进行axios获取数据
       // 获取一级二级栏目数据，根据不同数据发送不同axiso
@@ -314,6 +336,7 @@ export default {
   display: inline-block;
   text-align: center;
   border-radius: 4px;
+  vertical-align: -10px;
 
   .fa-search {
     font-size: 1.5em;
@@ -326,7 +349,26 @@ export default {
   width: 210px;
   box-sizing: border-box;
   border: none;
-  border-radius: 4px;
+  // border-radius: 4px;
+  vertical-align: top;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.search-input-width {
+  width: 150px;
+}
+
+.search-conditions {
+  width: 60px;
+  height: 40px;
+  border: none;
+  border-left: 1px solid @border-deep;
+  box-sizing: border-box;
+  vertical-align: top;
+
 
   &:focus {
     outline: none;

@@ -26,6 +26,7 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.0.1",
     "font-awesome": "^4.7.0",
+    "google-fonts-webpack-plugin": "^0.4.3",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "style-resources-loader": "^1.2.1",

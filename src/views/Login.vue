@@ -79,6 +79,7 @@ export default {
           uuid: that.uuid
         })
         .then(response => {
+          window.$message.success("登陆成功");
           // console.log(response);
           let { jwtCode, lifeTime } = response.data.data;
           // 获取当前时间，将当前时间加上过期时间，得到实际过期时间戳

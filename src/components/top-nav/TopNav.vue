@@ -26,14 +26,14 @@
           <router-link to="/baseline" class="none-decoration"><li class="sub-menu-item">百分位</li></router-link>
         </ul>
       </li>
-      <li class="menu-item">
+      <!-- <li class="menu-item">
         <router-link to="/" class="menu-item-link">我校ESI学科信息</router-link>
         <i class="pl-5 fa fa-caret-down"></i>
         <ul class="sub-menu">
           <li class="sub-menu-item">已进入</li>
           <li class="sub-menu-item">未进入</li>
         </ul>
-      </li>
+      </li> -->
       <li class="menu-item">
         <router-link to="/schoolPaper/highlyCited" class="menu-item-link">我校ESI顶级论文</router-link>
         <i class="pl-5 fa fa-caret-down"></i>
@@ -72,7 +72,7 @@ export default {
 
 .menu-item {
   position: relative;
-  margin: 0 20px;
+  margin: 0 25px;
   display: inline-block;
   list-style: none;
   cursor: pointer;
@@ -88,6 +88,7 @@ export default {
   font-size: 16px;
   text-decoration: none;
   color: @font-color;
+
   // &.router-link-exact-active {
   //   color: #42b983;
   // }
@@ -101,7 +102,7 @@ export default {
   padding-left: 0;
   display: none;
   background-color: #ffffff;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
   text-align: left;
 

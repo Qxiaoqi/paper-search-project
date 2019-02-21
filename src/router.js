@@ -140,14 +140,15 @@ router.beforeEach((to, from, next) => {
         next();
       } else {
         // 鉴权已过期，跳转到登录页
-        alert("登录状态过期，请重新登录");
+        // alert("登录状态过期，请重新登录");
+        window.$message.error("登录状态过期，请重新登录");
         next({
           path: "/login"
         });
       }
     } else {
       // 没有鉴权信息，跳转到登录页
-      alert("登录状态过期，请重新登录");
+      window.$message.error("登录状态过期，请重新登录");
       next({
         path: "/login"
       });
