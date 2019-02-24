@@ -89,16 +89,18 @@ const router = new Router({
     // 后台管理页面
     {
       path: "/management",
-      name: "management",
+      // name: "management",
       component: Management,
       children: [
         {
           path: "upload",
+          name: "upload",
           meta: { requiresAuth: true },
           component: () => import("./views/management-page/Upload.vue")
         },
         {
           path: "register",
+          name: "register",
           meta: { requiresAuth: true },
           component: () => import("./views/management-page/Register.vue")
         }
