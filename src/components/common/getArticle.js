@@ -31,8 +31,8 @@ export const getEsi = (firDirectory, secDirectory) => {
           let { totalElemNums, data } = response.data.data;
           let articleTotal = totalElemNums;
           let articleList = data;
-          // map遍历文章数组，取出esiId属性重新组成数组
-          let checkedArr = articleList.map(obj => obj.esiId);
+          // map遍历文章数组，取出journalId属性重新组成数组
+          let checkedArr = articleList.map(obj => obj.journalId);
 
           // 提交文章数量和文章列表
           store.dispatch("getArticleTotal", articleTotal);
@@ -70,8 +70,8 @@ export const getEsi = (firDirectory, secDirectory) => {
           let { totalElemNums, data } = response.data.data;
           let articleTotal = totalElemNums;
           let articleList = data;
-          // map遍历文章数组，取出esiId属性重新组成数组
-          let checkedArr = articleList.map(obj => obj.esiId);
+          // map遍历文章数组，取出journalId属性重新组成数组
+          let checkedArr = articleList.map(obj => obj.journalId);
 
           // 提交文章数量和文章列表
           store.dispatch("getArticleTotal", articleTotal);
@@ -108,7 +108,7 @@ export const getGlobalPaper = (firDirectory, secDirectory) => {
       let { totalElemNums, data } = response.data.data;
       let articleTotal = totalElemNums;
       let articleList = data;
-      // map遍历文章数组，取出esiId属性重新组成数组
+      // map遍历文章数组，取出paperId属性重新组成数组
       let checkedArr = articleList.map(obj => obj.paperId);
 
       // 提交文章数量和文章列表
@@ -145,7 +145,7 @@ export const getOurPaper = (firDirectory, secDirectory) => {
       let { totalElemNums, data } = response.data.data;
       let articleTotal = totalElemNums;
       let articleList = data;
-      // map遍历文章数组，取出esiId属性重新组成数组
+      // map遍历文章数组，取出paperId属性重新组成数组
       let checkedArr = articleList.map(obj => obj.paperId);
 
       // 提交文章数量和文章列表

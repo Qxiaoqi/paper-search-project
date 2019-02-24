@@ -16,10 +16,10 @@
             <i class="fa fa-search"></i>
           </span>
           <input type="text" class="search-input search-input-width" v-model="keyword" @keyup.enter="getArticaleData">
-          <select name="" id="search-conditions" class="search-conditions">
-            <option value="">标题</option>
-            <option value="">索引</option>
-            <option value="">DOI</option>
+          <select name="" id="search-conditions" class="search-conditions" v-model="keywordType">
+            <option value="articleName">标题</option>
+            <option value="accessionNumber">索引</option>
+            <option value="doi">DOI</option>
           </select>
         </div>
       </div>
@@ -95,7 +95,8 @@ export default {
         fiterSubject: filterData.fiterSubject
       },
       checkedConditions: [],
-      keyword: ""
+      keyword: "",
+      keywordType: "articleName"
     };
   },
   computed: {
@@ -132,16 +133,16 @@ export default {
           return true;
         }
       } else if (
-          this.$route.name === "baseline" ||
-          this.$route.name === "potential"
-        ) {
+        this.$route.name === "baseline" ||
+        this.$route.name === "potential"
+      ) {
         // 如果是基准线百分位，潜力值查询，则只渲染学科
         return false;
       }
       return true;
     },
     isRenderMonth() {
-      let name = this.$route.name;
+      // let name = this.$route.name;
       let res = true;
       // if (
       //   name === "globalPaper" ||
@@ -178,6 +179,11 @@ export default {
         "getSubjectCondition",
         this.$refs.checkedSubject.checkedList
       );
+
+      // 如果关键词类型渲染
+      if (this.isConditionsRender) {
+        this.$store.dispatch("getKeywordType", this.keywordType);
+      }
 
       // 分发关键词字符串
       this.$store.dispatch("getKeyword", this.keyword);
@@ -370,7 +376,6 @@ export default {
   border-left: 1px solid @border-deep;
   box-sizing: border-box;
   vertical-align: top;
-
 
   &:focus {
     outline: none;

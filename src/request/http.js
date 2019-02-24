@@ -4,6 +4,7 @@ import axios from "axios";
 
 const Axios = axios.create({
   baseURL: "http://106.14.153.164:6374",
+  // baseURL: "http://localhost:8080",
   timeout: 10000,
   responseType: "json",
   withCredentials: false, // 是否允许带cookie这些
@@ -58,7 +59,7 @@ Axios.interceptors.response.use(
       console.log("返回状态判断");
       console.log("res:", res);
       // alert(res.data.msg);
-      window.$message.error(res.data.msg);
+      window.$message.success(res.data.msg);
       // return Promise.reject(res.data.msg);
     }
     // message.msg("info", "test");
@@ -73,16 +74,16 @@ Axios.interceptors.response.use(
           window.$message.error("请求错误：" + msg);
           break;
         case 401:
-          window.$message.error("未经授权的" + msg);
+          window.$message.error("未经授权的：" + msg);
           break;
         case 403:
-          window.$message.error("拒绝访问" + msg);
+          window.$message.error("拒绝访问：" + msg);
           break;
         case 404:
-          window.$message.error("请求地址出错" + msg);
+          window.$message.error("请求地址未找到：" + msg);
           break;
         case 500:
-          window.$message.error("服务器内部错误" + msg);
+          window.$message.error("内部错误：" + msg);
           break;
         default:
           window.$message.error("错误：" + msg);

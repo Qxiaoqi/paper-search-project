@@ -2,8 +2,8 @@
   <div class="pl-20 search-results">
     <div class="search-item" v-for="(article, index) in articles" :key="index">
       <div class="d-ib search-checkbox">
-        <input type="checkbox" :id="article.esiId" :value="article.esiId" v-model="checkedId">
-        <label :for="article.esiId" class="checkbox-custom"></label>
+        <input type="checkbox" :id="article.journalId" :value="article.journalId" v-model="checkedId">
+        <label :for="article.journalId" class="checkbox-custom"></label>
       </div>
       <div class="d-ib search-number">{{ article.elemNum }}.</div>
       <div class="d-ib search-main">

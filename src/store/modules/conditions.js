@@ -3,6 +3,7 @@ const state = {
   // conditionTotal: 0,
   // conditionList: []
   // 查询条件
+  keywordType: "",
   keyword: "",
   page: 0,
   ifDesc: true,
@@ -58,6 +59,10 @@ const actions = {
   getConditionTotal({ commit }, total) {
     commit("setConditionTotal", total);
   },
+  // 获取关键词类型字符串
+  getKeywordType({ commit }, str) {
+    commit("setKeywordType", str);
+  },
   // 获取关键词字符串
   getKeyword({ commit }, str) {
     commit("setKeyword", str);
@@ -89,6 +94,10 @@ const mutations = {
   // 提交条件总数
   setConditionTotal(state, total) {
     state.conditionTotal = total;
+  },
+  // 提交关键词类型字符串
+  setKeywordType(state, str) {
+    state.keywordType = str;
   },
   // 提交关键词字符串
   setKeyword(state, str) {

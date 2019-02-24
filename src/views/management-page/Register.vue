@@ -7,6 +7,7 @@
       <div class="username">
         <span class="register-title username-title">账号</span>
         <input type="text" class="register-input username-input" v-model="username">
+        <span class="pl-5">5~16个字符，可使用小写字母、数字</span>
       </div>
       <div class="password">
         <span class="register-title password-title">密码</span>
@@ -17,6 +18,7 @@
         <input type="text" class="register-input code-input" v-model="code">
         <span class="get-code-title" @click="getCode">获取验证码</span>
         <img :src="codeUrl" alt="验证码" class="code-img" v-if="isCodeRender">
+        <span class="code-timeout" v-if="isCodeRender">{{ codeTimeout }} s后消失</span>
       </div>
     </div>
     <div class="submit-bar">
@@ -35,12 +37,15 @@ export default {
       password: "",
       code: "",
       uuid: "",
-      codeUrl: ""
+      codeUrl: "",
+      codeTimeout: 0,
+      // 全局变量，防止重复点击
+      clock: ""
     };
   },
   computed: {
     isCodeRender() {
-      return this.codeUrl === "" ? false : true;
+      return this.codeUrl !== "" && this.codeTimeout > 0 ? true : false;
     }
   },
   methods: {
@@ -52,6 +57,9 @@ export default {
           console.log(response);
           that.codeUrl = "data:image/png;base64," + response.data.data.image;
           that.uuid = response.data.data.uuid;
+          that.codeTimeout = response.data.data.time;
+          // 倒计时函数
+          that.countDown();
         })
         .catch(error => {
           console.log(error);
@@ -69,12 +77,23 @@ export default {
         .then(response => {
           console.log(response);
           if (response.data.code === 200) {
-            window.$message.error("注册成功");
+            window.$message.success("注册成功");
           }
         })
         .catch(error => {
           console.log(error);
         });
+    },
+    countDown() {
+      window.clearInterval(this.clock);
+      this.clock = window.setInterval(() => {
+        if (this.codeTimeout >= 0) {
+          this.codeTimeout--;
+        }
+        if (this.codeTimeout < 0) {
+          window.clearInterval(this.clock);
+        }
+      }, 1000);
     }
   }
 };
@@ -121,6 +140,10 @@ export default {
   // 绝对定位让其不影响其他布局
   position: absolute;
   height: 28px;
+}
+
+.code-timeout {
+  padding-left: 92px;
 }
 
 .submit-bar {

@@ -4,7 +4,7 @@ import store from "@/store/index";
 // 查询全期
 export const searchAll = () => {
   return axios({
-    url: "/esi/all",
+    url: "/journal/all",
     method: "post",
     data: {
       page: store.state.conditions.page,
@@ -23,7 +23,7 @@ export const searchAll = () => {
 // 查询当期、当期新增、当期跌出
 export const searchCurrent = time => {
   return axios({
-    url: "/esi/" + time,
+    url: "/journal/" + time,
     method: "post",
     data: {
       pageNum: store.state.conditions.page,
@@ -38,15 +38,16 @@ export const searchCurrent = time => {
 // 查询esi顶级论文
 export const searchGlobalPaper = paperType => {
   return axios({
-    url: "http://mock.eolinker.com/uhNYv5U215788ab75475306abb3164b8c20d25f46e7e136?uri=/allPaper/" + paperType,
+    url: "/allPaper/" + paperType,
     method: "post",
     data: {
       page: store.state.conditions.page,
+      keyWordType: store.state.conditions.keywordType,
       keyWord: store.state.conditions.keyword,
       ifDesc: store.state.conditions.ifDesc,
       conditionData: {
         month: store.getters.getConditionId.monthCondition,
-        // year: store.getters.getConditionId.yearCondition,
+        year: store.getters.getConditionId.yearCondition,
         subject: store.getters.getConditionId.subjectCondition
       }
     },
@@ -57,15 +58,16 @@ export const searchGlobalPaper = paperType => {
 // 查询我校esi顶级论文
 export const searchOurPaper = paperType => {
   return axios({
-    url: "http://mock.eolinker.com/uhNYv5U215788ab75475306abb3164b8c20d25f46e7e136?uri=/ourPaper/" + paperType,
+    url: "/ourPaper/" + paperType,
     method: "post",
     data: {
       page: store.state.conditions.page,
+      keyWordType: store.state.conditions.keywordType,
       keyWord: store.state.conditions.keyword,
       ifDesc: store.state.conditions.ifDesc,
       conditionData: {
         month: store.getters.getConditionId.monthCondition,
-        // year: store.getters.getConditionId.yearCondition,
+        year: store.getters.getConditionId.yearCondition,
         subject: store.getters.getConditionId.subjectCondition
       }
     },

@@ -24,6 +24,16 @@
 <script>
 export default {
   name: "Upload",
+  // created() {
+  //   this.$api.user
+  //     .getManRegister()
+  //     .then(response => {
+  //       console.log(response);
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     })
+  // },
   data() {
     return {
       fileTime: "",
