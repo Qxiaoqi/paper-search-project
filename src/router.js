@@ -99,6 +99,12 @@ const router = new Router({
           component: () => import("./views/management-page/Upload.vue")
         },
         {
+          path: "delete",
+          name: "delete",
+          meta: { requiresAuth: true },
+          component: () => import("./views/management-page/Delete.vue")
+        },
+        {
           path: "register",
           name: "register",
           meta: { requiresAuth: true },

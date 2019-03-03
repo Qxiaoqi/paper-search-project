@@ -1,7 +1,7 @@
 import axios from "../http";
 import store from "@/store/index";
 
-// 查询全期
+// 查询期刊全期
 export const searchAll = () => {
   return axios({
     url: "/journal/all",
@@ -20,7 +20,7 @@ export const searchAll = () => {
   });
 };
 
-// 查询当期、当期新增、当期跌出
+// 查询期刊当期、当期新增、当期跌出
 export const searchCurrent = time => {
   return axios({
     url: "/journal/" + time,
@@ -75,9 +75,45 @@ export const searchOurPaper = paperType => {
   });
 };
 
+// // 查询总基准线
+// export const searchBaselineAll = () => {
+//   return axios({
+//     url: "/baseLine/byAll",
+//     method: "post",
+//     data: null,
+//     requiresAuth: true
+//   });
+// };
+
+// 按查询学科基准线
+export const searchBaseline = () => {
+  return axios({
+    url: "/baseLine/byCategory",
+    method: "post",
+    data: {
+      subjects: store.getters.getConditionId.subjectCondition
+    },
+    requiresAuth: true
+  });
+};
+
+// 按查询学科基准线
+export const searchBaselineAll = () => {
+  return axios({
+    url: "/baseLine/byCategory",
+    method: "post",
+    data: {
+      subjects: [1024]
+    },
+    requiresAuth: true
+  });
+};
+
 export default {
   searchAll,
   searchCurrent,
   searchGlobalPaper,
-  searchOurPaper
+  searchOurPaper,
+  searchBaselineAll,
+  searchBaseline
 };

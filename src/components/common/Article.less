@@ -63,6 +63,16 @@
     font-size: 14px;
   }
 
+  .content-text {
+    // white-space: nowrap;
+    // overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+  }
+
   .category-tag {
     background-color: @header-blue;
     color: #ffffff;

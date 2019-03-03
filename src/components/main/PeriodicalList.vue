@@ -9,12 +9,15 @@
       <div class="d-ib search-main">
         <h4 class="search-title">{{ article.fullTitle }}</h4>
         <div class="search-content">
-          <span class="content-subtitle">Title29：{{ article.title29 }}</span>
-          <span class="content-subtitle">Title20：{{ article.title20 }}</span>
-          <span class="content-subtitle">ISSN：{{ article.issn }}</span>
-          <span class="content-subtitle">EISSN：{{ article.eissn }}</span>
+          <span class="content-subtitle"><b>Title29：</b>{{ article.title29 }}</span>
+          <span class="content-subtitle"><b>Title20：</b>{{ article.title20 }}</span>
+          <span class="content-subtitle"><b>ISSN：</b>{{ article.issn }}</span>
+          <span class="content-subtitle"><b>EISSN：</b>{{ article.eissn }}</span>
           <div class="content-subtitle">
-            CategoryName：<span class="category-tag">{{ article.categoryName }}</span>
+            <b>CategoryName：</b><span class="category-tag">{{ article.categoryName }}</span>
+          </div>
+          <div class="content-subtitle">
+            <b>版本号：</b>{{ article.year }}-{{ article.month }}
           </div>
         </div>
       </div>

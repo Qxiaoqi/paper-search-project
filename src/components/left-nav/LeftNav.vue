@@ -61,6 +61,7 @@
 import FilterForm from "./FilterForm.vue";
 import filterData from "./filterData";
 import getArticle from "../common/getArticle";
+import getBaseline from "../common/getBaseline";
 
 export default {
   name: "LeftNav",
@@ -229,66 +230,72 @@ export default {
       if (firDirectory === "schoolPaper") {
         getArticle.getOurPaper(firDirectory, secDirectory);
       }
-      // console.log("test");
-      // getArticle.getArticle();
-      // if (this.$route.name === "periodical") {
-      //   // 如果当前在esi期刊目录下
-      //   let periodicalTime = this.$route.params.periodicalTime;
-      //   // console.log(periodicalTime);
-      //   if (periodicalTime === "all") {
-      //     // 如果在全期
-      //     // 获取数据
-      //     this.$api.search
-      //       .searchAll()
-      //       .then(response => {
-      //         console.log(response.data.data);
-      //         // ES6变量解构
-      //         let { totalElemNums, data } = response.data.data;
-      //         let articleTotal = totalElemNums;
-      //         let articleList = data;
-      //         // map遍历文章数组，取出esiId属性重新组成数组
-      //         let checkedArr = articleList.map(obj => obj.esiId);
+      // 基准线模块
+      if (firDirectory === "baseline") {
+        this.getBaselineData();
+      }
 
-      //         // 提交文章数量和文章列表
-      //         that.$store.dispatch("getArticleTotal", articleTotal);
-      //         that.$store.dispatch("getArticleListList", articleList);
-      //         // 提交文章id数组
-      //         that.$store.dispatch("getCheckedArr", checkedArr);
-      //       })
-      //       .catch(error => {
-      //         console.log(error);
-      //       });
-      //   } else {
-      //     // 在esi模块的其它栏目下
-      //     const periodicalTimeTxt = {
-      //       current: "current",
-      //       new: "newAddition",
-      //       decrease: "fellOut"
-      //     };
-      //     console.log(periodicalTimeTxt[periodicalTime]);
-      //     // 获取数据
-      //     this.$api.search
-      //       .searchCurrent(periodicalTimeTxt[periodicalTime])
-      //       .then(response => {
-      //         // console.log(response.data.data);
-      //         // ES6变量解构
-      //         let { totalElemNums, data } = response.data.data;
-      //         let articleTotal = totalElemNums;
-      //         let articleList = data;
-      //         // map遍历文章数组，取出esiId属性重新组成数组
-      //         let checkedArr = articleList.map(obj => obj.esiId);
-
-      //         // 提交文章数量和文章列表
-      //         that.$store.dispatch("getArticleTotal", articleTotal);
-      //         that.$store.dispatch("getArticleListList", articleList);
-      //         // 提交文章id数组
-      //         that.$store.dispatch("getCheckedArr", checkedArr);
-      //       })
-      //       .catch(error => {
-      //         console.log(error);
-      //       });
-      //   }
-      // }
+    },
+    getBaselineData() {
+      this.$api.search
+        .searchBaseline()
+        .then(response => {
+          console.log(response);
+          this.$store.dispatch("getLoadState", false);
+          // 处理返回的数据
+          // 先按学科返回分好的组数
+          // 总数据
+          let data = response.data.data;
+          getBaseline.delBaselineFun(data);
+          // // 从vuex中拿到选中的学科
+          // let subjectChecked = this.$store.state.conditions.subjectCondition;
+          // // 百分位阶段
+          // let percent = ["0.01%", "0.10%", "1.00%", "10.00%", "20.00%", "50.00%"];
+          // // 要存到vuex中的最终处理后的数据
+          // let subArr = [];
+          // // console.log(data);
+          // // 给学科按字母顺序排序
+          // subjectChecked = subjectChecked.map(subject => subject.value);
+          // subjectChecked.sort();
+          // // console.log(subjectChecked);
+          // // 按排好序的学科顺序分成不同组
+          // for (let i = 0; i < subjectChecked.length; i++) {
+          //   // 一次处理，找出学科相同的
+          //   let arrSub = data.filter(item => item.subject === subjectChecked[i]);
+          //   // 用来存储二次处理百分位的结果
+          //   let resPer = [];
+          //   for (let j = 0; j < percent.length; j++) {
+          //     // 二次处理，找出百分位相同的
+          //     let arrPer = arrSub.filter(item => item.percent === percent[j]);
+          //     resPer.push({
+          //       percentName: percent[j],
+          //       data: arrPer
+          //     })
+          //     // console.log(resPer);
+          //   }
+          //   subArr.push({
+          //     name: subjectChecked[i],
+          //     data: resPer
+          //   });
+          //   // console.log(arr);
+          // }
+          // console.log(subArr);
+          // // 处理基准线表头
+          // let titleArr = ["RESEARCH FIELDS"];
+          // // let delArr = subArr[0].data[0].data;
+          // subArr[0].data[0].data.forEach(item => {
+          //   titleArr.push(item.year);
+          // });
+          // console.log(titleArr);
+          // // console.log(subArr[0].data[0].data[0].year);
+          // // 处理后结果存到vuex
+          // this.$store.dispatch("getBaselineData", subArr);
+          // this.$store.dispatch("getBaselineTitle", titleArr);
+        })
+        .catch(error => {
+          console.log(error);
+          this.$store.dispatch("getLoadState", false);
+        })
     }
   }
 };

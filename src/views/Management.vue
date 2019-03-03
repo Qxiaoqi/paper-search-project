@@ -5,11 +5,12 @@
       <div>
         <ul class="list-nav">
           <li class="list-item"><router-link class="link-item" to="/management/upload">文件上传</router-link></li>
+          <li class="list-item"><router-link class="link-item" to="/management/delete">文件删除</router-link></li>
           <li class="list-item"><router-link class="link-item" to="/management/register">用户注册</router-link></li>
         </ul>
       </div>
     </div>
-    <!-- 右侧边栏选项 -->
+    <!-- 右侧 -->
     <div class="hidden main">
       <router-view></router-view>
     </div>

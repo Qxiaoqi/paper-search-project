@@ -27,6 +27,9 @@
           <div class="content-subtitle">
             <span class="content-subtitle">DOI：{{ article.doi }}</span>
           </div>
+          <div class="content-subtitle">
+            <span class="content-subtitle">版本号：{{ article.year }}-{{ article.month }}</span>
+          </div>
         </div>
       </div>
       <div class="d-ib search-foot">

@@ -1,49 +1,89 @@
 <template>
-  <div class="management">
-    <div class="title">
-      <h1>文件上传</h1>
-    </div>
-    <div class="time-bar">
-      <span class="time-title">期刊时间</span>
-      <input class="time-input" type="text" placeholder="例：201809" v-model="fileTime">
-    </div>
-    <div class="upload-bar">
-      <input @change="handFileChange" ref="uploadFile" id="upload" class="upload" type="file">
-      <label for="upload" class="upload-label"><i class="fa fa-cloud-upload" aria-hidden="true"></i>选择文件</label>
-      <span class="upload-name">{{ fileName }}</span>
-      <div class="upload-progress">
-        <progress max="100" :value="progressRate"></progress>
+  <div class="upload-container">
+    <div class="management">
+      <div class="upload-left">
+        <ModuleSelect routerName="upload" ref="moduleSelect"></ModuleSelect>
+        <!-- <div class="title">
+          <h1>文件上传</h1>
+        </div>
+        <div class="time-bar">
+          <span class="title-bar time-title">期刊时间</span>
+          <input class="time-input" type="text" placeholder="例：201809" v-model="fileTime">
+        </div>
+        <div class="select-bar">
+          <span class="title-bar select-title">模块选择</span>
+          <select name="" id="select-first" class="select-input" v-model="firstSelect">
+            <option value="journal">esi学科期刊</option>
+            <option value="globalPaper">esi顶级论文</option>
+            <option value="schoolPaper">我校esi论文</option>
+            <option value="baseLine">基准线</option>
+            <option value="">潜力值</option>
+          </select>
+          <select name="" id="select-second" class="select-input select-paper-input" v-if="isSecondSelect" v-model="secondSelect">
+            <option value="highlyCited">高被引论文</option>
+            <option value="hotPaper">热点论文</option>
+          </select>
+        </div> -->
+        <div class="upload-bar">
+          <input @change="handFileChange" ref="uploadFile" id="upload" class="upload" type="file">
+          <label for="upload" class="upload-label"><i class="fa fa-cloud-upload" aria-hidden="true"></i>选择文件</label>
+          <span class="upload-name">{{ fileName }}</span>
+          <div class="upload-progress">
+            <progress max="100" :value="progressRate"></progress>
+          </div>
+          <div class="submit-bar">
+            <button class="upload-submit" @click="fileSubmit">确认</button>
+          </div>
+        </div>
       </div>
-      <div class="submit-bar">
-        <button class="upload-submit" @click="fileSubmit">确认</button>
+      <div class="upload-files">
+        <!-- 右侧 -->
+        <li class="file-list" v-for="fileItem in files"><span class="file-list-time">[{{ fileItem.time }}]</span> {{ fileItem.name }}</li>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import router from "@/router";
+import ModuleSelect from "@/components/management/ModuleSelect.vue";
+
 export default {
   name: "Upload",
-  // created() {
-  //   this.$api.user
-  //     .getManRegister()
-  //     .then(response => {
-  //       console.log(response);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     })
-  // },
+  components: {
+    ModuleSelect
+  },
+  beforeCreate() {
+    this.$api.user
+      .getManage()
+      .then(response => {
+        console.log(response);
+        if (response.data.code === 200) {
+          window.$message.info("可以选择上传文件");
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        if (error.data.code === 401) {
+          router.push({
+            path: "/"
+          });
+        }
+      })
+  },
   data() {
     return {
-      fileTime: "",
+      // firstSelect: "journal",
+      // secondSelect: "highlyCited",
+      // fileTime: "",
       fileName: "",
-      file: ""
+      file: "",
+      files: []
     };
   },
   computed: {
     progressRate() {
-      return 60;
+      return this.$store.state.loading.fileUploadRate;
     }
   },
   methods: {
@@ -57,42 +97,70 @@ export default {
       this.fileName = this.file.name;
     },
     fileSubmit() {
-      console.log("fileTime:", this.fileTime);
+      console.log("fileTime:", this.$refs.moduleSelect.fileTime);
       console.log("file:", this.file);
+      let fileTime = this.$refs.moduleSelect.fileTime;
+      let firstSelect = this.$refs.moduleSelect.firstSelect;
       let formData = new FormData();
-      if (this.fileTime === "") {
+      if (fileTime === "") {
         window.$message.error("请填写期刊时间");
       } else if (this.file === "") {
         window.$message.error("请选择文件");
       } else {
-        formData.append("fileTime", this.fileTime);
+        let yearNum = parseInt(fileTime.slice(0, 4));
+        let monthNum = parseInt(fileTime.slice(4));
         formData.append("file", this.file);
-        console.log("formData:", formData);
+
+        if (firstSelect === "journal") {
+          // 需要时间的上传
+          formData.append("month", monthNum);
+          formData.append("year", yearNum);
+        } 
+        let fileData = {
+          name: firstSelect,
+          data: formData,
+        }
+
+        // axios请求
+        this.fileAjax(fileData, fileTime);
       }
+    },
+    fileAjax(fileData, fileTime) {
+      // 进度条清零
+      this.$store.dispatch("getFileUploadRate", 0);
+      this.$api.file
+        .upload(fileData)
+        .then(response => {
+          console.log(response);
+          if (response.data.code === 200) {
+            window.$message.success("上传成功");
+            this.files.push({
+              time: fileTime,
+              name: this.fileName
+            });
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        })
     }
   }
 };
 </script>
 
 <style lang="less" scoped>
+
 .management {
-  padding: 45px;
+  min-height: 500px;
+  // max-height: 510px;
+  width: 100%;
+  display: table;
+  table-layout: fixed;
 }
 
-.time-bar {
-  padding-top: 20px;
-  padding-bottom: 20px;
-
-  .time-title {
-    padding-right: 10px;
-  }
-
-  .time-input {
-    padding: 5px;
-    width: 250px;
-    border-radius: 4px;
-    border: 1px solid #b2b2b8;
-  }
+.upload-left {
+  padding: 45px;
+  display: table-cell;
 }
 
 .upload {
@@ -124,7 +192,7 @@ export default {
   progress {
     display: inline-block;
     width: 400px;
-    height: 20px;
+    height: 10px;
     border: 1px solid @header-blue;
     background-color: #e6e6e6;
     color: @header-blue; /*IE10*/
@@ -154,5 +222,23 @@ export default {
   color: @font-color;
   background-color: @button-color;
   cursor: pointer;
+}
+
+.upload-files {
+  width: 250px;
+  padding: 45px;
+  display: table-cell;
+  background-color: @light-grey;
+}
+
+.file-list {
+  list-style: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  .file-list-time {
+    color: @deep-red;;
+  }
 }
 </style>

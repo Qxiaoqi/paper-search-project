@@ -19,19 +19,10 @@ export const register = params => {
   });
 };
 
-// 后台上传重定向
-export const getManRegister = () => {
+// 后台许可
+export const getManage = () => {
   return axios({
-    url: "/user/manageRegister",
-    method: "get",
-    requiresAuth: true
-  });
-};
-
-// 后台注册重定向
-export const getManUpload = () => {
-  return axios({
-    url: "/user/manageUpload",
+    url: "/user/manage",
     method: "get",
     requiresAuth: true
   });
@@ -40,6 +31,5 @@ export const getManUpload = () => {
 export default {
   login,
   register,
-  getManRegister,
-  getManUpload
+  getManage
 };

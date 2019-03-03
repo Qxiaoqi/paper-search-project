@@ -70,7 +70,7 @@ export default {
       console.log("watch");
       this.$store.dispatch("getKeyword", "");
       this.$store.dispatch("getPage", 0);
-      this.$store.dispatch("getArticleTotal", 0);
+      // this.$store.dispatch("getArticleTotal", 0);
       this.$store.dispatch("getIfDesc", true);
       this.$store.dispatch("getMonthCondition", []);
       this.$store.dispatch("getYearCondition", []);

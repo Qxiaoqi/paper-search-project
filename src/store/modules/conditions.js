@@ -3,7 +3,7 @@ const state = {
   // conditionTotal: 0,
   // conditionList: []
   // 查询条件
-  keywordType: "",
+  keywordType: "articleName",
   keyword: "",
   page: 0,
   ifDesc: true,

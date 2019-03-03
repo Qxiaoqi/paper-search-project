@@ -3,7 +3,8 @@ import Vuex from "vuex";
 import conditions from "./modules/conditions";
 import periodical from "./modules/periodical";
 import checkedArticle from "./modules/checkedArticle";
-import loading from "./modules/loading"
+import loading from "./modules/loading";
+import baselineRes from "./modules/baselineRes";
 
 Vue.use(Vuex);
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
     conditions,
     periodical,
     checkedArticle,
-    loading
+    loading,
+    baselineRes
   }
 });
