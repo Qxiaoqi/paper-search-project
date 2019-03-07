@@ -69,7 +69,7 @@ export default {
             path: "/"
           });
         }
-      })
+      });
   },
   data() {
     return {
@@ -115,25 +115,29 @@ export default {
         let monthNum = parseInt(fileTime.slice(4));
         formData.append("file", this.file);
 
-        if (firstSelect === "journal" || firstSelect === "esi" || firstSelect === "school") {
+        if (
+          firstSelect === "journal" ||
+          firstSelect === "esi" ||
+          firstSelect === "school"
+        ) {
           // 需要时间的上传
           formData.append("month", monthNum);
           formData.append("year", yearNum);
-        } 
+        }
 
         let fileData = {};
         if (firstSelect === "esi" || firstSelect === "school") {
           // 有二级栏目的（论文）
           fileData = {
             name: "paper/" + firstSelect + "/" + secondSelect,
-            data: formData,
-          }
+            data: formData
+          };
         } else {
           // 只有一级栏目的
           fileData = {
             name: firstSelect,
-            data: formData,
-          }
+            data: formData
+          };
         }
 
         // axios请求
@@ -157,14 +161,13 @@ export default {
         })
         .catch(error => {
           console.log(error);
-        })
+        });
     }
   }
 };
 </script>
 
 <style lang="less" scoped>
-
 .management {
   min-height: 500px;
   // max-height: 510px;
@@ -253,7 +256,7 @@ export default {
   text-overflow: ellipsis;
 
   .file-list-time {
-    color: @deep-red;;
+    color: @deep-red;
   }
 }
 </style>

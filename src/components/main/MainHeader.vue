@@ -159,11 +159,11 @@ export default {
       let checkedId = this.$store.state.checkedArticle.checkedId;
       console.log(checkedId);
       let nameObj = {
-        "globalPaper": "allPaper",
-        "schoolPaper": "ourPaper",
-        "periodical": "journal"
-      }
-      let name = nameObj[this.$route.name];   
+        globalPaper: "allPaper",
+        schoolPaper: "ourPaper",
+        periodical: "journal"
+      };
+      let name = nameObj[this.$route.name];
       // if (this.$route.name === "globalPaper" || this.$route.name === "schoolPaper") {
       //   name = "allPaper";
       // } else if (this.$route.name === "periodical") {

@@ -35,8 +35,8 @@ export default {
     return {
       firstSelect: "journal",
       secondSelect: "highly",
-      fileTime: "",
-    }
+      fileTime: ""
+    };
   },
   computed: {
     isSecondSelect() {
@@ -47,9 +47,9 @@ export default {
     },
     titleTxt() {
       if (this.routerName === "upload") {
-        return "文件上传"
+        return "文件上传";
       } else if (this.routerName === "delete") {
-        return "文件删除"
+        return "文件删除";
       }
     }
   }
@@ -97,7 +97,6 @@ export default {
     color: @deep-red;
   }
 }
-
 
 .submit-bar {
   margin-top: 20px;
