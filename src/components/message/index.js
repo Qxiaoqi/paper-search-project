@@ -27,7 +27,9 @@ const MESSAGE = {
             text: msg,
             show: this.show
           };
-          return h("message", { props });
+          // return h("Message", { props: props });
+          // ES6简写
+          return h("Message", { props });
         },
         data() {
           return {
@@ -37,7 +39,9 @@ const MESSAGE = {
       });
       let newMessage = new VueMessage();
       let vm = newMessage.$mount();
+      console.log(vm);
       let el = vm.$el;
+      console.log(el);
       document.body.appendChild(el); // 把生成的提示的dom插入body中
       vm.show = true;
       let t1 = setTimeout(() => {
@@ -51,7 +55,6 @@ const MESSAGE = {
 
           callBack && typeof callBack === "function" && callBack();
           // 如果有回调函数就执行，没有就不执行，用&&操作符，
-          // 只有&&左边 的代码为true才执行&&右边的代码，避免用面条代码：
         }, MESSAGE.animateTime);
       }, duration);
     }

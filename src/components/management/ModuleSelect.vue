@@ -11,13 +11,13 @@
       <span class="title-bar select-title">模块选择</span>
       <select name="" id="select-first" class="select-input" v-model="firstSelect">
         <option value="journal">esi学科期刊</option>
-        <option value="globalPaper">esi顶级论文</option>
-        <option value="schoolPaper">我校esi论文</option>
+        <option value="esi">esi顶级论文</option>
+        <option value="school">我校esi论文</option>
         <option v-if="routerName === 'upload'" value="baseLine">基准线</option>
-        <option v-if="routerName === 'upload'" value="">潜力值</option>
+        <option v-if="routerName === 'upload'" value="incites">潜力值</option>
       </select>
       <select name="" id="select-second" class="select-input select-paper-input" v-if="isSecondSelect" v-model="secondSelect">
-        <option value="highlyCited">高被引论文</option>
+        <option value="highly">高被引论文</option>
         <option value="hot">热点论文</option>
       </select>
       <div class="select-note" v-show="routerName === 'delete'">注：基准线和潜力值直接上传新的就会覆盖掉原来的文件</div>
@@ -34,13 +34,13 @@ export default {
   data() {
     return {
       firstSelect: "journal",
-      secondSelect: "highlyCited",
+      secondSelect: "highly",
       fileTime: "",
     }
   },
   computed: {
     isSecondSelect() {
-      if (this.firstSelect === "globalPaper" || this.firstSelect === "schoolPaper") {
+      if (this.firstSelect === "esi" || this.firstSelect === "school") {
         return true;
       }
       return false;

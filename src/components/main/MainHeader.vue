@@ -158,9 +158,23 @@ export default {
     exportChoice() {
       let checkedId = this.$store.state.checkedArticle.checkedId;
       console.log(checkedId);
+      let nameObj = {
+        "globalPaper": "allPaper",
+        "schoolPaper": "ourPaper",
+        "periodical": "journal"
+      }
+      let name = nameObj[this.$route.name];   
+      // if (this.$route.name === "globalPaper" || this.$route.name === "schoolPaper") {
+      //   name = "allPaper";
+      // } else if (this.$route.name === "periodical") {
+      //   name = "journal";
+      // }
       this.$api.file
         .download({
-          data: checkedId
+          name: name,
+          exportData: {
+            data: checkedId
+          }
         })
         .then(response => {
           console.log(response.headers);

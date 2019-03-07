@@ -101,6 +101,10 @@ export default {
       console.log("file:", this.file);
       let fileTime = this.$refs.moduleSelect.fileTime;
       let firstSelect = this.$refs.moduleSelect.firstSelect;
+      let secondSelect = "";
+      if (this.$refs.moduleSelect.firstSelect) {
+        secondSelect = this.$refs.moduleSelect.secondSelect;
+      }
       let formData = new FormData();
       if (fileTime === "") {
         window.$message.error("请填写期刊时间");
@@ -111,14 +115,25 @@ export default {
         let monthNum = parseInt(fileTime.slice(4));
         formData.append("file", this.file);
 
-        if (firstSelect === "journal") {
+        if (firstSelect === "journal" || firstSelect === "esi" || firstSelect === "school") {
           // 需要时间的上传
           formData.append("month", monthNum);
           formData.append("year", yearNum);
         } 
-        let fileData = {
-          name: firstSelect,
-          data: formData,
+
+        let fileData = {};
+        if (firstSelect === "esi" || firstSelect === "school") {
+          // 有二级栏目的（论文）
+          fileData = {
+            name: "paper/" + firstSelect + "/" + secondSelect,
+            data: formData,
+          }
+        } else {
+          // 只有一级栏目的
+          fileData = {
+            name: firstSelect,
+            data: formData,
+          }
         }
 
         // axios请求

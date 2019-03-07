@@ -17,7 +17,7 @@
         type: String,
         default: 'info',
         validator: val => ['info', 'success', 'error'].includes(val)
-        //['info', 'success', 'error'] 表示type只接收这四个字符串作为参数传入message组件
+        //自定义检查函数 ['info', 'success', 'error'] 表示type只接收这字符串作为参数传入message组件
       },
       text: {
         type: String,
@@ -33,7 +33,6 @@
 
 <style scoped lang="less">
    // fade动画 <transition name="fade"> </transition>
-   // 下面的样式可以自己改
   .fade-enter-active,
   .fade-leave-active {
     transition: opacity .3s;

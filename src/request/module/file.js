@@ -4,10 +4,10 @@ import store from "@/store/index";
 // 文件下载
 export const download = params => {
   return axios({
-    url: "/journal/download",
+    url: "/" + params.name + "/download",
     method: "post",
     responseType: "blob",
-    data: params,
+    data: params.exportData,
     requiresAuth: true
   });
 };
