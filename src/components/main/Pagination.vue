@@ -12,6 +12,7 @@
 
 <script>
 import getArticle from "../common/getArticle";
+import getIncites from "@/components/common/getIncites";
 
 export default {
   name: "Pagination",
@@ -83,6 +84,10 @@ export default {
       // 我校esi顶级论文模块
       if (firDirectory === "schoolPaper") {
         getArticle.getOurPaper(firDirectory, secDirectory);
+      }
+      // 我校潜力值模块
+      if (firDirectory === "potential") {
+        getIncites.getIncitesData();
       }
 
     }

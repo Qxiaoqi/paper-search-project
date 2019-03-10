@@ -59,7 +59,7 @@ export default {
       .then(response => {
         console.log(response);
         if (response.data.code === 200) {
-          window.$message.info("可以选择上传文件");
+          this.$message.info("可以选择上传文件");
         }
       })
       .catch(error => {

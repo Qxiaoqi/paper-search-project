@@ -62,6 +62,7 @@ import FilterForm from "./FilterForm.vue";
 import filterData from "./filterData";
 import getArticle from "../common/getArticle";
 import getBaseline from "../common/getBaseline";
+import getIncites from "../common/getIncites";
 
 export default {
   name: "LeftNav",
@@ -234,7 +235,10 @@ export default {
       if (firDirectory === "baseline") {
         this.getBaselineData();
       }
-
+      // 潜力值模块
+      if (firDirectory === "potential") {
+        getIncites.getIncitesData();
+      }
     },
     getBaselineData() {
       this.$api.search

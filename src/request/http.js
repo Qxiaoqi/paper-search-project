@@ -3,9 +3,10 @@ import axios from "axios";
 // import router from "../router";
 
 const Axios = axios.create({
-  baseURL: "http://106.14.153.164:6374",
+  baseURL: "http://139.196.89.107:6374",
+  // baseURL: "http://106.14.153.164:6374",
   // baseURL: "http://localhost:8080",
-  timeout: 40000,
+  // timeout: 60000,
   responseType: "json",
   withCredentials: false, // 是否允许带cookie这些
   headers: {

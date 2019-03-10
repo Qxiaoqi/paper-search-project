@@ -15,7 +15,7 @@ export const download = params => {
 // 文件上传
 export const upload = params => {
   return axios({
-    url: "/upload/" + params.name,
+    url: "/" + params.name + "/upload",
     method: "post",
     headers: {
       "Content-Type": "multipart/form-data;charset=utf-8"

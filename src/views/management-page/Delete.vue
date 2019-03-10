@@ -37,6 +37,24 @@ export default {
   components: {
     ModuleSelect
   },
+  beforeCreate() {
+    this.$api.user
+      .getManage()
+      .then(response => {
+        console.log(response);
+        if (response.data.code === 200) {
+          window.$message.info("可以删除文件");
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        if (error.data.code === 401) {
+          router.push({
+            path: "/"
+          });
+        }
+      })
+  },
   data() {
     return {
       // firstSelect: "journal",
@@ -52,10 +70,10 @@ export default {
       let path = "";
       if (firstSelect === "journal") {
         path = "/" + firstSelect;
-      } else if (firstSelect === "globalPaper" || firstSelect === "schoolPaper") {
+      } else if (firstSelect === "esi" || firstSelect === "school") {
         // 如果是论文
         let secondSelect = this.$refs.moduleSelect.secondSelect;
-        firstSelect === "globalPaper" ? path = "/allPaper/" + secondSelect : path = "/ourPaper/" + secondSelect;
+        firstSelect === "esi" ? path = "/paper/esi/" + secondSelect : path = "/paper/school/" + secondSelect;
       }
       if (fileTime === "") {
         window.$message.error("请填写期刊时间");
@@ -80,7 +98,7 @@ export default {
         .fileDelete(deleteData)
         .then(response => {
           console.log(response);
-          if (response.data.data === true) {
+          if (response.data.code === 200) {
             window.$message.success("删除成功");
           }
         })

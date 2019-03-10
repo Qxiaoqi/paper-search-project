@@ -10,6 +10,8 @@
 import TopNav from "@/components/top-nav/TopNav.vue";
 import LeftNav from "@/components/left-nav/LeftNav.vue";
 import getArticle from "@/components/common/getArticle";
+import getIncites from "@/components/common/getIncites";
+
 
 export default {
   name: "Common",
@@ -60,6 +62,10 @@ export default {
       // 我校esi顶级论文模块
       if (firDirectory === "schoolPaper") {
         getArticle.getOurPaper(firDirectory, secDirectory);
+      }
+      // 我校潜力值模块
+      if (firDirectory === "potential") {
+        getIncites.getIncitesData();
       }
 
     }

@@ -99,6 +99,9 @@ export const getGlobalPaper = (firDirectory, secDirectory) => {
   // console.log("调用");
   // console.log(firDirectory);
   // console.log(secDirectory);
+  if (secDirectory === "hotPaper") {
+    secDirectory = "hot";
+  }
   api.search
     .searchGlobalPaper(secDirectory)
     .then(response => {
@@ -136,6 +139,9 @@ export const getOurPaper = (firDirectory, secDirectory) => {
   // console.log("调用");
   // console.log(firDirectory);
   // console.log(secDirectory);
+  if (secDirectory === "hotPaper") {
+    secDirectory = "hot";
+  }
   api.search
     .searchOurPaper(secDirectory)
     .then(response => {

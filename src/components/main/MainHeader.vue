@@ -11,8 +11,8 @@
     <div class="d-ib content-sort-choice">
       <span class="content-sort-choice-title">排序</span>
       <select name="" id="sort-select" class="sort-select" v-model="ifDesc" @change="getArticaleData">
-        <option value="true">按时间降序</option>
-        <option value="false">按时间升序</option>
+        <option value="true">{{ this.$route.name === "potential" ? "按频次降序" : "按时间降序" }}</option>
+        <option value="false">{{ this.$route.name === "potential" ? "按频次升序" : "按频次降序" }}</option>
       </select>
     </div>
     <!-- 期刊时间选择（只有期刊页面才有该组件） -->
@@ -30,6 +30,7 @@
 <script>
 import PeriodicalTime from "@/components/condition/PeriodicalTime.vue";
 import getArticle from "../common/getArticle";
+import getIncites from "@/components/common/getIncites";
 
 export default {
   name: "MainHeader",
@@ -145,6 +146,10 @@ export default {
       if (firDirectory === "schoolPaper") {
         getArticle.getOurPaper(firDirectory, secDirectory);
       }
+      // 我校潜力值模块
+      if (firDirectory === "potential") {
+        getIncites.getIncitesData();
+      }
     },
     // 监听全选框
     changeAllChecked() {
@@ -159,9 +164,10 @@ export default {
       let checkedId = this.$store.state.checkedArticle.checkedId;
       console.log(checkedId);
       let nameObj = {
-        globalPaper: "allPaper",
-        schoolPaper: "ourPaper",
-        periodical: "journal"
+        globalPaper: "paper/esi",
+        schoolPaper: "paper/school",
+        periodical: "journal",
+        potential: "incites"
       };
       let name = nameObj[this.$route.name];
       // if (this.$route.name === "globalPaper" || this.$route.name === "schoolPaper") {

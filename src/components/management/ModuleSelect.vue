@@ -17,7 +17,7 @@
         <option v-if="routerName === 'upload'" value="incites">潜力值</option>
       </select>
       <select name="" id="select-second" class="select-input select-paper-input" v-if="isSecondSelect" v-model="secondSelect">
-        <option value="highly">高被引论文</option>
+        <option value="highlyCited">高被引论文</option>
         <option value="hot">热点论文</option>
       </select>
       <div class="select-note" v-show="routerName === 'delete'">注：基准线和潜力值直接上传新的就会覆盖掉原来的文件</div>
@@ -34,7 +34,7 @@ export default {
   data() {
     return {
       firstSelect: "journal",
-      secondSelect: "highly",
+      secondSelect: "highlyCited",
       fileTime: ""
     };
   },

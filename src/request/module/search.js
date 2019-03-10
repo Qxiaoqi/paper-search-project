@@ -38,7 +38,7 @@ export const searchCurrent = time => {
 // 查询esi顶级论文
 export const searchGlobalPaper = paperType => {
   return axios({
-    url: "/allPaper/" + paperType,
+    url: "/paper/esi/" + paperType + "/search",
     method: "post",
     data: {
       page: store.state.conditions.page,
@@ -58,7 +58,7 @@ export const searchGlobalPaper = paperType => {
 // 查询我校esi顶级论文
 export const searchOurPaper = paperType => {
   return axios({
-    url: "/ourPaper/" + paperType,
+    url: "/paper/school/" + paperType + "/search",
     method: "post",
     data: {
       page: store.state.conditions.page,
@@ -109,11 +109,30 @@ export const searchBaselineAll = () => {
   });
 };
 
+// 查询我校论文潜力值
+export const searchIncites = () => {
+  return axios({
+    url: "/incites/all",
+    method: "post",
+    data: {
+      page: store.state.conditions.page,
+      keyWordType: store.state.conditions.keywordType,
+      keyWord: store.state.conditions.keyword,
+      ifDesc: store.state.conditions.ifDesc,
+      conditionData: {
+        subject: store.getters.getConditionId.subjectCondition
+      }
+    },
+    requiresAuth: true
+  });
+};
+
 export default {
   searchAll,
   searchCurrent,
   searchGlobalPaper,
   searchOurPaper,
   searchBaselineAll,
-  searchBaseline
+  searchBaseline,
+  searchIncites
 };
