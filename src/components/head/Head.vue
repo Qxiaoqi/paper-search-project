@@ -67,7 +67,7 @@ export default {
     margin: 25px 0 0 220px;
     height: 80px;
     width: 490px;
-    background: url("../../assets/logo.png") no-repeat;
+    background: url("../../assets/logo_min.png") no-repeat;
   }
 }
 </style>

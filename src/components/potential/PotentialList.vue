@@ -97,7 +97,7 @@ export default {
 .search-foot {
   width: 150px;
   display: table-cell;
-  font-weight: 700;
+  font-weight: bold;
   padding-left: 20px;
 }
 

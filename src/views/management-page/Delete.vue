@@ -37,23 +37,8 @@ export default {
   components: {
     ModuleSelect
   },
-  beforeCreate() {
-    this.$api.user
-      .getManage()
-      .then(response => {
-        console.log(response);
-        if (response.data.code === 200) {
-          window.$message.info("可以删除文件");
-        }
-      })
-      .catch(error => {
-        console.log(error);
-        if (error.data.code === 401) {
-          router.push({
-            path: "/"
-          });
-        }
-      })
+  created() {
+    window.$message.info("可以删除文件");
   },
   data() {
     return {

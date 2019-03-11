@@ -47,7 +47,7 @@ export default {
   line-height: 55px;
   list-style: none;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: bold;
   box-sizing: border-box;
   border-bottom: 1px solid @border-light;
 

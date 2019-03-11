@@ -12,7 +12,7 @@
       <span class="content-sort-choice-title">排序</span>
       <select name="" id="sort-select" class="sort-select" v-model="ifDesc" @change="getArticaleData">
         <option value="true">{{ this.$route.name === "potential" ? "按频次降序" : "按时间降序" }}</option>
-        <option value="false">{{ this.$route.name === "potential" ? "按频次升序" : "按频次降序" }}</option>
+        <option value="false">{{ this.$route.name === "potential" ? "按频次升序" : "按时间升序" }}</option>
       </select>
     </div>
     <!-- 期刊时间选择（只有期刊页面才有该组件） -->
@@ -213,7 +213,7 @@ export default {
 <style lang="less" scoped>
 .header-title {
   line-height: 50px;
-  font-weight: 600;
+  font-weight: bold;
 }
 
 .header {
@@ -236,7 +236,7 @@ export default {
 
   .content-sort-choice-title {
     padding-right: 8px;
-    font-weight: 600;
+    font-weight: bold;
   }
 
   .sort-select {

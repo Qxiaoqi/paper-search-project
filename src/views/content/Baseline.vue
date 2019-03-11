@@ -50,7 +50,7 @@ export default {
 <style lang="less">
 .header-title {
   line-height: 50px;
-  font-weight: 600;
+  font-weight: bold;
 }
 
 .header {

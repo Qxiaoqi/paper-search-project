@@ -16,6 +16,7 @@
 <script>
 // @ is an alias to /src
 import Head from "@/components/head/Head.vue";
+
 // import LeftNav from "@/components/left-nav/LeftNav.vue";
 
 export default {
@@ -28,9 +29,11 @@ export default {
 
 <style lang="less">
 @font-face {
-  font-family: "Source Sans Pro";
-  src: url("./assets/font/SourceSansPro-Regular.ttf");
+  font-family: "DownloadFont";
+  src: url("./assets/font/SourceSansPro-Regular.woff2") format("woff2"),
+      url("./assets/font/SourceSansPro-Regular.woff") format("woff");
 }
+
 // 自定义-webkit-前缀的浏览器滚动条样式
 ::-webkit-scrollbar {
   // 宽度
@@ -51,7 +54,7 @@ export default {
 }
 
 #app {
-  font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
+  font-family: "DownloadFont", Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
@@ -59,6 +62,7 @@ export default {
   background-color: @content-color;
   line-height: 1.42858;
   font-size: 14px;
+  // -webkit-text-stroke: 1px rgba(0, 0, 0, 0.7);
 }
 
 .container {
@@ -147,7 +151,6 @@ h5 {
     margin: 25px 0 0 220px;
     // height: 40px;
     // width: 245px;
-    background: url("./assets/logo.png") no-repeat;
     background-size: 100%;
   }
 }

@@ -53,23 +53,8 @@ export default {
   components: {
     ModuleSelect
   },
-  beforeCreate() {
-    this.$api.user
-      .getManage()
-      .then(response => {
-        console.log(response);
-        if (response.data.code === 200) {
-          this.$message.info("可以选择上传文件");
-        }
-      })
-      .catch(error => {
-        console.log(error);
-        if (error.data.code === 401) {
-          router.push({
-            path: "/"
-          });
-        }
-      });
+  created() {
+    this.$message.info("可以选择上传文件");
   },
   data() {
     return {

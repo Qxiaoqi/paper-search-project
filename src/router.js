@@ -8,6 +8,7 @@ import Baseline from "./views/content/Baseline.vue";
 import Potential from "./views/content/Potential.vue";
 import Management from "./views/Management.vue";
 import ErrorView from "./views/ErrorView.vue";
+import api from "@/request/api";
 
 Vue.use(Router);
 
@@ -91,6 +92,22 @@ const router = new Router({
       path: "/management",
       // name: "management",
       component: Management,
+      beforeEnter: (to, from, next) => {
+        api.user
+          .getManage()
+          .then(response => {
+            console.log(response);
+            if (response.data.code === 200) {
+              next();
+            }
+          })
+          .catch(error => {
+            console.log(error);
+            if (error.data.code === 401) {
+              next({ path: "/" });
+            }
+          });
+      },
       children: [
         {
           path: "upload",

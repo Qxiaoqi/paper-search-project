@@ -1,5 +1,5 @@
 <template>
-  <div class="login-container">
+  <div class="login-container" id="login-container">
     <div class="login">
       <div class="title">
         <h1>请登陆以访问图书馆</h1>
@@ -41,93 +41,27 @@
 <script>
 import router from "../router";
 import UserInput from "@/components/user/UserInput.vue";
+import FontFaceObserver from "fontfaceobserver"; //字体加载前降级库
 
 export default {
   name: "Login",
   components: {
     UserInput
   },
-  // data() {
-  //   return {
-  //     username: "",
-  //     password: "",
-  //     code: "",
-  //     uuid: "",
-  //     codeUrl: "",
-  //     codeTimeout: 0,
-  //     // 全局变量，防止重复点击
-  //     clock: ""
-  //   };
-  // },
-  // computed: {
-  //   isCodeRender() {
-  //     return this.codeUrl !== "" && this.codeTimeout > 0 ? true : false;
-  //   }
-  // },
-  // methods: {
-  //   getCode() {
-  //     let that = this;
-  //     this.$api.get
-  //       .getLoginCode()
-  //       .then(response => {
-  //         console.log(response);
-  //         that.codeUrl = "data:image/png;base64," + response.data.data.image;
-  //         that.uuid = response.data.data.uuid;
-  //         that.codeTimeout = response.data.data.time;
-  //         // 倒计时函数
-  //         that.countDown();
-  //       })
-  //       .catch(error => {
-  //         console.log(error);
-  //       });
-  //   },
-  //   loginSubmit() {
-  //     let that = this;
-  //     this.$api.user
-  //       .login({
-  //         userName: that.username,
-  //         password: that.password,
-  //         code: that.code,
-  //         uuid: that.uuid
-  //       })
-  //       .then(response => {
-  //         window.$message.success("登陆成功");
-  //         // console.log(response);
-  //         let { jwtCode, lifeTime } = response.data.data;
-  //         // 获取当前时间，将当前时间加上过期时间，得到实际过期时间戳
-  //         let nowTime = new Date().getTime();
-  //         // console.log(jwtCode, lifeTime, nowTime);
-  //         let loginUserBaseInfo = {
-  //           jwtCode: jwtCode,
-  //           lifeTime: lifeTime + nowTime
-  //         };
-  //         console.log(loginUserBaseInfo);
-  //         // 基本信息存到localStorage,里面包含过期时间和token
-  //         // localStorage只能存字符串
-  //         localStorage.setItem(
-  //           "loginUserBaseInfo",
-  //           JSON.stringify(loginUserBaseInfo)
-  //         );
-  //         router.push({
-  //           path: "/"
-  //         });
-  //       })
-  //       .catch(error => {
-  //         console.log(error);
-  //       });
-  //   },
-  //   countDown() {
-  //     window.clearInterval(this.clock);
-  //     this.clock = window.setInterval(() => {
-  //       if (this.codeTimeout >= 0) {
-  //         this.codeTimeout--;
-  //       }
-  //       if (this.codeTimeout < 0) {
-  //         window.clearInterval(this.clock);
-  //       }
-  //     }, 1000);
-  //   }
-  // }
+  beforeCreate() {
+    let font = new FontFaceObserver("DownloadFont");
+
+    font
+      .load(null, 100).then(function() {
+        console.log("My Family has loaded");
+        // document.getElementById("login-container").style.fontFamily = "DownloadFont";
+
+      }).catch(function() {
+        console.log("字体未在0.1s内加载，则登录页显示安全字体");
+        document.getElementById("login-container").style.fontFamily = "Arial, Helvetica, sans-serif";
+      })
+  }
+
 };
 </script>
 
@@ -139,7 +73,11 @@ export default {
   width: 100%;
   background-color: #ffffff;
   display: table;
-  // border-top: 20px solid @content-color;
+  // 登录页先用安全字体加载，提高页面加载速度
+  // font-family:  Arial, Helvetica, sans-serif;
+  font-family: "DownloadFont", Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .login {
