@@ -29,7 +29,7 @@
 
 <script>
 import PeriodicalTime from "@/components/condition/PeriodicalTime.vue";
-import getArticle from "../common/getArticle";
+import getArticle from "@/components/common/getArticle";
 import getIncites from "@/components/common/getIncites";
 
 export default {

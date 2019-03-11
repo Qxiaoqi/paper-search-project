@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import getArticle from "../common/getArticle";
+import getArticle from "@/components/common/getArticle";
 import getIncites from "@/components/common/getIncites";
 
 export default {
