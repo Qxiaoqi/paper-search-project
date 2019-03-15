@@ -6,9 +6,14 @@ import Periodical from "./views/content/Periodical.vue";
 import Paper from "./views/content/Paper.vue";
 import Baseline from "./views/content/Baseline.vue";
 import Potential from "./views/content/Potential.vue";
-import Management from "./views/Management.vue";
 import ErrorView from "./views/ErrorView.vue";
 import api from "@/request/api";
+
+// import Management from "./views/Management.vue";
+// import Upload from "./views/management-page/Upload.vue";
+// import Delete from "./views/management-page/Delete.vue";
+// import Register from "./views/management-page/Register.vue";
+
 
 Vue.use(Router);
 
@@ -91,7 +96,8 @@ const router = new Router({
     {
       path: "/management",
       // name: "management",
-      component: Management,
+      component: () => import("./views/Management.vue"),
+      // component: Management,
       beforeEnter: (to, from, next) => {
         api.user
           .getManage()
@@ -114,18 +120,21 @@ const router = new Router({
           name: "upload",
           meta: { requiresAuth: true },
           component: () => import("./views/management-page/Upload.vue")
+          // component: Upload
         },
         {
           path: "delete",
           name: "delete",
           meta: { requiresAuth: true },
           component: () => import("./views/management-page/Delete.vue")
+          // component: Delete
         },
         {
           path: "register",
           name: "register",
           meta: { requiresAuth: true },
           component: () => import("./views/management-page/Register.vue")
+          // component: Register
         }
       ]
     },
